@@ -19,7 +19,14 @@ export type SurveyDataset = {
 const sampleData: SurveyDataset = {
   title: "My Sample Survey",
   description: "This is the sample data for this component",
-  questions: [{ type: "mc", text: "this is the text for Q1" }],
+  questions: [
+    { type: "mc", text: "this is the text for Q1" },
+    { type: "mc", text: "this is the text for Q2" },
+
+    { type: "mc", text: "this is the text for Q3" },
+    { type: "mc", text: "this is the text for Q4" },
+    { type: "mc", text: "this is the text for Q5" },
+  ],
 };
 
 const EditPage = () => {
@@ -27,14 +34,13 @@ const EditPage = () => {
 
   const addQuestionAtIndex = (index: number) => {
     const newQuestion = { type: "mc", text: "this is a new question" };
-    const tempQuestions = [
-      ...surveyData.questions.slice(0, index - 1),
-      newQuestion,
-      ...surveyData.questions.slice(index),
-    ];
-    console.log(tempQuestions);
+    const tempQuestions = [...surveyData.questions];
+    const firstHalf = tempQuestions.slice(0, index);
+    const secondHalf = tempQuestions.slice(index);
+    const newQuestions = [...firstHalf, newQuestion, ...secondHalf];
+    console.log(newQuestions);
 
-    setSurveyData({ ...surveyData, questions: tempQuestions });
+    setSurveyData({ ...surveyData, questions: newQuestions });
   };
 
   const updateQuestion = (questionData: SurveyQuestion, index: number) => {
@@ -49,7 +55,9 @@ const EditPage = () => {
       {surveyData.questions.map((questionData, index) => {
         return (
           <>
+            <h2>{index}</h2>
             <button
+              key={`bt-${index}`}
               onClick={() => {
                 addQuestionAtIndex(index);
               }}
@@ -57,7 +65,7 @@ const EditPage = () => {
               +
             </button>
             <EditQuestion
-              key={index}
+              key={`edit-${index}`}
               questionData={questionData}
               update={(newQuestionData: SurveyQuestion) => {
                 updateQuestion(newQuestionData, index);

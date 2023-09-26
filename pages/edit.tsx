@@ -55,7 +55,6 @@ const EditPage = () => {
       {surveyData.questions.map((questionData, index) => {
         return (
           <>
-            <h2>{index}</h2>
             <button
               key={`bt-${index}`}
               onClick={() => {
@@ -75,6 +74,8 @@ const EditPage = () => {
         );
       })}
       <button
+        className="w-24 h-24"
+        key={`bt-${surveyData.questions.length}`}
         onClick={() => {
           addQuestionAtIndex(surveyData.questions.length);
         }}

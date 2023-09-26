@@ -74,6 +74,13 @@ const EditPage = () => {
           </>
         );
       })}
+      <button
+        onClick={() => {
+          addQuestionAtIndex(surveyData.questions.length);
+        }}
+      >
+        +
+      </button>
     </div>
   );
 };

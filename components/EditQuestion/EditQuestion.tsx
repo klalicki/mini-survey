@@ -1,4 +1,4 @@
-import { SurveyQuestion } from "@/pages/edit";
+import { SurveyQuestion } from "@/types/QuestionTypes";
 import { useEffect, useState } from "react";
 
 const EditQuestion = ({

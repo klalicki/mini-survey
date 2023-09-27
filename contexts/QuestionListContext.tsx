@@ -5,13 +5,17 @@ import {
 } from "@/types/QuestionTypes";
 
 type QuestionListContextValues = {
-  QuestionList: SurveyQuestion[];
+  questionList: SurveyQuestion[];
   addBlankQuestion: Function;
 };
-export const QuestionListContext = createContext({});
+const defaultValues: QuestionListContextValues = {
+  questionList: [],
+  addBlankQuestion: () => {},
+};
+export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
-    CreateBlankSurveyQuestion(),
+    { type: "", text: "", staticID: "a" },
   ]);
 
   /**
@@ -25,6 +29,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     if (index) {
       const firstSet = [...questionList].slice(0, index);
       const secondSet = [...questionList].slice(index);
+      console.log(firstSet, secondSet);
       setQuestionList([...firstSet, CreateBlankSurveyQuestion(), ...secondSet]);
     } else {
       setQuestionList([...questionList, CreateBlankSurveyQuestion()]);

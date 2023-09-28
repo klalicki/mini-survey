@@ -1,6 +1,7 @@
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
+import ButtonAddQuestion from "../ButtonAddQuestion/ButtonAddQuestion";
 
 const QuestionList = () => {
   const { questionList, addBlankQuestion } = useContext(QuestionListContext);
@@ -11,25 +12,13 @@ const QuestionList = () => {
       {questionList.map((item, index) => {
         return (
           <>
-            <button
-              onClick={() => {
-                addBlankQuestion(index);
-              }}
-            >
-              + at {index}
-            </button>
+            <ButtonAddQuestion index={index} />
             <p>index: {index}</p>
-            <EditQuestion questionData={item} key={item.staticID} />
+            <EditQuestion questionData={item} key={`q-${item.staticID}`} />
           </>
         );
       })}
-      <button
-        onClick={() => {
-          addBlankQuestion();
-        }}
-      >
-        + at {questionList.length}
-      </button>
+      <ButtonAddQuestion />
     </div>
   );
 };

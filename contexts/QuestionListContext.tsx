@@ -15,7 +15,7 @@ const defaultValues: QuestionListContextValues = {
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
-    { type: "", text: "", staticID: "a" },
+    { questionType: "", text: "", staticID: "a" },
   ]);
 
   /**

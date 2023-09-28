@@ -23,6 +23,13 @@ const QuestionList = () => {
           </>
         );
       })}
+      <button
+        onClick={() => {
+          addBlankQuestion();
+        }}
+      >
+        + at {questionList.length}
+      </button>
     </div>
   );
 };

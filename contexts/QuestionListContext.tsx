@@ -26,7 +26,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
    * the array. If not, the new quetion will be added at the end of the list.
    */
   const addBlankQuestion = (index?: number) => {
-    if (index) {
+    if (index !== undefined) {
       const firstSet = [...questionList].slice(0, index);
       const secondSet = [...questionList].slice(index);
       console.log(firstSet, secondSet);

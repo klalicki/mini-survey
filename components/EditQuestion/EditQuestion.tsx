@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const EditQuestion = ({ questionData }: { questionData: SurveyQuestion }) => {
   return (
     <article>
-      <h2>{questionData.staticID}</h2>
+      <h2>Question ID#:{questionData.staticID}</h2>
     </article>
   );
 };

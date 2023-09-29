@@ -1,9 +1,15 @@
 import { SurveyQuestion } from "@/types/QuestionTypes";
 import { useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-const EditQuestion = ({ questionData }: { questionData: SurveyQuestion }) => {
+const EditQuestion = ({
+  questionData,
+  index,
+}: {
+  questionData: SurveyQuestion;
+  index: number;
+}) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: questionData.staticID,
+    id: index,
   });
   const draggableStyle = transform
     ? {

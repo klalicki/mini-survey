@@ -36,14 +36,14 @@ const QuestionList = () => {
           );
         })}
         <ButtonAddQuestion />
-        <DragOverlay>
+        {/* <DragOverlay>
           {activeID ? (
             <EditQuestion
               questionData={questionList[activeID]}
               index={activeID}
             />
           ) : null}
-        </DragOverlay>
+        </DragOverlay> */}
       </DndContext>
     </div>
   );

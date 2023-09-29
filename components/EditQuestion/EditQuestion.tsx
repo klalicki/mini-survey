@@ -19,28 +19,28 @@ const EditQuestion = ({
       }
     : undefined;
   return (
-    <article ref={setNodeRef} style={draggableStyle}>
-      <button {...listeners} {...attributes}>
-        Drag handle
-      </button>
-      <div className="move-buttons">
-        <button
-          onClick={() => {
-            moveQuestionRelative(index, -1);
-          }}
-        >
-          -
-        </button>
+    <article ref={setNodeRef} style={draggableStyle} className="eq-container">
+      <button {...listeners} {...attributes} className="eq-draghandle"></button>
+      <div className="eq-main">
+        <div className="move-buttons">
+          <button
+            onClick={() => {
+              moveQuestionRelative(index, -1);
+            }}
+          >
+            -
+          </button>
 
-        <button
-          onClick={() => {
-            moveQuestionRelative(index, 1);
-          }}
-        >
-          +
-        </button>
+          <button
+            onClick={() => {
+              moveQuestionRelative(index, 1);
+            }}
+          >
+            +
+          </button>
+        </div>
+        <h2>Question ID#:{questionData.staticID}</h2>
       </div>
-      <h2>Question ID#:{questionData.staticID}</h2>
     </article>
   );
 };

@@ -8,11 +8,13 @@ type QuestionListContextValues = {
   questionList: SurveyQuestion[];
   addBlankQuestion: Function;
   moveQuestion: Function;
+  moveQuestionRelative: Function;
 };
 const defaultValues: QuestionListContextValues = {
   questionList: [],
   addBlankQuestion: () => {},
   moveQuestion: () => {},
+  moveQuestionRelative: () => {},
 };
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
@@ -36,18 +38,25 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
       setQuestionList([...questionList, CreateBlankSurveyQuestion()]);
     }
   };
-  const moveQuestion = (questionID: number, targetIndex: number) => {
-    // console.log(`moving item at index ${questionID} to index ${targetIndex}`);
-    const itemToMove = questionList[questionID];
+  const moveQuestion = (questionIndex: number, targetIndex: number) => {
+    console.log(`moving item ${questionIndex} to ${targetIndex}`);
+    const itemToMove = questionList[questionIndex];
     const tempList = [...questionList];
-    tempList.splice(questionID, 1);
+    tempList.splice(questionIndex, 1);
     tempList.splice(targetIndex, 0, itemToMove);
     setQuestionList(tempList);
   };
-
+  const moveQuestionRelative = (questionIndex: number, offset: number) => {
+    moveQuestion(questionIndex, questionIndex + offset);
+  };
   return (
     <QuestionListContext.Provider
-      value={{ questionList, addBlankQuestion, moveQuestion }}
+      value={{
+        questionList,
+        addBlankQuestion,
+        moveQuestion,
+        moveQuestionRelative,
+      }}
     >
       {props.children}
     </QuestionListContext.Provider>

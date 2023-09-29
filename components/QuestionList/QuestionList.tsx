@@ -2,7 +2,7 @@ import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext, useState } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import ButtonAddQuestion from "../ButtonAddQuestion/ButtonAddQuestion";
-import { DndContext, DragOverlay, useDraggable } from "@dnd-kit/core";
+import { DndContext, DragOverlay } from "@dnd-kit/core";
 import QuestionListDragTarget from "../QuestionListDragTarget/QuestionListDragTarget";
 
 const QuestionList = () => {

@@ -1,6 +1,7 @@
 import { SurveyQuestion } from "@/types/QuestionTypes";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
+import { QuestionListContext } from "@/contexts/QuestionListContext";
 const EditQuestion = ({
   questionData,
   index,
@@ -8,6 +9,7 @@ const EditQuestion = ({
   questionData: SurveyQuestion;
   index: number;
 }) => {
+  const { moveQuestionRelative } = useContext(QuestionListContext);
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: index.toString(),
   });
@@ -17,12 +19,27 @@ const EditQuestion = ({
       }
     : undefined;
   return (
-    <article
-      ref={setNodeRef}
-      style={draggableStyle}
-      {...listeners}
-      {...attributes}
-    >
+    <article ref={setNodeRef} style={draggableStyle}>
+      <button {...listeners} {...attributes}>
+        Drag handle
+      </button>
+      <div className="move-buttons">
+        <button
+          onClick={() => {
+            moveQuestionRelative(index, -1);
+          }}
+        >
+          -
+        </button>
+
+        <button
+          onClick={() => {
+            moveQuestionRelative(index, 1);
+          }}
+        >
+          +
+        </button>
+      </div>
       <h2>Question ID#:{questionData.staticID}</h2>
     </article>
   );

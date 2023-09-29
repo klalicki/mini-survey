@@ -9,7 +9,7 @@ const EditQuestion = ({
   index: number;
 }) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: index,
+    id: index.toString(),
   });
   const draggableStyle = transform
     ? {

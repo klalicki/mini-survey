@@ -1,37 +1,49 @@
 import { QuestionListContext } from "@/contexts/QuestionListContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import ButtonAddQuestion from "../ButtonAddQuestion/ButtonAddQuestion";
-import { DndContext, useDraggable } from "@dnd-kit/core";
+import { DndContext, DragOverlay, useDraggable } from "@dnd-kit/core";
 import QuestionListDragTarget from "../QuestionListDragTarget/QuestionListDragTarget";
 
 const QuestionList = () => {
   const { questionList, addBlankQuestion, moveQuestion } =
     useContext(QuestionListContext);
+  const [activeID, setActiveID] = useState<number | null>(null);
   const handleDragEnd = (event) => {
-    if (event.over !== undefined && event.over.id !== undefined) {
+    console.log(event);
+    console.log("dragEnd");
+    if (event.over !== null && event.over.id !== undefined) {
+      console.log("running mQ");
       moveQuestion(event.active.id, event.over.id);
     }
+  };
+  const handleDragStart = (event) => {
+    console.log(event.active.id);
+    setActiveID(event.active.id);
   };
 
   return (
     <div>
       <h1>Question List</h1>
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
         {questionList.map((item, index) => {
           return (
             <>
               <QuestionListDragTarget index={index} />
               {/* <p>index: {index}</p> */}
-              <EditQuestion
-                questionData={item}
-                key={`q-${item.staticID}`}
-                index={index}
-              />
+              <EditQuestion questionData={item} index={index} />
             </>
           );
         })}
         <ButtonAddQuestion />
+        <DragOverlay>
+          {activeID ? (
+            <EditQuestion
+              questionData={questionList[activeID]}
+              index={activeID}
+            />
+          ) : null}
+        </DragOverlay>
       </DndContext>
     </div>
   );

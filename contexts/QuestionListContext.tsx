@@ -29,7 +29,6 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     if (index !== undefined) {
       const firstSet = [...questionList].slice(0, index);
       const secondSet = [...questionList].slice(index);
-      console.log(firstSet, secondSet);
       setQuestionList([...firstSet, CreateBlankSurveyQuestion(), ...secondSet]);
     } else {
       setQuestionList([...questionList, CreateBlankSurveyQuestion()]);

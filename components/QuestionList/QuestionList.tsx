@@ -4,7 +4,7 @@ import EditQuestion from "../EditQuestion/EditQuestion";
 import ButtonAddQuestion from "../ButtonAddQuestion/ButtonAddQuestion";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import QuestionListDragTarget from "../QuestionListDragTarget/QuestionListDragTarget";
-
+import QuestionSort from "../QuestionSort/QuestionSort";
 const QuestionList = () => {
   const { questionList, addBlankQuestion, moveQuestion } =
     useContext(QuestionListContext);
@@ -25,26 +25,7 @@ const QuestionList = () => {
   return (
     <div>
       <h1>Question List</h1>
-      <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-        {questionList.map((item, index) => {
-          return (
-            <>
-              <QuestionListDragTarget index={index} />
-              {/* <p>index: {index}</p> */}
-              <EditQuestion questionData={item} index={index} />
-            </>
-          );
-        })}
-        <ButtonAddQuestion />
-        {/* <DragOverlay>
-          {activeID ? (
-            <EditQuestion
-              questionData={questionList[activeID]}
-              index={activeID}
-            />
-          ) : null}
-        </DragOverlay> */}
-      </DndContext>
+      <QuestionSort></QuestionSort>
     </div>
   );
 };

@@ -36,10 +36,18 @@ const EditQuestion = ({
       <Select
         title="Question Type"
         fieldName={`${questionData.staticID}-type`}
+        value={questionData.questionType}
         options={[
           { labelText: "Multiple Choice", value: "mc" },
           { labelText: "Short Text", value: "st" },
         ]}
+        handleChange={(newVal) => {
+          console.log(newVal);
+          updateQuestion(questionData.staticID, {
+            ...questionData,
+            questionType: newVal,
+          });
+        }}
       />
 
       <button

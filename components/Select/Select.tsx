@@ -9,7 +9,7 @@ const Select = ({
   title: string;
   value?: string;
   fieldName: string;
-  handleChange: Function;
+  handleChange?: Function;
 }) => {
   return (
     <>
@@ -24,7 +24,9 @@ const Select = ({
                 id={`radio-${item.value}`}
                 checked={value === item.value}
                 onChange={(e) => {
-                  handleChange(e.target.value);
+                  if (handleChange) {
+                    handleChange(item.value);
+                  }
                 }}
               />
               <label htmlFor={`radio-${item.value}`}>{item.labelText}</label>

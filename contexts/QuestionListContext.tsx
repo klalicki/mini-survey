@@ -10,6 +10,7 @@ type QuestionListContextValues = {
   moveQuestion: Function;
   moveQuestionRelative: Function;
   moveQuestionById: Function;
+  updateQuestion: Function;
 };
 const defaultValues: QuestionListContextValues = {
   questionList: [],
@@ -17,6 +18,7 @@ const defaultValues: QuestionListContextValues = {
   moveQuestion: () => {},
   moveQuestionRelative: () => {},
   moveQuestionById: () => {},
+  updateQuestion: () => {},
 };
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
@@ -47,6 +49,15 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     }
   };
 
+  const updateQuestion = (questionId: string, newData: SurveyQuestion) => {
+    const tempList = [...questionList];
+    const targetIndex = tempList.findIndex((item) => {
+      return item.staticID === questionId;
+    });
+    tempList[targetIndex] = newData;
+    setQuestionList(tempList);
+  };
+
   const moveQuestion = (questionIndex: number, targetIndex: number) => {
     console.log(`moving item ${questionIndex} to ${targetIndex}`);
     const itemToMove = questionList[questionIndex];
@@ -75,6 +86,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
         moveQuestion,
         moveQuestionRelative,
         moveQuestionById,
+        updateQuestion,
       }}
     >
       {props.children}

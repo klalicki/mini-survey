@@ -10,7 +10,8 @@ const EditQuestion = ({
   questionData: SurveyQuestion;
   index: number;
 }) => {
-  const { moveQuestionRelative } = useContext(QuestionListContext);
+  const { moveQuestionRelative, updateQuestion } =
+    useContext(QuestionListContext);
   // const { attributes, listeners, setNodeRef, transform } = useDraggable({
   //   id: index.toString(),
   // });
@@ -34,6 +35,16 @@ const EditQuestion = ({
         </button>
       </div>
       <h2>Question ID#:{questionData.staticID}</h2>
+      <button
+        onClick={() => {
+          updateQuestion(questionData.staticID, {
+            ...questionData,
+            text: "Hello this has been updated!",
+          });
+        }}
+      >
+        CLEAR TEXT
+      </button>
       <p>{questionData.text}</p>
     </div>
   );

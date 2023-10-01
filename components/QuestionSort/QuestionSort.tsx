@@ -15,7 +15,11 @@ import {
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import {
+  SortableContext,
+  useSortable,
+  sortableKeyboardCoordinates,
+} from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
@@ -34,13 +38,20 @@ const QuestionSortItem = ({
     transition,
   };
   return (
-    <div ref={setNodeRef} style={itemStyle} {...attributes} {...listeners}>
-      {children}
-    </div>
+    <article style={itemStyle} ref={setNodeRef} className="qs-question-wrapper">
+      <button {...attributes} {...listeners} className="eq-draghandle"></button>
+      <div className="eq-container">{children}</div>
+    </article>
   );
 };
 
 const QuestionSort = () => {
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
   const {
     questionList,
     addBlankQuestion,
@@ -71,13 +82,13 @@ const QuestionSort = () => {
     }
   };
   return (
-    <>
+    <section className="sort-list-container">
       <DndContext
         modifiers={[restrictToParentElement]}
-        collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
+        sensors={sensors}
       >
         <SortableContext
           items={questionList.map((item) => {
@@ -90,7 +101,6 @@ const QuestionSort = () => {
               <>
                 {/* <button>+</button> */}
                 <QuestionSortItem id={item.staticID} key={item.staticID}>
-                  {/* item {item.staticID} */}
                   <EditQuestion questionData={item} index={index} />
                 </QuestionSortItem>
               </>
@@ -98,7 +108,7 @@ const QuestionSort = () => {
           })}
         </SortableContext>
       </DndContext>
-    </>
+    </section>
   );
 };
 export default QuestionSort;

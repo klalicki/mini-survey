@@ -15,30 +15,27 @@ const EditQuestion = ({
   //   id: index.toString(),
   // });
   return (
-    <article className="eq-container">
-      <button className="eq-draghandle"></button>
-      <div className="eq-main">
-        <div className="move-buttons">
-          <button
-            onClick={() => {
-              moveQuestionRelative(index, -1);
-            }}
-          >
-            -
-          </button>
+    <div className="eq-main">
+      <div className="move-buttons">
+        <button
+          onClick={() => {
+            moveQuestionRelative(index, -1);
+          }}
+        >
+          -
+        </button>
 
-          <button
-            onClick={() => {
-              moveQuestionRelative(index, 1);
-            }}
-          >
-            +
-          </button>
-        </div>
-        <h2>Question ID#:{questionData.staticID}</h2>
-        <p>{questionData.text}</p>
+        <button
+          onClick={() => {
+            moveQuestionRelative(index, 1);
+          }}
+        >
+          +
+        </button>
       </div>
-    </article>
+      <h2>Question ID#:{questionData.staticID}</h2>
+      <p>{questionData.text}</p>
+    </div>
   );
 };
 export default EditQuestion;

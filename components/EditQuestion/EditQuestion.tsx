@@ -10,17 +10,13 @@ const EditQuestion = ({
   index: number;
 }) => {
   const { moveQuestionRelative } = useContext(QuestionListContext);
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: index.toString(),
-  });
-  const draggableStyle = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+  // const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  //   id: index.toString(),
+  // });
+const  randomTextArray=
   return (
-    <article ref={setNodeRef} style={draggableStyle} className="eq-container">
-      <button {...listeners} {...attributes} className="eq-draghandle"></button>
+    <article className="eq-container">
+      <button className="eq-draghandle"></button>
       <div className="eq-main">
         <div className="move-buttons">
           <button
@@ -40,6 +36,9 @@ const EditQuestion = ({
           </button>
         </div>
         <h2>Question ID#:{questionData.staticID}</h2>
+        <p>
+          {}
+        </p>
       </div>
     </article>
   );

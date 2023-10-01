@@ -9,17 +9,21 @@ type QuestionListContextValues = {
   addBlankQuestion: Function;
   moveQuestion: Function;
   moveQuestionRelative: Function;
+  moveQuestionById: Function;
 };
 const defaultValues: QuestionListContextValues = {
   questionList: [],
   addBlankQuestion: () => {},
   moveQuestion: () => {},
   moveQuestionRelative: () => {},
+  moveQuestionById: () => {},
 };
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
     { questionType: "", text: "", staticID: "a" },
+    { questionType: "", text: "", staticID: "b" },
+    { questionType: "", text: "", staticID: "c" },
   ]);
 
   /**
@@ -38,6 +42,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
       setQuestionList([...questionList, CreateBlankSurveyQuestion()]);
     }
   };
+
   const moveQuestion = (questionIndex: number, targetIndex: number) => {
     console.log(`moving item ${questionIndex} to ${targetIndex}`);
     const itemToMove = questionList[questionIndex];
@@ -49,6 +54,15 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
   const moveQuestionRelative = (questionIndex: number, offset: number) => {
     moveQuestion(questionIndex, questionIndex + offset);
   };
+  const moveQuestionById = (initialID: string, targetID: string) => {
+    const initialIndex = questionList.findIndex((item) => {
+      return item.staticID === initialID;
+    });
+    const targetIndex = questionList.findIndex((item) => {
+      return item.staticID === targetID;
+    });
+    moveQuestion(initialIndex, targetIndex);
+  };
   return (
     <QuestionListContext.Provider
       value={{
@@ -56,6 +70,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
         addBlankQuestion,
         moveQuestion,
         moveQuestionRelative,
+        moveQuestionById,
       }}
     >
       {props.children}

@@ -2,7 +2,7 @@ import { SurveyQuestion } from "@/types/QuestionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
-import { loremIpsum } from "lorem-ipsum";
+import Select from "../Select/Select";
 const EditQuestion = ({
   questionData,
   index,
@@ -33,6 +33,15 @@ const EditQuestion = ({
         </button>
       </div>
       <h2>Question ID#:{questionData.staticID}</h2>
+      <Select
+        title="Question Type"
+        fieldName={`${questionData.staticID}-type`}
+        options={[
+          { labelText: "Multiple Choice", value: "mc" },
+          { labelText: "Short Text", value: "st" },
+        ]}
+      />
+
       <button
         onClick={() => {
           updateQuestion(questionData.staticID, {

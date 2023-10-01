@@ -4,11 +4,13 @@ const Select = ({
   value,
   fieldName,
   handleChange,
+  groupId,
 }: {
   options: Array<{ labelText: string; value: string }>;
   title: string;
   value?: string;
   fieldName: string;
+  groupId: string;
   handleChange?: Function;
 }) => {
   return (
@@ -21,7 +23,7 @@ const Select = ({
               <input
                 type="radio"
                 name={fieldName}
-                id={`radio-${item.value}`}
+                id={`radio-${fieldName}-${item.value}`}
                 checked={value === item.value}
                 onChange={(e) => {
                   if (handleChange) {
@@ -29,7 +31,9 @@ const Select = ({
                   }
                 }}
               />
-              <label htmlFor={`radio-${item.value}`}>{item.labelText}</label>
+              <label htmlFor={`radio-${fieldName}-${item.value}`}>
+                {item.labelText}
+              </label>
             </>
           );
         })}{" "}

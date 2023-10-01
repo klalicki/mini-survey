@@ -27,7 +27,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
       staticID: "a",
     },
     { questionType: "", text: loremIpsum({ count: 2 }), staticID: "b" },
-    { questionType: "", text: loremIpsum({ count: 3 }), staticID: "c" },
+    { questionType: "", text: loremIpsum({ count: 10 }), staticID: "c" },
   ]);
 
   /**

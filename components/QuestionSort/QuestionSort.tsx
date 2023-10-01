@@ -1,3 +1,4 @@
+"use client";
 import {
   closestCorners,
   DndContext,
@@ -7,13 +8,19 @@ import {
   useSensors,
   closestCenter,
   DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+  UniqueIdentifier,
+  DragOverEvent,
 } from "@dnd-kit/core";
+import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
+import { act } from "react-dom/test-utils";
 type QuestionSortItemProps = { id: number };
 
 const QuestionSortItem = ({
@@ -23,7 +30,7 @@ const QuestionSortItem = ({
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: id });
   const itemStyle = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
   };
   return (
@@ -41,9 +48,21 @@ const QuestionSort = () => {
     moveQuestionById,
     moveQuestionRelative,
   } = useContext(QuestionListContext);
-
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(event.active.id);
+  };
+  const handleDragOver = (event: DragOverEvent) => {
+    console.log(event);
+    const initialID = event.active.id;
+    const targetID = event?.over?.id;
+    if (targetID) {
+      moveQuestionById(initialID, targetID);
+    }
+  };
   const handleDragEnd = (event: DragEndEvent) => {
     // const initialIndex = questionList;
+    setActiveId(null);
     console.log(event);
     const initialID = event.active.id;
     const targetID = event?.over?.id;
@@ -53,7 +72,13 @@ const QuestionSort = () => {
   };
   return (
     <>
-      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <DndContext
+        modifiers={[restrictToParentElement]}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        onDragOver={handleDragOver}
+        onDragStart={handleDragStart}
+      >
         <SortableContext
           items={questionList.map((item) => {
             return item.staticID;
@@ -63,7 +88,7 @@ const QuestionSort = () => {
             // console.log(item);
             return (
               <>
-                <button>+</button>
+                {/* <button>+</button> */}
                 <QuestionSortItem id={item.staticID} key={item.staticID}>
                   {/* item {item.staticID} */}
                   <EditQuestion questionData={item} index={index} />

@@ -12,9 +12,7 @@ const EditQuestion = ({
 }) => {
   const { moveQuestionRelative, updateQuestion } =
     useContext(QuestionListContext);
-  // const { attributes, listeners, setNodeRef, transform } = useDraggable({
-  //   id: index.toString(),
-  // });
+
   return (
     <div className="eq-main">
       <div className="move-buttons">

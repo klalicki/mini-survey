@@ -41,7 +41,7 @@ const EditQuestion = ({
           { labelText: "Multiple Choice", value: "mc" },
           { labelText: "Short Text", value: "st" },
         ]}
-        handleChange={(newVal) => {
+        handleChange={(newVal: string) => {
           console.log(newVal);
           updateQuestion(questionData.staticID, {
             ...questionData,
@@ -60,7 +60,8 @@ const EditQuestion = ({
       >
         CLEAR TEXT
       </button>
-      <p>{questionData.text}</p>
+      {questionData.questionType === "mc" && <p>MC Edit Component</p>}
+      {questionData.questionType === "st" && <p>ST Edit Component</p>}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import {
   SurveyQuestion,
   CreateBlankSurveyQuestion,
 } from "@/types/QuestionTypes";
-
+import { loremIpsum } from "lorem-ipsum";
 type QuestionListContextValues = {
   questionList: SurveyQuestion[];
   addBlankQuestion: Function;
@@ -21,9 +21,13 @@ const defaultValues: QuestionListContextValues = {
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
-    { questionType: "", text: "", staticID: "a" },
-    { questionType: "", text: "", staticID: "b" },
-    { questionType: "", text: "", staticID: "c" },
+    {
+      questionType: "",
+      text: loremIpsum({ count: 5 }),
+      staticID: "a",
+    },
+    { questionType: "", text: loremIpsum({ count: 2 }), staticID: "b" },
+    { questionType: "", text: loremIpsum({ count: 3 }), staticID: "c" },
   ]);
 
   /**

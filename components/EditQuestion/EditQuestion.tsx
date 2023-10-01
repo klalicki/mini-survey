@@ -2,6 +2,7 @@ import { SurveyQuestion } from "@/types/QuestionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
+import { loremIpsum } from "lorem-ipsum";
 const EditQuestion = ({
   questionData,
   index,
@@ -13,7 +14,6 @@ const EditQuestion = ({
   // const { attributes, listeners, setNodeRef, transform } = useDraggable({
   //   id: index.toString(),
   // });
-const  randomTextArray=
   return (
     <article className="eq-container">
       <button className="eq-draghandle"></button>
@@ -36,9 +36,7 @@ const  randomTextArray=
           </button>
         </div>
         <h2>Question ID#:{questionData.staticID}</h2>
-        <p>
-          {}
-        </p>
+        <p>{questionData.text}</p>
       </div>
     </article>
   );

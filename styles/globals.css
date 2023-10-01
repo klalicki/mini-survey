@@ -126,6 +126,10 @@ a {
   display: flex;
   /* padding: 1rem; */
   gap: 0.5rem;
+  padding: 0.5rem;
+}
+.qs-question-wrapper-active {
+  outline: 3px solid lightblue;
 }
 
 .sort-list-container {

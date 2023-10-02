@@ -21,7 +21,6 @@ const Select = ({
   title: string;
   value?: string;
   fieldName: string;
-  groupId: string;
   handleChange?: Function;
 }) => {
   return (

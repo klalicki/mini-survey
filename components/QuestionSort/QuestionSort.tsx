@@ -106,7 +106,9 @@ const QuestionSort = () => {
   return (
     <section className="sort-list-container">
       {/* <h2>active: {activeId}</h2> */}
+
       <DndContext
+        // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.BeforeDragging }}
         modifiers={[restrictToParentElement]}
         collisionDetection={closestCenter}

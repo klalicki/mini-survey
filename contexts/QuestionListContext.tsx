@@ -11,6 +11,7 @@ type QuestionListContextValues = {
   moveQuestionRelative: Function;
   moveQuestionById: Function;
   updateQuestion: Function;
+  updateQuestionMerge: Function;
 };
 const defaultValues: QuestionListContextValues = {
   questionList: [],
@@ -19,6 +20,7 @@ const defaultValues: QuestionListContextValues = {
   moveQuestionRelative: () => {},
   moveQuestionById: () => {},
   updateQuestion: () => {},
+  updateQuestionMerge: () => {},
 };
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
@@ -49,6 +51,18 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     }
   };
 
+  /**
+   * The function `getQuestionById` takes a question ID as input and returns the corresponding survey
+   * question object from a question list, if found.
+   * @param {string} questionId - A string representing the ID of the question you want to retrieve.
+   * @returns The function `getQuestionById` returns a `SurveyQuestion` object or `undefined`.
+   */
+  const getQuestionById = (questionId: string): SurveyQuestion | undefined => {
+    return questionList.find((item) => {
+      return item.staticID === questionId;
+    });
+  };
+
   const updateQuestion = (questionId: string, newData: SurveyQuestion) => {
     const tempList = [...questionList];
     const targetIndex = tempList.findIndex((item) => {
@@ -57,7 +71,15 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     tempList[targetIndex] = newData;
     setQuestionList(tempList);
   };
-
+  const updateQuestionMerge = (
+    questionId: string,
+    newData: Partial<SurveyQuestion>
+  ) => {
+    const data = getQuestionById(questionId);
+    if (data) {
+      updateQuestion(questionId, { ...data, ...newData });
+    }
+  };
   const moveQuestion = (questionIndex: number, targetIndex: number) => {
     console.log(`moving item ${questionIndex} to ${targetIndex}`);
     const itemToMove = questionList[questionIndex];
@@ -87,6 +109,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
         moveQuestionRelative,
         moveQuestionById,
         updateQuestion,
+        updateQuestionMerge,
       }}
     >
       {props.children}

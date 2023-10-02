@@ -25,7 +25,9 @@ import { PropsWithChildren, use, useState } from "react";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
-import { act } from "react-dom/test-utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+
 type QuestionSortItemProps = { id: any; activeId: any };
 
 const QuestionSortItem = ({
@@ -58,7 +60,9 @@ const QuestionSortItem = ({
         {...attributes}
         {...listeners}
         className="eq-draghandle"
-      ></button>
+      >
+        <FontAwesomeIcon icon={faGripVertical} />
+      </button>
       <div className="eq-container">{children}</div>
     </article>
   );

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 const TextInput = ({
@@ -10,7 +10,6 @@ const TextInput = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(value);
-
   const handleInputChange = (e) => {
     // console.log(e.target.value);
     setTempVal(e.target.value);
@@ -25,7 +24,15 @@ const TextInput = ({
             setIsEditing(false);
           }}
         >
-          <input type="text" value={tempVal} onChange={handleInputChange} />
+          <input
+            type="text"
+            value={tempVal}
+            onChange={handleInputChange}
+            autoFocus
+            onFocus={(e) => {
+              e.target.select();
+            }}
+          />
           <button type="submit">
             <FontAwesomeIcon icon={faCheck} onClick={() => {}} />
           </button>

@@ -27,11 +27,11 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
     {
       questionType: "",
-      text: loremIpsum({ count: 5 }),
+      text: "Question 1?",
       staticID: "a",
     },
-    { questionType: "", text: loremIpsum({ count: 2 }), staticID: "b" },
-    { questionType: "", text: loremIpsum({ count: 10 }), staticID: "c" },
+    { questionType: "", text: "Question 2?", staticID: "b" },
+    { questionType: "", text: "Question 3?", staticID: "c" },
   ]);
 
   /**

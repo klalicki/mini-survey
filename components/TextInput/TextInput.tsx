@@ -16,34 +16,35 @@ const TextInput = ({
     setTempVal(e.target.value);
   };
   return (
-    <div>
+    <>
       {isEditing ? (
-        <>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onChange(tempVal);
+            setIsEditing(false);
+          }}
+        >
           <input type="text" value={tempVal} onChange={handleInputChange} />
-          <button>
-            <FontAwesomeIcon
-              icon={faCheck}
-              onClick={() => {
-                onChange(tempVal);
-                setIsEditing(false);
-              }}
-            />
+          <button type="submit">
+            <FontAwesomeIcon icon={faCheck} onClick={() => {}} />
           </button>
-        </>
+        </form>
       ) : (
-        <>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setTempVal(value);
+            setIsEditing(true);
+          }}
+        >
           <h2>{value}</h2>
-          <button
-            onClick={() => {
-              setTempVal(value);
-              setIsEditing(true);
-            }}
-          >
+          <button type="submit" onClick={() => {}}>
             <FontAwesomeIcon icon={faPen} />
           </button>
-        </>
+        </form>
       )}
-    </div>
+    </>
   );
 };
 

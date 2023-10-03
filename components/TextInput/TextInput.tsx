@@ -10,48 +10,50 @@ const TextInput = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(value);
+  const submitButtonRef = useRef(null);
   const handleInputChange = (e) => {
     // console.log(e.target.value);
     setTempVal(e.target.value);
   };
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (isEditing) {
+          // handle passing data upstream
+          onChange(tempVal);
+          if (submitButtonRef) {
+            submitButtonRef.current.focus();
+          }
+        } else {
+          // set temp value
+          setTempVal(value);
+        }
+        // flip component mode
+        setIsEditing(!isEditing);
+      }}
+    >
       {isEditing ? (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onChange(tempVal);
-            setIsEditing(false);
+        <input
+          type="text"
+          value={tempVal}
+          onChange={handleInputChange}
+          autoFocus
+          onFocus={(e) => {
+            e.target.select();
           }}
-        >
-          <input
-            type="text"
-            value={tempVal}
-            onChange={handleInputChange}
-            autoFocus
-            onFocus={(e) => {
-              e.target.select();
-            }}
-          />
-          <button type="submit">
-            <FontAwesomeIcon icon={faCheck} onClick={() => {}} />
-          </button>
-        </form>
+        />
       ) : (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setTempVal(value);
-            setIsEditing(true);
-          }}
-        >
-          <h2>{value}</h2>
-          <button type="submit" onClick={() => {}}>
-            <FontAwesomeIcon icon={faPen} />
-          </button>
-        </form>
+        <h2>{value}</h2>
       )}
-    </>
+      <button type="submit" ref={submitButtonRef}>
+        {isEditing ? (
+          <FontAwesomeIcon icon={faCheck} />
+        ) : (
+          <FontAwesomeIcon icon={faPen} />
+        )}
+      </button>
+    </form>
   );
 };
 

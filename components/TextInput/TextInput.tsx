@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 const TextInput = ({
@@ -10,9 +10,8 @@ const TextInput = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(value);
-  const submitButtonRef = useRef(null);
-  const handleInputChange = (e) => {
-    // console.log(e.target.value);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempVal(e.target.value);
   };
   return (
@@ -22,9 +21,7 @@ const TextInput = ({
         if (isEditing) {
           // handle passing data upstream
           onChange(tempVal);
-          if (submitButtonRef) {
-            submitButtonRef.current.focus();
-          }
+          submitButtonRef.current?.focus();
         } else {
           // set temp value
           setTempVal(value);

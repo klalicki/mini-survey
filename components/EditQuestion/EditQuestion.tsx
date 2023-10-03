@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import Select from "../Select/Select";
+import TextInput from "../TextInput/TextInput";
 const EditQuestion = ({
   questionData,
   index,
@@ -10,7 +11,7 @@ const EditQuestion = ({
   questionData: SurveyQuestion;
   index: number;
 }) => {
-  const { moveQuestionRelative, updateQuestion } =
+  const { moveQuestionRelative, updateQuestion, updateQuestionMerge } =
     useContext(QuestionListContext);
 
   return (
@@ -32,7 +33,13 @@ const EditQuestion = ({
           +
         </button>
       </div>
-      <h2>Question ID#:{questionData.staticID}</h2>
+      <TextInput
+        value={questionData.text}
+        onChange={(newVal: string) => {
+          updateQuestionMerge(questionData.staticID, { text: newVal });
+        }}
+      />
+
       <Select
         title="Question Type"
         fieldName={`${questionData.staticID}-type`}

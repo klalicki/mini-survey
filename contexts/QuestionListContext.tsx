@@ -11,6 +11,7 @@ type QuestionListContextValues = {
   moveQuestionRelative: Function;
   moveQuestionById: Function;
   updateQuestion: Function;
+  getQuestionById: Function;
   updateQuestionMerge: Function;
 };
 const defaultValues: QuestionListContextValues = {
@@ -20,15 +21,17 @@ const defaultValues: QuestionListContextValues = {
   moveQuestionRelative: () => {},
   moveQuestionById: () => {},
   updateQuestion: () => {},
+  getQuestionById: () => {},
   updateQuestionMerge: () => {},
 };
 export const QuestionListContext = createContext(defaultValues);
 const QuestionListWrapper = (props: PropsWithChildren) => {
   const [questionList, setQuestionList] = useState([
     {
-      questionType: "",
+      questionType: "mc",
       text: "Question 1?",
       staticID: "a",
+      MCOptions: ["mc option 1", "mc option 2", "mc option 3"],
     },
     { questionType: "", text: "Question 2?", staticID: "b" },
     { questionType: "", text: "Question 3?", staticID: "c" },
@@ -108,6 +111,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
         moveQuestion,
         moveQuestionRelative,
         moveQuestionById,
+        getQuestionById,
         updateQuestion,
         updateQuestionMerge,
       }}

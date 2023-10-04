@@ -2,6 +2,7 @@ export interface SurveyQuestion {
   questionType: string;
   text: string;
   staticID: string;
+  MCOptions?: Array<string>;
 }
 
 export const CreateBlankSurveyQuestion = (): SurveyQuestion => {

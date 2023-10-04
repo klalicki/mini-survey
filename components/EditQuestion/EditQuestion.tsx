@@ -4,6 +4,7 @@ import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
+import MCEditor from "../Editors/MCEditor/MCEditor";
 const EditQuestion = ({
   questionData,
   index,
@@ -67,7 +68,14 @@ const EditQuestion = ({
       >
         CLEAR TEXT
       </button>
-      {questionData.questionType === "mc" && <p>MC Edit Component</p>}
+      {questionData.questionType === "mc" && (
+        <MCEditor
+          questionData={questionData}
+          onUpdate={(newQuestionData) => {
+            updateQuestionMerge(questionData.staticID, newQuestionData);
+          }}
+        />
+      )}
       {questionData.questionType === "st" && <p>ST Edit Component</p>}
     </div>
   );

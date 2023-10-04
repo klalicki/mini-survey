@@ -29,7 +29,7 @@ const Select = ({
         <legend>{title}</legend>
         {options.map((item, index) => {
           return (
-            <>
+            <div key={item.value}>
               <input
                 type="radio"
                 name={fieldName}
@@ -44,7 +44,7 @@ const Select = ({
               <label htmlFor={`radio-${fieldName}-${item.value}`}>
                 {item.labelText}
               </label>
-            </>
+            </div>
           );
         })}{" "}
       </fieldset>

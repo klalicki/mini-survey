@@ -28,11 +28,12 @@ import EditQuestion from "../EditQuestion/EditQuestion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 
-type QuestionSortItemProps = { id: any; activeId: any };
+type QuestionSortItemProps = { id: any; activeId: any; itemText: string };
 
 const QuestionSortItem = ({
   activeId,
   id,
+  itemText,
   children,
 }: PropsWithChildren<QuestionSortItemProps>) => {
   const {
@@ -56,6 +57,7 @@ const QuestionSortItem = ({
       }`}
     >
       <button
+        aria-label={`move question ${itemText}`}
         ref={setActivatorNodeRef}
         {...attributes}
         {...listeners}
@@ -132,6 +134,7 @@ const QuestionSort = () => {
               <>
                 <QuestionSortItem
                   id={item.staticID}
+                  itemText={item.text}
                   key={item.staticID}
                   activeId={activeId}
                 >

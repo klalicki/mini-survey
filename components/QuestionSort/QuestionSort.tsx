@@ -16,6 +16,7 @@ import {
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
+import { motion } from "framer-motion";
 import {
   SortableContext,
   useSortable,
@@ -51,6 +52,10 @@ const QuestionSortItem = ({
   };
   return (
     <article
+      // transition={{
+      //   type: "spring",
+      //   duration: activeId ? 0 : 0.6,
+      // }}
       style={itemStyle}
       ref={setNodeRef}
       className={`qs-question-wrapper ${
@@ -116,12 +121,12 @@ const QuestionSort = () => {
 
       <DndContext
         // @ts-ignore not sure why this is giving me a type error!
-        layoutMeasuring={{ strategy: MeasuringStrategy.BeforeDragging }}
+        layoutMeasuring={{ strategy: MeasuringStrategy.Always }}
         modifiers={[restrictToParentElement]}
         // collisionDetection={closestCorners}
 
         onDragEnd={handleDragEnd}
-        onDragOver={handleDragOver}
+        // onDragOver={handleDragOver}
         onDragStart={handleDragStart}
         sensors={sensors}
       >
@@ -134,26 +139,24 @@ const QuestionSort = () => {
           {questionList.map((item, index) => {
             // console.log(item);
             return (
-              <>
-                <QuestionSortItem
-                  id={item.staticID}
-                  itemText={item.text}
-                  key={item.staticID}
-                  activeId={activeId}
-                >
-                  <EditQuestion questionData={item} index={index} />
-                </QuestionSortItem>
-              </>
+              <QuestionSortItem
+                key={item.staticID}
+                id={item.staticID}
+                itemText={item.text}
+                activeId={activeId}
+              >
+                <EditQuestion questionData={item} index={index} />
+              </QuestionSortItem>
             );
           })}
         </SortableContext>
-        <DragOverlay>
+        {/* <DragOverlay>
           <div
             style={{ backgroundColor: "red", width: "600px", height: "300px" }}
           >
             DRAG OVERLAY
           </div>
-        </DragOverlay>
+        </DragOverlay> */}
       </DndContext>
     </section>
   );

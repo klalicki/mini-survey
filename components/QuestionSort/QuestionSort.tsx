@@ -34,13 +34,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { SurveyQuestion } from "@/types/QuestionTypes";
 
-type QuestionSortItemProps = { id: any; activeId: any; itemText: string };
+type QuestionSortItemProps = {
+  id: any;
+  activeId: any;
+  itemText: string;
+  isOverlay?: boolean;
+};
 
 const QuestionSortItem = ({
   activeId,
   id,
   itemText,
   children,
+  isOverlay,
 }: PropsWithChildren<QuestionSortItemProps>) => {
   const {
     attributes,
@@ -56,15 +62,11 @@ const QuestionSortItem = ({
   };
   return (
     <article
-      // transition={{
-      //   type: "spring",
-      //   duration: activeId ? 0 : 0.6,
-      // }}
       style={itemStyle}
       ref={setNodeRef}
       className={`qs-question-wrapper ${
-        activeId == id ? "qs-question-wrapper-active" : ""
-      }`}
+        activeId == id && isOverlay ? "qs-question-wrapper-active" : ""
+      } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
     >
       <button
         aria-label={`move question ${itemText}`}
@@ -133,7 +135,7 @@ const QuestionSort = () => {
         modifiers={[restrictToParentElement]}
         collisionDetection={closestCorners}
         onDragEnd={handleDragEnd}
-        // onDragOver={handleDragOver}
+        onDragOver={handleDragOver}
         onDragStart={handleDragStart}
         sensors={sensors}
       >
@@ -160,12 +162,13 @@ const QuestionSort = () => {
         <DragOverlay>
           {activeItem && (
             <QuestionSortItem
+              isOverlay={true}
               key={activeItem.staticID}
               id={activeItem.staticID}
               itemText={activeItem.text}
               activeId={activeId}
             >
-              <EditQuestion questionData={activeItem} />
+              <EditQuestion questionData={activeItem} index={0} />
             </QuestionSortItem>
           )}
         </DragOverlay>

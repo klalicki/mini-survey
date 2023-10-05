@@ -126,12 +126,16 @@ a {
 .qs-question-wrapper {
   display: flex;
   background-color: black;
-  /* padding: 1rem; */
+  padding: 1rem;
   gap: 0.5rem;
   padding: 0.5rem;
 }
+.qs-question-wrapper-dim {
+  opacity: 0;
+}
 .qs-question-wrapper-active {
   outline: 3px solid lightblue;
+  z-index: 10;
 }
 
 .sort-list-container {

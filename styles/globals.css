@@ -108,6 +108,7 @@ a {
 }
 
 .eq-container {
+  background-color: black;
   border: 2px solid white;
   /* padding: 1rem; */
   /* margin: 0.5rem; */
@@ -118,12 +119,13 @@ a {
 }
 
 .eq-draghandle {
-  width: 1rem;
+  width: 2rem;
   flex-shrink: 0;
 }
 
 .qs-question-wrapper {
   display: flex;
+  background-color: black;
   /* padding: 1rem; */
   gap: 0.5rem;
   padding: 0.5rem;

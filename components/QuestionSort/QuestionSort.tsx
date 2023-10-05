@@ -13,6 +13,8 @@ import {
   UniqueIdentifier,
   DragOverEvent,
   MeasuringStrategy,
+  MouseSensor,
+  TouchSensor,
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
@@ -22,6 +24,7 @@ import {
   useSortable,
   sortableKeyboardCoordinates,
   rectSwappingStrategy,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
@@ -29,6 +32,7 @@ import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { SurveyQuestion } from "@/types/QuestionTypes";
 
 type QuestionSortItemProps = { id: any; activeId: any; itemText: string };
 
@@ -78,7 +82,8 @@ const QuestionSortItem = ({
 
 const QuestionSort = () => {
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -88,11 +93,14 @@ const QuestionSort = () => {
     addBlankQuestion,
     moveQuestion,
     moveQuestionById,
+    getQuestionById,
     moveQuestionRelative,
   } = useContext(QuestionListContext);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [activeItem, setActiveItem] = useState<SurveyQuestion | null>(null);
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id);
+    setActiveItem(getQuestionById(event.active.id));
   };
   const handleDragOver = (event: DragOverEvent) => {
     console.log(event);
@@ -123,15 +131,14 @@ const QuestionSort = () => {
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.Always }}
         modifiers={[restrictToParentElement]}
-        // collisionDetection={closestCorners}
-
+        collisionDetection={closestCorners}
         onDragEnd={handleDragEnd}
         // onDragOver={handleDragOver}
         onDragStart={handleDragStart}
         sensors={sensors}
       >
         <SortableContext
-          strategy={rectSwappingStrategy}
+          strategy={verticalListSortingStrategy}
           items={questionList.map((item) => {
             return item.staticID;
           })}
@@ -150,13 +157,18 @@ const QuestionSort = () => {
             );
           })}
         </SortableContext>
-        {/* <DragOverlay>
-          <div
-            style={{ backgroundColor: "red", width: "600px", height: "300px" }}
-          >
-            DRAG OVERLAY
-          </div>
-        </DragOverlay> */}
+        <DragOverlay>
+          {activeItem && (
+            <QuestionSortItem
+              key={activeItem.staticID}
+              id={activeItem.staticID}
+              itemText={activeItem.text}
+              activeId={activeId}
+            >
+              <EditQuestion questionData={activeItem} />
+            </QuestionSortItem>
+          )}
+        </DragOverlay>
       </DndContext>
     </section>
   );

@@ -71,7 +71,7 @@ const EditQuestion = ({
       {questionData.questionType === "mc" && (
         <MCEditor
           questionData={questionData}
-          onUpdate={(newQuestionData) => {
+          updateFn={(newQuestionData) => {
             updateQuestionMerge(questionData.staticID, newQuestionData);
           }}
         />

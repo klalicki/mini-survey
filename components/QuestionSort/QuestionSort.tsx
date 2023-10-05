@@ -20,6 +20,7 @@ import {
   SortableContext,
   useSortable,
   sortableKeyboardCoordinates,
+  rectSwappingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
@@ -117,13 +118,15 @@ const QuestionSort = () => {
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.BeforeDragging }}
         modifiers={[restrictToParentElement]}
-        collisionDetection={closestCenter}
+        // collisionDetection={closestCorners}
+
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
         sensors={sensors}
       >
         <SortableContext
+          strategy={rectSwappingStrategy}
           items={questionList.map((item) => {
             return item.staticID;
           })}
@@ -144,6 +147,13 @@ const QuestionSort = () => {
             );
           })}
         </SortableContext>
+        <DragOverlay>
+          <div
+            style={{ backgroundColor: "red", width: "600px", height: "300px" }}
+          >
+            DRAG OVERLAY
+          </div>
+        </DragOverlay>
       </DndContext>
     </section>
   );

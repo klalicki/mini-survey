@@ -1,7 +1,12 @@
 const MCEditor = ({ questionData, updateFn }) => {
+  // check to see if questionData has a
   console.log(questionData);
   const addItem = (itemText: string) => {
-    updateFn({ MCOptions: [...questionData.MCOptions, itemText] });
+    if (questionData.MCOptions) {
+      updateFn({ MCOptions: [...questionData.MCOptions, itemText] });
+    } else {
+      updateFn({ MCOptions: [itemText] });
+    }
   };
   const moveItem = (index: number, targetIndex: number) => {
     const tempItems = [...questionData.MCOptions];
@@ -13,20 +18,21 @@ const MCEditor = ({ questionData, updateFn }) => {
 
   return (
     <div>
-      {questionData.MCOptions.map((item, index) => {
-        return (
-          <div key={`item-${index}-${item}`}>
-            {item}
-            <button
-              onClick={() => {
-                moveItem(index, index - 1);
-              }}
-            >
-              UP
-            </button>
-          </div>
-        );
-      })}
+      {questionData.MCOptions &&
+        questionData.MCOptions.map((item, index) => {
+          return (
+            <div key={`item-${index}-${item}`}>
+              {item}
+              <button
+                onClick={() => {
+                  moveItem(index, index - 1);
+                }}
+              >
+                UP
+              </button>
+            </div>
+          );
+        })}
       <button
         onClick={() => {
           addItem("testing");

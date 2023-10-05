@@ -132,6 +132,7 @@ a {
 }
 .qs-question-wrapper-dim {
   opacity: 0;
+  transition: opacity 0.5s;
 }
 .qs-question-wrapper-active {
   outline: 3px solid lightblue;

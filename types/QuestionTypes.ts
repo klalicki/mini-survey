@@ -2,11 +2,16 @@ export interface SurveyQuestion {
   questionType: string;
   text: string;
   staticID: string;
-  MCOptions?: Array<string>;
+  MCOptions: Array<string>;
 }
 
 export const CreateBlankSurveyQuestion = (): SurveyQuestion => {
-  return { questionType: "", text: "", staticID: Date.now().toString() };
+  return {
+    questionType: "",
+    text: "",
+    MCOptions: [],
+    staticID: Date.now().toString(),
+  };
 };
 
 export type SurveyDataset = {

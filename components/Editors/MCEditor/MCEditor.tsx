@@ -26,9 +26,9 @@ const MCEditor = ({
     const itemToMove = tempItems[index];
     tempItems.splice(index, 1);
     tempItems.splice(targetIndex, 0, itemToMove);
-    updateFn({ MCOptions: tempItems });
+    updateFn(tempItems);
   };
-
+  console.log(optionsList);
   return (
     <div>
       {optionsList &&

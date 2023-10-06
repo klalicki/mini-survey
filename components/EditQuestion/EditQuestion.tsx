@@ -72,6 +72,8 @@ const EditQuestion = ({
         <MCEditor
           optionsList={questionData.MCOptions}
           updateFn={(newOptions: Array<string>) => {
+            console.log("adding " + newOptions.join(", "));
+            console.table(questionData);
             updateQuestionMerge(questionData.staticID, {
               MCOptions: newOptions,
             });

@@ -18,12 +18,10 @@ import {
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
-import { motion } from "framer-motion";
 import {
   SortableContext,
   useSortable,
   sortableKeyboardCoordinates,
-  rectSwappingStrategy,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";

@@ -28,6 +28,11 @@ const MCEditor = ({
     tempItems.splice(targetIndex, 0, itemToMove);
     updateFn(tempItems);
   };
+  const updateItem = (index: number, newValue: string) => {
+    const tempItems = [...optionsList];
+    tempItems[index] = newValue;
+    updateFn(tempItems);
+  };
   console.log(optionsList);
   return (
     <div>

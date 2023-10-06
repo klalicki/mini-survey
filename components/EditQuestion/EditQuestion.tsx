@@ -70,9 +70,11 @@ const EditQuestion = ({
       </button>
       {questionData.questionType === "mc" && (
         <MCEditor
-          questionData={questionData}
-          updateFn={(newQuestionData) => {
-            updateQuestionMerge(questionData.staticID, newQuestionData);
+          optionsList={questionData.MCOptions}
+          updateFn={(newOptions: Array<string>) => {
+            updateQuestionMerge(questionData.staticID, {
+              MCOptions: newOptions,
+            });
           }}
         />
       )}

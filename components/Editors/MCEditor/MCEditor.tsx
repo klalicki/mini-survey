@@ -1,15 +1,28 @@
-const MCEditor = ({ questionData, updateFn }) => {
+// MCEditor component
+/* accepts two props:
+optionsList: Array<string> containing all of the options that should go in the editor
+updateFn: a function that accepts one argument: the new options list: Array<string>
+This component renders each of the 
+*/
+
+const MCEditor = ({
+  optionsList,
+  updateFn,
+}: {
+  optionsList: Array<string>;
+  updateFn: Function;
+}) => {
   // check to see if questionData has a
-  console.log(questionData);
+  console.log(optionsList);
   const addItem = (itemText: string) => {
-    if (questionData.MCOptions) {
-      updateFn({ MCOptions: [...questionData.MCOptions, itemText] });
+    if (optionsList) {
+      updateFn([...optionsList, itemText]);
     } else {
-      updateFn({ MCOptions: [itemText] });
+      updateFn([itemText]);
     }
   };
   const moveItem = (index: number, targetIndex: number) => {
-    const tempItems = [...questionData.MCOptions];
+    const tempItems = [...optionsList];
     const itemToMove = tempItems[index];
     tempItems.splice(index, 1);
     tempItems.splice(targetIndex, 0, itemToMove);
@@ -18,8 +31,8 @@ const MCEditor = ({ questionData, updateFn }) => {
 
   return (
     <div>
-      {questionData.MCOptions &&
-        questionData.MCOptions.map((item, index) => {
+      {optionsList &&
+        optionsList.map((item, index) => {
           return (
             <div key={`item-${index}-${item}`}>
               {item}

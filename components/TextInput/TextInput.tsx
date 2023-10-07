@@ -33,6 +33,12 @@ const TextInput = ({
     >
       {isEditing ? (
         <input
+          onBlur={(e) => {
+            onChange(tempVal);
+            setIsEditing(false);
+            console.log(e.target.value);
+            submitButtonRef.current?.focus();
+          }}
           type="text"
           value={tempVal}
           onChange={handleInputChange}

@@ -6,6 +6,9 @@ This component renders each of the
 */
 
 import TextInput from "@/components/TextInput/TextInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import AddItem from "@/components/TextInput/AddItem";
 
 const MCEditor = ({
   optionsList,
@@ -58,13 +61,12 @@ const MCEditor = ({
             </div>
           );
         })}
-      <button
-        onClick={() => {
-          addItem("testing");
+      <AddItem
+        placeholder={"Add a choice."}
+        onChange={(newItem) => {
+          addItem(newItem);
         }}
-      >
-        click me
-      </button>
+      />
     </div>
   );
 };

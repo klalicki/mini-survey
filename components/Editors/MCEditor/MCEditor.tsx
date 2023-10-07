@@ -17,8 +17,8 @@ const MCEditor = ({
   optionsList: Array<string>;
   updateFn: Function;
 }) => {
-  // check to see if questionData has a
-  console.log(optionsList);
+  // reducer functions for this component
+  // all create a new optionsList and pass it to the parent via updateFn
   const addItem = (itemText: string) => {
     if (optionsList) {
       updateFn([...optionsList, itemText]);
@@ -38,7 +38,7 @@ const MCEditor = ({
     tempItems[index] = newValue;
     updateFn(tempItems);
   };
-  console.log(optionsList);
+
   return (
     <div>
       {optionsList &&
@@ -47,7 +47,7 @@ const MCEditor = ({
             <div key={`item-${index}-${item}`}>
               <TextInput
                 value={item}
-                onChange={(newVal) => {
+                onChange={(newVal: string) => {
                   updateItem(index, newVal);
                 }}
               />
@@ -63,7 +63,7 @@ const MCEditor = ({
         })}
       <AddItem
         placeholder={"Add a choice."}
-        onChange={(newItem) => {
+        onChange={(newItem: string) => {
           addItem(newItem);
         }}
       />

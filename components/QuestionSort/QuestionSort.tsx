@@ -81,13 +81,7 @@ const QuestionSortItem = ({
 };
 
 const QuestionSort = () => {
-  const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+
   const {
     questionList,
     addBlankQuestion,

@@ -151,3 +151,19 @@ a {
 .eq-main {
   padding: 0.5rem;
 }
+.text-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0rem;
+}
+.text-input input,
+.text-input h2 {
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.text-input button {
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}

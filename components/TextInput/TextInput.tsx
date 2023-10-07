@@ -16,6 +16,7 @@ const TextInput = ({
   };
   return (
     <form
+      className="text-input"
       onSubmit={(e) => {
         e.preventDefault();
         if (isEditing) {

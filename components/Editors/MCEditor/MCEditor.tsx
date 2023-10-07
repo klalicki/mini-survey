@@ -5,6 +5,8 @@ updateFn: a function that accepts one argument: the new options list: Array<stri
 This component renders each of the 
 */
 
+import TextInput from "@/components/TextInput/TextInput";
+
 const MCEditor = ({
   optionsList,
   updateFn,
@@ -40,7 +42,12 @@ const MCEditor = ({
         optionsList.map((item, index) => {
           return (
             <div key={`item-${index}-${item}`}>
-              {item}
+              <TextInput
+                value={item}
+                onChange={(newVal) => {
+                  updateItem(index, newVal);
+                }}
+              />
               <button
                 onClick={() => {
                   moveItem(index, index - 1);

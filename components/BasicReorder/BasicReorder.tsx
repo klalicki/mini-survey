@@ -18,8 +18,8 @@ import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import {
   SortableContext,
-  useSortable,
   sortableKeyboardCoordinates,
+  useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, useState } from "react";
@@ -94,14 +94,31 @@ const BasicReorder = ({
   getTextFromData?: Function;
   containerStyles?: Object;
 }) => {
+  const customKeyCoords = (event, ref) => {
+    const overshootAmt = 5;
+    const initialY = ref.currentCoordinates.y;
+    const val = sortableKeyboardCoordinates(event, ref);
+    // check if val is undefined (ie trying to move past end)
+    if (!val) {
+      return undefined;
+    }
+    const finalY = val.y;
+    // add the overshoot amount to the y coordinate
+    if (finalY > initialY) {
+      val.y += overshootAmt;
+    }
+    if (finalY < initialY) {
+      val.y -= overshootAmt;
+    }
+    return val;
+  };
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
+      coordinateGetter: customKeyCoords,
     })
   );
-
   const getItemByID = (id) => {
     return dataArray.find((item) => {
       return getIDFromData(item) === id;

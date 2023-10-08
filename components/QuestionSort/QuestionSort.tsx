@@ -107,11 +107,29 @@ const QuestionSortItem = ({
 };
 
 const QuestionSort = () => {
+  const customKeyCoords = (event, ref) => {
+    const overshootAmt = 5;
+    const initialY = ref.currentCoordinates.y;
+    const val = sortableKeyboardCoordinates(event, ref);
+    // check if val is undefined (ie trying to move past end)
+    if (!val) {
+      return undefined;
+    }
+    const finalY = val.y;
+    // add the overshoot amount to the y coordinate
+    if (finalY > initialY) {
+      val.y += overshootAmt;
+    }
+    if (finalY < initialY) {
+      val.y -= overshootAmt;
+    }
+    return val;
+  };
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
+      coordinateGetter: customKeyCoords,
     })
   );
 
@@ -141,8 +159,7 @@ const QuestionSort = () => {
   const handleDragEnd = (event: DragEndEvent) => {
     // const initialIndex = questionList;
     setActiveId(null);
-    console.log(event);
-    console.log(event.activatorEvent.target);
+
     const initialID = event.active.id;
     const targetID = event?.over?.id;
     if (targetID) {
@@ -158,7 +175,7 @@ const QuestionSort = () => {
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.Always }}
         modifiers={[restrictToParentElement]}
-        collisionDetection={closestCorners}
+        collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}

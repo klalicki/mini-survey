@@ -1,7 +1,7 @@
 // MCEditor component
 /* accepts two props:
-optionsList: Array<string> containing all of the options that should go in the editor
-updateFn: a function that accepts one argument: the new options list: Array<string>
+optionsList: Array<MCOption> containing all of the options that should go in the editor
+updateFn: a function that accepts one argument: the new options list: Array<MCOption>
 This component renders each of the 
 */
 

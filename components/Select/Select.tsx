@@ -1,3 +1,7 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 /**
  * The `Select` component is a reusable React component that renders a set of radio buttons with labels
  * and allows the user to select one option.
@@ -17,7 +21,7 @@ const Select = ({
   fieldName,
   handleChange,
 }: {
-  options: Array<{ labelText: string; value: string }>;
+  options: Array<{ labelText: string; value: string; icon?: IconProp }>;
   title: string;
   value?: string;
   fieldName: string;
@@ -25,29 +29,34 @@ const Select = ({
 }) => {
   return (
     <>
-      <fieldset>
-        <legend>{title}</legend>
-        {options.map((item, index) => {
-          return (
-            <div key={item.value}>
-              <input
-                type="radio"
-                name={fieldName}
-                id={`radio-${fieldName}-${item.value}`}
-                checked={value === item.value}
-                onChange={(e) => {
-                  if (handleChange) {
-                    handleChange(item.value);
-                  }
-                }}
-              />
-              <label htmlFor={`radio-${fieldName}-${item.value}`}>
-                {item.labelText}
-              </label>
-            </div>
-          );
-        })}{" "}
-      </fieldset>
+      <div className="radio-toggle-group">
+        <h3>{title}</h3>
+        <div className="radio-toggle-group-controls">
+          {options.map((item, index) => {
+            console.log(item);
+            return (
+              <div key={item.value}>
+                <input
+                  type="radio"
+                  name={fieldName}
+                  id={`radio-${fieldName}-${item.value}`}
+                  checked={value === item.value}
+                  onChange={(e) => {
+                    if (handleChange) {
+                      handleChange(item.value);
+                    }
+                  }}
+                />
+
+                <label htmlFor={`radio-${fieldName}-${item.value}`}>
+                  {item.icon && <FontAwesomeIcon icon={item.icon} />}
+                  {item.labelText}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

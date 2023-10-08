@@ -13,6 +13,7 @@ import {
   MeasuringStrategy,
   MouseSensor,
   TouchSensor,
+  SensorContext,
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
@@ -26,6 +27,7 @@ import { PropsWithChildren, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { Coordinates } from "@dnd-kit/core/dist/types";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
@@ -94,10 +96,17 @@ const BasicReorder = ({
   getTextFromData?: Function;
   containerStyles?: Object;
 }) => {
-  const customKeyCoords = (event, ref) => {
+  const customKeyCoords = (
+    event: KeyboardEvent,
+    args: {
+      active: UniqueIdentifier;
+      currentCoordinates: Coordinates;
+      context: SensorContext;
+    }
+  ) => {
     const overshootAmt = 5;
-    const initialY = ref.currentCoordinates.y;
-    const val = sortableKeyboardCoordinates(event, ref);
+    const initialY = args.currentCoordinates.y;
+    const val = sortableKeyboardCoordinates(event, args);
     // check if val is undefined (ie trying to move past end)
     if (!val) {
       return undefined;
@@ -119,12 +128,12 @@ const BasicReorder = ({
       coordinateGetter: customKeyCoords,
     })
   );
-  const getItemByID = (id) => {
+  const getItemByID = <T,>(id: T) => {
     return dataArray.find((item) => {
       return getIDFromData(item) === id;
     });
   };
-  const getIndexByID = (id) => {
+  const getIndexByID = <T,>(id: T) => {
     return dataArray.findIndex((item) => {
       return getIDFromData(item) === id;
     });

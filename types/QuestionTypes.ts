@@ -5,7 +5,7 @@ export interface SurveyQuestion {
   questionType: string;
   text: string;
   staticID: string;
-  MCOptions: Array<string>;
+  MCOptions: Array<MCOption>;
 }
 
 export const CreateBlankSurveyQuestion = (): SurveyQuestion => {

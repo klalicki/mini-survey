@@ -1,10 +1,11 @@
-import { SurveyQuestion } from "@/types/QuestionTypes";
+import { MCOption, SurveyQuestion } from "@/types/QuestionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
+import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
 const EditQuestion = ({
   questionData,
   index,
@@ -29,8 +30,12 @@ const EditQuestion = ({
         fieldName={`${questionData.staticID}-type`}
         value={questionData.questionType}
         options={[
-          { labelText: "Multiple Choice", value: "mc" },
-          { labelText: "Short Text", value: "st" },
+          {
+            labelText: "Multiple Choice",
+            value: "mc",
+            icon: faCircleCheck,
+          },
+          { labelText: "Short Text", value: "st", icon: faFont },
         ]}
         handleChange={(newVal: string) => {
           console.log(newVal);
@@ -44,9 +49,7 @@ const EditQuestion = ({
       {questionData.questionType === "mc" && (
         <MCEditor
           optionsList={questionData.MCOptions}
-          updateFn={(newOptions: Array<string>) => {
-            console.log("adding " + newOptions.join(", "));
-            console.table(questionData);
+          updateFn={(newOptions: Array<MCOption>) => {
             updateQuestionMerge(questionData.staticID, {
               MCOptions: newOptions,
             });

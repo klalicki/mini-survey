@@ -41,16 +41,6 @@ const EditQuestion = ({
         }}
       />
 
-      <button
-        onClick={() => {
-          updateQuestion(questionData.staticID, {
-            ...questionData,
-            text: "Hello this has been updated!",
-          });
-        }}
-      >
-        CLEAR TEXT
-      </button>
       {questionData.questionType === "mc" && (
         <MCEditor
           optionsList={questionData.MCOptions}

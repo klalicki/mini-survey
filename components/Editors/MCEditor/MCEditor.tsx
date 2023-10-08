@@ -44,8 +44,7 @@ const MCEditor = ({
     tempItems[index] = newValue;
     updateFn(tempItems);
   };
-  console.log("items:");
-  console.log(optionsList);
+
   return (
     <div>
       <BasicReorder

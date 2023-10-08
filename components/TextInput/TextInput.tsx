@@ -47,7 +47,13 @@ const TextInput = ({
           }}
         />
       ) : (
-        <h2>{value}</h2>
+        <h2
+          onClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          {value}
+        </h2>
       )}
       <button type="submit" ref={submitButtonRef}>
         {isEditing ? (

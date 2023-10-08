@@ -56,7 +56,10 @@ const MCEditor = ({
             />
           );
         }}
-        getIDFromData={(item) => {
+        getTextFromData={(item: string) => {
+          return item;
+        }}
+        getIDFromData={(item: string) => {
           return item;
         }}
       />

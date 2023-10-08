@@ -2,7 +2,6 @@ import {
   closestCorners,
   DndContext,
   KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
   closestCenter,
@@ -23,20 +22,17 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { PropsWithChildren, ReactElement, use, useState } from "react";
-import { QuestionListContext } from "@/contexts/QuestionListContext";
-import { useContext } from "react";
-import EditQuestion from "../EditQuestion/EditQuestion";
+import { PropsWithChildren, useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
-import { SurveyQuestion } from "@/types/QuestionTypes";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
   itemText: string;
   isOverlay?: boolean;
 };
-// This is a higher order component that provides a simple drag-and-drop list UI
+// This is a higher order component that provides a simple drag-and-drop list UI with drag handles
 
 // BasicReorderItem: the wrapper for each item in the BasicReorder
 const BasicReorderItem = ({
@@ -88,11 +84,13 @@ const BasicReorder = ({
   reorderFn,
   renderItem,
   getIDFromData,
+  getTextFromData,
 }: {
   dataArray: Array<any>;
   reorderFn: Function;
   renderItem: Function;
   getIDFromData: Function;
+  getTextFromData?: Function;
 }) => {
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -163,13 +161,11 @@ const BasicReorder = ({
       >
         <SortableContext strategy={verticalListSortingStrategy} items={idArray}>
           {dataArray.map((item, index) => {
-            console.log("item obj");
-            console.log(item);
             return (
               <BasicReorderItem
                 key={idArray[index]}
                 id={idArray[index]}
-                itemText={"item.text"}
+                itemText={getTextFromData ? getTextFromData(item) : ""}
                 activeId={activeId}
               >
                 {renderItem(item, index)}
@@ -183,7 +179,7 @@ const BasicReorder = ({
               isOverlay={true}
               key={activeId}
               id={activeId}
-              itemText={"activeItem.text"}
+              itemText={getTextFromData ? getTextFromData(activeItem) : ""}
               activeId={activeId}
             >
               {renderItem(activeItem)}

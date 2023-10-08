@@ -26,7 +26,7 @@ const EditQuestion = ({
       />
 
       <Select
-        title="Question Type"
+        // title="Question Type"
         fieldName={`${questionData.staticID}-type`}
         value={questionData.questionType}
         options={[

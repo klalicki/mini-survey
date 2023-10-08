@@ -175,7 +175,7 @@ const QuestionSort = () => {
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.Always }}
         modifiers={[restrictToParentElement]}
-        collisionDetection={closestCenter}
+        collisionDetection={closestCorners}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
@@ -202,6 +202,7 @@ const QuestionSort = () => {
             );
           })}
         </SortableContext>
+
         <DragOverlay>
           {activeItem && (
             <QuestionSortItem

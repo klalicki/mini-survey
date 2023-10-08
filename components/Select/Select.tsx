@@ -22,7 +22,7 @@ const Select = ({
   handleChange,
 }: {
   options: Array<{ labelText: string; value: string; icon?: IconProp }>;
-  title: string;
+  title?: string;
   value?: string;
   fieldName: string;
   handleChange?: Function;
@@ -30,10 +30,9 @@ const Select = ({
   return (
     <>
       <div className="radio-toggle-group">
-        <h3>{title}</h3>
+        {title && <h3>{title}</h3>}
         <div className="radio-toggle-group-controls">
           {options.map((item, index) => {
-            console.log(item);
             return (
               <div key={item.value}>
                 <input

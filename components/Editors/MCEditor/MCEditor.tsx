@@ -7,7 +7,7 @@ This component renders each of the
 
 import TextInput from "@/components/TextInput/TextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "@/components/TextInput/AddItem";
 import BasicReorder from "@/components/BasicReorder/BasicReorder";
 
@@ -26,6 +26,11 @@ const MCEditor = ({
     } else {
       updateFn([itemText]);
     }
+  };
+  const removeItem = (index: number) => {
+    const tempItems = [...optionsList];
+    tempItems.splice(index, 1);
+    updateFn(tempItems);
   };
   const moveItem = (index: number, targetIndex: number) => {
     const tempItems = [...optionsList];
@@ -48,12 +53,21 @@ const MCEditor = ({
         reorderFn={moveItem}
         renderItem={(dataItem, index) => {
           return (
-            <TextInput
-              value={dataItem}
-              onChange={(newVal: string) => {
-                updateItem(index, newVal);
-              }}
-            />
+            <>
+              <TextInput
+                value={dataItem}
+                onChange={(newVal: string) => {
+                  updateItem(index, newVal);
+                }}
+              />
+              <button
+                onClick={() => {
+                  removeItem(index);
+                }}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </button>
+            </>
           );
         }}
         getTextFromData={(item: string) => {

@@ -63,26 +63,7 @@ const MCEditor = ({
           return item;
         }}
       />
-      {/* {optionsList &&
-        optionsList.map((item, index) => {
-          return (
-            <div key={`item-${index}-${item}`}>
-              <TextInput
-                value={item}
-                onChange={(newVal: string) => {
-                  updateItem(index, newVal);
-                }}
-              />
-              <button
-                onClick={() => {
-                  moveItem(index, index - 1);
-                }}
-              >
-                UP
-              </button>
-            </div>
-          );
-        })} */}
+
       <AddItem
         placeholder={"Add a choice."}
         onChange={(newItem: string) => {

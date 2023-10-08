@@ -85,12 +85,14 @@ const BasicReorder = ({
   renderItem,
   getIDFromData,
   getTextFromData,
+  containerStyles,
 }: {
   dataArray: Array<any>;
   reorderFn: Function;
   renderItem: Function;
   getIDFromData: Function;
   getTextFromData?: Function;
+  containerStyles?: Object;
 }) => {
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -146,7 +148,7 @@ const BasicReorder = ({
   };
 
   return (
-    <section className="sort-list-container">
+    <section className="sort-list-container" style={containerStyles}>
       {/* <h2>active: {activeId}</h2> */}
 
       <DndContext

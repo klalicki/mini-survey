@@ -66,15 +66,18 @@ const BasicReorderItem = ({
         activeId == id && isOverlay ? "qs-question-wrapper-active" : ""
       } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
     >
-      <button
-        aria-label={`move item ${itemText}`}
-        ref={setActivatorNodeRef}
-        {...attributes}
-        {...listeners}
-        className="eq-draghandle"
-      >
-        <FontAwesomeIcon icon={faGripVertical} />
-      </button>
+      <div className="basic-reorder-controls">
+        <button
+          aria-label={`move item ${itemText}`}
+          ref={setActivatorNodeRef}
+          {...attributes}
+          {...listeners}
+          className="eq-draghandle"
+        >
+          <FontAwesomeIcon icon={faGripVertical} />
+        </button>
+      </div>
+
       <div className="eq-container">{children}</div>
     </article>
   );

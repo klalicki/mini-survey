@@ -121,7 +121,7 @@ a {
 .question-handle {
   width: 1.5rem;
   flex-shrink: 0;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.25rem 0 0 0.25rem;
   border: 2px solid white;
   border-right: none;
   display: flex;
@@ -158,7 +158,7 @@ a {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  gap: 1rem;
+  /* gap: 1rem; */
 }
 .eq-main {
   padding: 0.5rem;
@@ -178,4 +178,15 @@ a {
 .text-input button {
   font-size: 1.5rem;
   padding: 0.25rem;
+}
+.basic-reorder-controls {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+.basic-reorder-controls button {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
 }

@@ -35,6 +35,7 @@ import {
   faGripVertical,
 } from "@fortawesome/free-solid-svg-icons";
 import { SurveyQuestion } from "@/types/QuestionTypes";
+import { createPortal } from "react-dom";
 
 type QuestionSortItemProps = {
   id: any;
@@ -175,7 +176,7 @@ const QuestionSort = () => {
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.Always }}
         modifiers={[restrictToParentElement]}
-        collisionDetection={closestCorners}
+        collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}

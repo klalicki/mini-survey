@@ -29,7 +29,11 @@ import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowUp,
+  faGripVertical,
+} from "@fortawesome/free-solid-svg-icons";
 import { SurveyQuestion } from "@/types/QuestionTypes";
 
 type QuestionSortItemProps = {
@@ -37,6 +41,7 @@ type QuestionSortItemProps = {
   activeId: any;
   itemText: string;
   isOverlay?: boolean;
+  index: number;
 };
 
 const QuestionSortItem = ({
@@ -45,6 +50,7 @@ const QuestionSortItem = ({
   itemText,
   children,
   isOverlay,
+  index,
 }: PropsWithChildren<QuestionSortItemProps>) => {
   const {
     attributes,
@@ -58,6 +64,7 @@ const QuestionSortItem = ({
     transform: CSS.Translate.toString(transform),
     transition,
   };
+  const { moveQuestionRelative } = useContext(QuestionListContext);
   return (
     <article
       style={itemStyle}
@@ -66,15 +73,34 @@ const QuestionSortItem = ({
         activeId == id && isOverlay ? "qs-question-wrapper-active" : ""
       } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
     >
-      <button
-        aria-label={`move question ${itemText}`}
-        ref={setActivatorNodeRef}
-        {...attributes}
-        {...listeners}
-        className="eq-draghandle"
-      >
-        <FontAwesomeIcon icon={faGripVertical} />
-      </button>
+      <div className="question-handle">
+        <button
+          className="question-move-arrow"
+          onClick={() => {
+            moveQuestionRelative(index, -1);
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowUp} />
+        </button>
+        <button
+          aria-label={`move question ${itemText}`}
+          ref={setActivatorNodeRef}
+          {...attributes}
+          {...listeners}
+          className="eq-draghandle"
+        >
+          <FontAwesomeIcon icon={faGripVertical} />
+        </button>
+        <button
+          className="question-move-arrow"
+          onClick={() => {
+            moveQuestionRelative(index, 1);
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowDown} />
+        </button>
+      </div>
+
       <div className="eq-container">{children}</div>
     </article>
   );
@@ -152,6 +178,7 @@ const QuestionSort = () => {
                 id={item.staticID}
                 itemText={item.text}
                 activeId={activeId}
+                index={index}
               >
                 <EditQuestion questionData={item} index={index} />
               </QuestionSortItem>
@@ -166,6 +193,7 @@ const QuestionSort = () => {
               id={activeItem.staticID}
               itemText={activeItem.text}
               activeId={activeId}
+              index={0}
             >
               <EditQuestion questionData={activeItem} index={0} />
             </QuestionSortItem>

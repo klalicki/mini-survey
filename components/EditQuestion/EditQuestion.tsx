@@ -17,23 +17,6 @@ const EditQuestion = ({
 
   return (
     <div className="eq-main">
-      <div className="move-buttons">
-        <button
-          onClick={() => {
-            moveQuestionRelative(index, -1);
-          }}
-        >
-          -
-        </button>
-
-        <button
-          onClick={() => {
-            moveQuestionRelative(index, 1);
-          }}
-        >
-          +
-        </button>
-      </div>
       <TextInput
         value={questionData.text}
         onChange={(newVal: string) => {

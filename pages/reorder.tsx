@@ -22,14 +22,14 @@ const ReorderTest = () => {
         renderItem={(dataItem: any, index) => {
           return (
             <div>
-              {Object.entries(dataItem.dataItem).map(([key, value]) => {
-                return <p>{`${key}: ${value}`}</p>;
+              {Object.entries(dataItem).map(([key, value]) => {
+                return <p key={key}>{`${key}: ${value}`}</p>;
               })}
             </div>
           );
         }}
         dataArray={itemList}
-        getIDFromData={(item) => {
+        getIDFromData={(item: any) => {
           return item.id;
         }}
         reorderFn={moveItem}
@@ -37,4 +37,12 @@ const ReorderTest = () => {
     </>
   );
 };
-export default ReorderTest;
+const doubleReorderTest = () => {
+  return (
+    <>
+      <ReorderTest></ReorderTest>
+      <ReorderTest></ReorderTest>
+    </>
+  );
+};
+export default doubleReorderTest;

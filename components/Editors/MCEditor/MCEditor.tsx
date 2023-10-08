@@ -9,6 +9,7 @@ import TextInput from "@/components/TextInput/TextInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "@/components/TextInput/AddItem";
+import BasicReorder from "@/components/BasicReorder/BasicReorder";
 
 const MCEditor = ({
   optionsList,
@@ -38,10 +39,28 @@ const MCEditor = ({
     tempItems[index] = newValue;
     updateFn(tempItems);
   };
-
+  console.log("items:");
+  console.log(optionsList);
   return (
     <div>
-      {optionsList &&
+      <BasicReorder
+        dataArray={optionsList}
+        reorderFn={moveItem}
+        renderItem={(dataItem, index) => {
+          return (
+            <TextInput
+              value={dataItem}
+              onChange={(newVal: string) => {
+                updateItem(index, newVal);
+              }}
+            />
+          );
+        }}
+        getIDFromData={(item) => {
+          return item;
+        }}
+      />
+      {/* {optionsList &&
         optionsList.map((item, index) => {
           return (
             <div key={`item-${index}-${item}`}>
@@ -60,7 +79,7 @@ const MCEditor = ({
               </button>
             </div>
           );
-        })}
+        })} */}
       <AddItem
         placeholder={"Add a choice."}
         onChange={(newItem: string) => {

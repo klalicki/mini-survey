@@ -36,7 +36,6 @@ const TextInput = ({
           onBlur={(e) => {
             onChange(tempVal);
             setIsEditing(false);
-            console.log(e.target.value);
             submitButtonRef.current?.focus();
           }}
           type="text"

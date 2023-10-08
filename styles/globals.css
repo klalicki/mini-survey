@@ -118,12 +118,24 @@ a {
   flex-grow: 1;
 }
 
-.eq-draghandle {
+.question-handle {
   width: 1.5rem;
   flex-shrink: 0;
   border-radius: 0.5rem 0 0 0.5rem;
   border: 2px solid white;
   border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.question-handle button {
+  padding: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.eq-draghandle {
+  flex-grow: 1;
 }
 
 .qs-question-wrapper {

@@ -160,7 +160,8 @@ const BasicReorder = ({
       >
         <SortableContext strategy={verticalListSortingStrategy} items={idArray}>
           {dataArray.map((item, index) => {
-            // console.log(item);
+            console.log("item obj");
+            console.log(item);
             return (
               <BasicReorderItem
                 key={idArray[index]}
@@ -168,7 +169,7 @@ const BasicReorder = ({
                 itemText={"item.text"}
                 activeId={activeId}
               >
-                {renderItem({ dataItem: item })}
+                {renderItem(item, index)}
               </BasicReorderItem>
             );
           })}
@@ -182,7 +183,7 @@ const BasicReorder = ({
               itemText={"activeItem.text"}
               activeId={activeId}
             >
-              {renderItem({ dataItem: activeItem })}
+              {renderItem(activeItem)}
             </BasicReorderItem>
           )}
         </DragOverlay>

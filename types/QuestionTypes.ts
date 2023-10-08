@@ -1,3 +1,6 @@
+import { getUID } from "@/utils/uid";
+
+export type MCOption = { staticID: string; text: string };
 export interface SurveyQuestion {
   questionType: string;
   text: string;
@@ -10,7 +13,7 @@ export const CreateBlankSurveyQuestion = (): SurveyQuestion => {
     questionType: "",
     text: "",
     MCOptions: [],
-    staticID: Date.now().toString(),
+    staticID: getUID(),
   };
 };
 

@@ -10,21 +10,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "@/components/TextInput/AddItem";
 import BasicReorder from "@/components/BasicReorder/BasicReorder";
+import { MCOption } from "@/types/QuestionTypes";
+import { getUID } from "@/utils/uid";
 
 const MCEditor = ({
   optionsList,
   updateFn,
 }: {
-  optionsList: Array<string>;
-  updateFn: Function;
+  optionsList: MCOption[];
+  updateFn: (newOptionsList: MCOption[]) => void;
 }) => {
   // reducer functions for this component
   // all create a new optionsList and pass it to the parent via updateFn
   const addItem = (itemText: string) => {
     if (optionsList) {
-      updateFn([...optionsList, itemText]);
+      updateFn([...optionsList, { staticID: getUID(), text: itemText }]);
     } else {
-      updateFn([itemText]);
+      updateFn([{ staticID: getUID(), text: itemText }]);
     }
   };
   const removeItem = (index: number) => {
@@ -41,7 +43,7 @@ const MCEditor = ({
   };
   const updateItem = (index: number, newValue: string) => {
     const tempItems = [...optionsList];
-    tempItems[index] = newValue;
+    tempItems[index] = { ...tempItems[index], text: newValue };
     updateFn(tempItems);
   };
 
@@ -50,11 +52,11 @@ const MCEditor = ({
       <BasicReorder
         dataArray={optionsList}
         reorderFn={moveItem}
-        renderItem={(dataItem, index) => {
+        renderItem={(dataItem: MCOption, index: number) => {
           return (
             <>
               <TextInput
-                value={dataItem}
+                value={dataItem.text}
                 onChange={(newVal: string) => {
                   updateItem(index, newVal);
                 }}
@@ -69,11 +71,11 @@ const MCEditor = ({
             </>
           );
         }}
-        getTextFromData={(item: string) => {
-          return item;
+        getTextFromData={(item: MCOption) => {
+          return item.text;
         }}
-        getIDFromData={(item: string) => {
-          return item;
+        getIDFromData={(item: MCOption) => {
+          return item.staticID;
         }}
       />
 

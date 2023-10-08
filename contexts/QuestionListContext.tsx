@@ -31,7 +31,11 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
       questionType: "mc",
       text: "Question 1?",
       staticID: "a",
-      MCOptions: ["mc option 1", "mc option 2", "mc option 3"],
+      MCOptions: [
+        { text: "mc option 1", staticID: "a" },
+        { text: "mc option 1", staticID: "b" },
+        { text: "mc option 1", staticID: "c" },
+      ],
     },
     { questionType: "", text: "Question 2?", staticID: "b", MCOptions: [] },
     { questionType: "", text: "Question 3?", staticID: "c", MCOptions: [] },

@@ -141,7 +141,7 @@ a {
 .qs-question-wrapper {
   display: flex;
   /* background-color: black; */
-
+  /* padding-top: 0.5rem; */
   gap: 0rem;
 }
 .qs-question-wrapper-dim {
@@ -158,7 +158,7 @@ a {
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
 }
 .eq-main {
   padding: 0.5rem;

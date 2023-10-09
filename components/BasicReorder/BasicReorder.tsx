@@ -28,6 +28,7 @@ import { PropsWithChildren, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { Coordinates } from "@dnd-kit/core/dist/types";
+import { customKeyCoords } from "@/utils/customKeyCoords";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
@@ -96,31 +97,8 @@ const BasicReorder = ({
   getTextFromData?: Function;
   containerStyles?: Object;
 }) => {
-  const customKeyCoords = (
-    event: KeyboardEvent,
-    args: {
-      active: UniqueIdentifier;
-      currentCoordinates: Coordinates;
-      context: SensorContext;
-    }
-  ) => {
-    const overshootAmt = 5;
-    const initialY = args.currentCoordinates.y;
-    const val = sortableKeyboardCoordinates(event, args);
-    // check if val is undefined (ie trying to move past end)
-    if (!val) {
-      return undefined;
-    }
-    const finalY = val.y;
-    // add the overshoot amount to the y coordinate
-    if (finalY > initialY) {
-      val.y += overshootAmt;
-    }
-    if (finalY < initialY) {
-      val.y -= overshootAmt;
-    }
-    return val;
-  };
+  
+ 
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),

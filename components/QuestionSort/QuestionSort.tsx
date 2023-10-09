@@ -200,7 +200,6 @@ const QuestionSort = () => {
               <EditQuestion
                 questionData={activeItem}
                 index={0}
-                isOverlay={true}
               />
             </QuestionSortItem>
           )}

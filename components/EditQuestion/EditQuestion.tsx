@@ -13,11 +13,9 @@ import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
 const EditQuestion = ({
   questionData,
   index,
-  isOverlay,
 }: {
   questionData: SurveyQuestion;
   index: number;
-  isOverlay?: boolean;
 }) => {
   const { moveQuestionRelative, updateQuestion, updateQuestionMerge } =
     useContext(QuestionListContext);
@@ -32,8 +30,6 @@ const EditQuestion = ({
       />
 
       <Select
-        isOverlay={isOverlay}
-        // title="Question Type"
         fieldName={`${questionData.staticID}-type`}
         value={questionData.questionType}
         options={QuestionTypeData}

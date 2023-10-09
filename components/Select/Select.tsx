@@ -1,6 +1,8 @@
+import { getUID } from "@/utils/uid";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRef } from "react";
 
 /**
  * The `Select` component is a reusable React component that renders a set of radio buttons with labels
@@ -20,15 +22,15 @@ const Select = ({
   value,
   fieldName,
   handleChange,
-  isOverlay,
 }: {
   options: Array<{ labelText: string; value: string; icon?: IconProp }>;
   title?: string;
   value?: string;
   fieldName: string;
-  isOverlay?: boolean;
+
   handleChange?: Function;
 }) => {
+  const { current: itemID } = useRef(getUID());
   return (
     <>
       <div className="radio-toggle-group">
@@ -41,10 +43,8 @@ const Select = ({
               <>
                 <input
                   type="radio"
-                  name={fieldName + (isOverlay || "-overlay")}
-                  id={`radio-${fieldName}-${item.value}${
-                    isOverlay || "-overlay"
-                  }`}
+                  name={itemID + "-select"}
+                  id={`radio-${fieldName}-${item.value}-${itemID + "-select"}`}
                   // value={item.value}
                   checked={shouldBeChecked}
                   onChange={(e) => {

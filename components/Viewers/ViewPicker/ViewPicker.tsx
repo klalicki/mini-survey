@@ -1,11 +1,12 @@
 import { SurveySection } from "@/types/SectionTypes";
 import { ScaleViewer } from "../ScaleViewer/ScaleViewer";
+import { MCViewer } from "../MCViewer/MCViewer";
 
 export const ViewPicker = ({ section }: { section: SurveySection }) => {
   switch (section.sectionType) {
     case "mc":
       // MC component
-      return <div>mc preview</div>;
+      return <MCViewer questionData={section} />;
       break;
     case "st":
       // ST component

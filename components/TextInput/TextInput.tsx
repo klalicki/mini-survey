@@ -1,6 +1,5 @@
+import { Check, Edit } from "@mui/icons-material";
 import { useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 const TextInput = ({
   value,
   onChange,
@@ -56,11 +55,7 @@ const TextInput = ({
         </h2>
       )}
       <button type="submit" ref={submitButtonRef}>
-        {isEditing ? (
-          <FontAwesomeIcon icon={faCheck} />
-        ) : (
-          <FontAwesomeIcon icon={faPen} />
-        )}
+        {isEditing ? <Check /> : <Edit />}
       </button>
     </form>
   );

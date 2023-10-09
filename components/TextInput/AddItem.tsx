@@ -1,5 +1,4 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PlusOne } from "@mui/icons-material";
 import { useRef, useState } from "react";
 
 const AddItem = ({
@@ -34,7 +33,7 @@ const AddItem = ({
         }}
       />
       <button type="submit">
-        <FontAwesomeIcon icon={faPlus} />
+        <PlusOne />
       </button>
     </form>
   );

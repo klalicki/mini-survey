@@ -6,12 +6,11 @@ This component renders each of the
 */
 
 import TextInput from "@/components/TextInput/TextInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "@/components/TextInput/AddItem";
 import BasicReorder from "@/components/BasicReorder/BasicReorder";
 import { MCOption } from "@/types/SectionTypes";
 import { getUID } from "@/utils/uid";
+import { Close } from "@mui/icons-material";
 
 const MCEditor = ({
   optionsList,
@@ -66,7 +65,7 @@ const MCEditor = ({
                   removeItem(index);
                 }}
               >
-                <FontAwesomeIcon icon={faClose} />
+                <Close />
               </button>
             </>
           );

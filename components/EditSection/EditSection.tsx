@@ -5,7 +5,6 @@ import { SectionListContext } from "@/contexts/SectionListContext";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
-import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
 const EditSection = ({
   sectionData,
   index,

@@ -1,7 +1,5 @@
 import { getUID } from "@/utils/uid";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useRef } from "react";
 
 /**
@@ -23,7 +21,7 @@ const Select = ({
   fieldName,
   handleChange,
 }: {
-  options: Array<{ labelText: string; value: string; icon?: IconProp }>;
+  options: Array<{ labelText: string; value: string; icon?: any }>;
   title?: string;
   value?: string;
   fieldName: string;
@@ -53,7 +51,7 @@ const Select = ({
                 <label
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
-                  {item.icon && <FontAwesomeIcon icon={item.icon} />}
+                  {item.icon && <item.icon />}
                   {item.labelText}
                 </label>
               </div>

@@ -1,22 +1,21 @@
 import { SectionTypeData } from "@/types/SectionTypes";
 import { SectionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const AddSections = () => {
   const { addBlankSection } = useContext(SectionListContext);
   return (
     <div>
-      {SectionTypeData.map(({ value, labelText, icon }) => {
+      {SectionTypeData.map((item) => {
         return (
           <button
-            key={`button-${value}`}
+            key={`button-${item.value}`}
             onClick={() => {
-              addBlankSection(undefined, value);
+              addBlankSection(undefined, item.value);
             }}
           >
-            <FontAwesomeIcon icon={icon} />
-            {labelText}
+            {item.icon && <item.icon />}
+            {item.labelText}
           </button>
         );
       })}

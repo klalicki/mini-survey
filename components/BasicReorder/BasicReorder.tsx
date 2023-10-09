@@ -25,10 +25,9 @@ import {
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { Coordinates } from "@dnd-kit/core/dist/types";
 import { customKeyCoords } from "@/utils/customKeyCoords";
+import { DragIndicator } from "@mui/icons-material";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
@@ -73,7 +72,7 @@ const BasicReorderItem = ({
           {...listeners}
           className="eq-draghandle"
         >
-          <FontAwesomeIcon icon={faGripVertical} />
+          <DragIndicator />
         </button>
       </div>
 

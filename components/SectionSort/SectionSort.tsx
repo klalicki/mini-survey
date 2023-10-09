@@ -28,15 +28,11 @@ import { PropsWithChildren, use, useState } from "react";
 import { SectionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
 import EditSection from "../EditSection/EditSection";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown,
-  faArrowUp,
-  faGripVertical,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { SurveySection } from "@/types/SectionTypes";
 import { createPortal } from "react-dom";
 import { customKeyCoords } from "@/utils/customKeyCoords";
+import { ArrowDownward, ArrowUpward, DragIndicator } from "@mui/icons-material";
 
 type SectionSortItemProps = {
   id: any;
@@ -82,7 +78,7 @@ const SectionSortItem = ({
             moveSectionRelative(index, -1);
           }}
         >
-          <FontAwesomeIcon icon={faArrowUp} />
+          <ArrowUpward />
         </button>
         <button
           aria-label={`move section ${itemText}`}
@@ -91,7 +87,7 @@ const SectionSortItem = ({
           {...listeners}
           className="eq-draghandle"
         >
-          <FontAwesomeIcon icon={faGripVertical} />
+          <DragIndicator />
         </button>
         <button
           className="section-move-arrow"
@@ -99,7 +95,7 @@ const SectionSortItem = ({
             moveSectionRelative(index, 1);
           }}
         >
-          <FontAwesomeIcon icon={faArrowDown} />
+          <ArrowDownward />
         </button>
       </div>
 

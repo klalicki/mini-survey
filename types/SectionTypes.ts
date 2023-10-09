@@ -1,6 +1,6 @@
 import { getUID } from "@/utils/uid";
-import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
-
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import ShortTextIcon from "@mui/icons-material/ShortText";
 export type MCOption = { staticID: string; text: string };
 export interface SurveySection {
   sectionType: string;
@@ -28,7 +28,7 @@ export const SectionTypeData = [
   {
     labelText: "Multiple Choice",
     value: "mc",
-    icon: faCircleCheck,
+    icon: RadioButtonCheckedIcon,
   },
-  { labelText: "Short Text", value: "st", icon: faFont },
+  { labelText: "Short Text", value: "st", icon: ShortTextIcon },
 ];

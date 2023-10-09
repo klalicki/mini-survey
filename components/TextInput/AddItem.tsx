@@ -1,4 +1,4 @@
-import { PlusOne } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import { useRef, useState } from "react";
 
 const AddItem = ({
@@ -33,7 +33,7 @@ const AddItem = ({
         }}
       />
       <button type="submit">
-        <PlusOne />
+        <Add />
       </button>
     </form>
   );

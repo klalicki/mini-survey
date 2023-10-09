@@ -88,10 +88,13 @@ const BasicReorder = ({
   getIDFromData,
   getTextFromData,
   containerStyles,
+  emptyText,
 }: {
   dataArray: Array<any>;
   reorderFn: Function;
   renderItem: Function;
+  emptyText: string;
+
   getIDFromData: Function;
   getTextFromData?: Function;
   containerStyles?: Object;
@@ -151,7 +154,7 @@ const BasicReorder = ({
   return (
     <section className="sort-list-container" style={containerStyles}>
       {/* <h2>active: {activeId}</h2> */}
-
+      {dataArray.length === 0 && <div>{emptyText}</div>}
       <DndContext
         // @ts-ignore not sure why this is giving me a type error!
         layoutMeasuring={{ strategy: MeasuringStrategy.Always }}

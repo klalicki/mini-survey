@@ -49,6 +49,9 @@ const MCEditor = ({
   return (
     <div>
       <BasicReorder
+        emptyText={
+          "This question does not have any options yet. Add them below:"
+        }
         dataArray={optionsList}
         reorderFn={moveItem}
         renderItem={(dataItem: MCOption, index: number) => {

@@ -30,5 +30,5 @@ export const SectionTypeData = [
     value: "mc",
     icon: RadioButtonCheckedIcon,
   },
-  { labelText: "Short Text", value: "st", icon: ShortTextIcon },
+  { labelText: "Short Answer", value: "st", icon: ShortTextIcon },
 ];

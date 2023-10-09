@@ -7,8 +7,8 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { SectionListContext } from "@/contexts/SectionListContext";
-import Select from "../Select/Select";
-import TextInput from "../TextInput/TextInput";
+import Select from "../Inputs/Select/Select";
+import TextInput from "../Inputs/TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
 import { Delete } from "@mui/icons-material";
 import ScaleEditor from "../Editors/ScaleEditor/ScaleEditor";

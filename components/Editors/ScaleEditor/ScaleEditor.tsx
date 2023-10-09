@@ -1,3 +1,5 @@
+import TextInput from "@/components/Inputs/TextInput/TextInput";
+import { TextInputLabeled } from "@/components/Inputs/TextInput/TextInputLabeled";
 import { ScaleOptions } from "@/types/SectionTypes";
 
 const ScaleEditor = ({
@@ -10,7 +12,19 @@ const ScaleEditor = ({
   return (
     <div>
       <h2>scale editor</h2>
-      <p>{JSON.stringify(scaleOptions)}</p>
+
+      <TextInputLabeled
+        value={scaleOptions.startLabel}
+        labelText={"Start text"}
+        placeholder={"ie 'Very Unhappy'"}
+        updateFn={undefined}
+      />
+      <TextInputLabeled
+        value={scaleOptions.endLabel}
+        labelText={"End text"}
+        placeholder={"ie 'Very Happy'"}
+        updateFn={undefined}
+      />
     </div>
   );
 };

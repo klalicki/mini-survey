@@ -5,8 +5,8 @@ updateFn: a function that accepts one argument: the new options list: Array<MCOp
 This component renders each of the 
 */
 
-import TextInput from "@/components/TextInput/TextInput";
-import AddItem from "@/components/TextInput/AddItem";
+import TextInput from "@/components/Inputs/TextInput/TextInput";
+import AddItem from "@/components/Inputs/TextInput/AddItem";
 import BasicReorder from "@/components/BasicReorder/BasicReorder";
 import { MCOption } from "@/types/SectionTypes";
 import { getUID } from "@/utils/uid";

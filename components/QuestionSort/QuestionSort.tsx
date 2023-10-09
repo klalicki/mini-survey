@@ -37,7 +37,6 @@ import {
 import { SurveyQuestion } from "@/types/QuestionTypes";
 import { createPortal } from "react-dom";
 import { customKeyCoords } from "@/utils/customKeyCoords";
-import { customCollision } from "@/utils/customCollision";
 
 type QuestionSortItemProps = {
   id: any;
@@ -73,7 +72,7 @@ const QuestionSortItem = ({
       style={itemStyle}
       ref={setNodeRef}
       className={`qs-question-wrapper ${
-        activeId == id && isOverlay ? "qs-question-wrapper-active" : ""
+        activeId === id && isOverlay ? "qs-question-wrapper-active" : ""
       } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
     >
       <div className="question-handle">
@@ -198,7 +197,11 @@ const QuestionSort = () => {
               activeId={activeId}
               index={0}
             >
-              <EditQuestion questionData={activeItem} index={0} />
+              <EditQuestion
+                questionData={activeItem}
+                index={0}
+                isOverlay={true}
+              />
             </QuestionSortItem>
           )}
         </DragOverlay>

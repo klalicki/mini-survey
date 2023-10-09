@@ -20,38 +20,44 @@ const Select = ({
   value,
   fieldName,
   handleChange,
+  isOverlay,
 }: {
   options: Array<{ labelText: string; value: string; icon?: IconProp }>;
   title?: string;
   value?: string;
   fieldName: string;
+  isOverlay?: boolean;
   handleChange?: Function;
 }) => {
   return (
     <>
       <div className="radio-toggle-group">
         {title && <h3>{title}</h3>}
+        {/* {isOverlay && "isOverlay"} */}
         <div className="radio-toggle-group-controls">
           {options.map((item, index) => {
+            const shouldBeChecked = value === item.value;
             return (
-              <div key={item.value}>
+              <>
                 <input
                   type="radio"
-                  name={fieldName}
-                  id={`radio-${fieldName}-${item.value}`}
-                  checked={value === item.value}
+                  name={fieldName + (isOverlay || "-overlay")}
+                  id={`radio-${fieldName}-${item.value}${
+                    isOverlay || "-overlay"
+                  }`}
+                  // value={item.value}
+                  checked={shouldBeChecked}
                   onChange={(e) => {
                     if (handleChange) {
                       handleChange(item.value);
                     }
                   }}
                 />
-
                 <label htmlFor={`radio-${fieldName}-${item.value}`}>
                   {item.icon && <FontAwesomeIcon icon={item.icon} />}
                   {item.labelText}
                 </label>
-              </div>
+              </>
             );
           })}
         </div>

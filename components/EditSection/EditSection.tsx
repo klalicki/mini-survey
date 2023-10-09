@@ -5,6 +5,7 @@ import { SectionListContext } from "@/contexts/SectionListContext";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
+import { Delete } from "@mui/icons-material";
 const EditSection = ({
   sectionData,
   index,
@@ -12,11 +13,22 @@ const EditSection = ({
   sectionData: SurveySection;
   index: number;
 }) => {
-  const { moveSectionRelative, updateSection, updateSectionMerge } =
-    useContext(SectionListContext);
+  const {
+    moveSectionRelative,
+    updateSection,
+    updateSectionMerge,
+    deleteSection,
+  } = useContext(SectionListContext);
 
   return (
     <div className="eq-main">
+      <button className="delete-section">
+        <Delete
+          onClick={() => {
+            deleteSection(sectionData.staticID);
+          }}
+        />
+      </button>
       <TextInput
         value={sectionData.title}
         onChange={(newVal: string) => {

@@ -9,6 +9,7 @@ type SectionListContextValues = {
   updateSection: Function;
   getSectionById: Function;
   updateSectionMerge: Function;
+  deleteSection: Function;
 };
 const defaultValues: SectionListContextValues = {
   sectionList: [],
@@ -19,6 +20,7 @@ const defaultValues: SectionListContextValues = {
   updateSection: () => {},
   getSectionById: () => {},
   updateSectionMerge: () => {},
+  deleteSection: () => {},
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
@@ -32,9 +34,22 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         { text: "mc option 1", staticID: "b" },
         { text: "mc option 1", staticID: "c" },
       ],
+      ScaleOptions: { startNumber: 1, endNumber: 5 },
     },
-    { sectionType: "", title: "Section 2?", staticID: "b", MCOptions: [] },
-    { sectionType: "", title: "Section 3?", staticID: "c", MCOptions: [] },
+    {
+      sectionType: "",
+      title: "Section 2?",
+      staticID: "b",
+      MCOptions: [],
+      ScaleOptions: { startNumber: 1, endNumber: 5 },
+    },
+    {
+      sectionType: "",
+      title: "Section 3?",
+      staticID: "c",
+      MCOptions: [],
+      ScaleOptions: { startNumber: 1, endNumber: 5 },
+    },
   ]);
 
   /**
@@ -64,6 +79,15 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     return sectionList.find((item) => {
       return item.staticID === sectionId;
     });
+  };
+
+  const deleteSection = (sectionId: string) => {
+    const tempList = [...sectionList];
+    setSectionList(
+      tempList.filter((item) => {
+        return item.staticID !== sectionId;
+      })
+    );
   };
 
   const updateSection = (sectionId: string, newData: SurveySection) => {
@@ -114,6 +138,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         getSectionById,
         updateSection,
         updateSectionMerge,
+        deleteSection,
       }}
     >
       {props.children}

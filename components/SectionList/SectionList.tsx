@@ -3,9 +3,19 @@ import SectionSort from "../SectionSort/SectionSort";
 const SectionList = () => {
   return (
     <div>
-      <h1>Section List</h1>
+      <div className="eq-container">
+        <div className="eq-main">
+          <h1>Welcome section</h1>
+          <h2>this is a subhead on the welcome section.</h2>
+        </div>
+      </div>
       <SectionSort></SectionSort>
-      <AddSections />
+      <div className="eq-container">
+        <div className="eq-main">
+          <h2>Add new section:</h2>
+          <AddSections />
+        </div>
+      </div>
     </div>
   );
 };

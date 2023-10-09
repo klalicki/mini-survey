@@ -12,6 +12,7 @@ import TextInput from "../Inputs/TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
 import { Delete } from "@mui/icons-material";
 import ScaleEditor from "../Editors/ScaleEditor/ScaleEditor";
+import { ViewPicker } from "../Viewers/ViewPicker/ViewPicker";
 const EditSection = ({
   sectionData,
   index,
@@ -74,6 +75,10 @@ const EditSection = ({
         />
       )}
       {sectionData.sectionType === "st" && <p>ST Edit Component</p>}
+      <div>
+        <h2>Previews:</h2>
+        <ViewPicker section={sectionData} />
+      </div>
     </div>
   );
 };

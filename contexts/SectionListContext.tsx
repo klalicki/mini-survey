@@ -25,7 +25,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
   const [sectionList, setSectionList] = useState([
     {
       sectionType: "mc",
-      text: "Section 1?",
+      title: "Section 1?",
       staticID: "a",
       MCOptions: [
         { text: "mc option 1", staticID: "a" },
@@ -33,8 +33,8 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         { text: "mc option 1", staticID: "c" },
       ],
     },
-    { sectionType: "", text: "Section 2?", staticID: "b", MCOptions: [] },
-    { sectionType: "", text: "Section 3?", staticID: "c", MCOptions: [] },
+    { sectionType: "", title: "Section 2?", staticID: "b", MCOptions: [] },
+    { sectionType: "", title: "Section 3?", staticID: "c", MCOptions: [] },
   ]);
 
   /**

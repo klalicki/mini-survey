@@ -4,7 +4,7 @@ import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
 export type MCOption = { staticID: string; text: string };
 export interface SurveySection {
   sectionType: string;
-  text: string;
+  title: string;
   staticID: string;
   MCOptions: Array<MCOption>;
 }
@@ -12,7 +12,7 @@ export interface SurveySection {
 export const CreateBlankSection = (type?: string): SurveySection => {
   return {
     sectionType: type || "",
-    text: "",
+    title: "",
     MCOptions: [],
     staticID: getUID(),
   };

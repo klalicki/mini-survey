@@ -177,7 +177,7 @@ const SectionSort = () => {
               <SectionSortItem
                 key={item.staticID}
                 id={item.staticID}
-                itemText={item.text}
+                itemText={item.title}
                 activeId={activeId}
                 index={index}
               >
@@ -193,7 +193,7 @@ const SectionSort = () => {
               isOverlay={true}
               key={activeItem.staticID}
               id={activeItem.staticID}
-              itemText={activeItem.text}
+              itemText={activeItem.title}
               activeId={activeId}
               index={0}
             >

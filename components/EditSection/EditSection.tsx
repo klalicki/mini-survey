@@ -1,8 +1,4 @@
-import {
-  MCOption,
-  SectionTypeData,
-  SurveySection,
-} from "@/types/SectionTypes";
+import { MCOption, SectionTypeData, SurveySection } from "@/types/SectionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { SectionListContext } from "@/contexts/SectionListContext";
@@ -23,9 +19,9 @@ const EditSection = ({
   return (
     <div className="eq-main">
       <TextInput
-        value={sectionData.text}
+        value={sectionData.title}
         onChange={(newVal: string) => {
-          updateSectionMerge(sectionData.staticID, { text: newVal });
+          updateSectionMerge(sectionData.staticID, { title: newVal });
         }}
       />
 

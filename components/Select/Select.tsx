@@ -41,7 +41,7 @@ const Select = ({
                 <input
                   type="radio"
                   name={fieldName + "-" + itemRef.current}
-                  id={`radio-${fieldName}-${item.value}`}
+                  id={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                   checked={value === item.value}
                   onChange={(e) => {
                     if (handleChange) {
@@ -50,7 +50,9 @@ const Select = ({
                   }}
                 />
 
-                <label htmlFor={`radio-${fieldName}-${item.value}`}>
+                <label
+                  htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
+                >
                   {item.icon && <FontAwesomeIcon icon={item.icon} />}
                   {item.labelText}
                 </label>

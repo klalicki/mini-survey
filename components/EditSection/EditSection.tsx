@@ -1,4 +1,9 @@
-import { MCOption, SectionTypeData, SurveySection } from "@/types/SectionTypes";
+import {
+  MCOption,
+  ScaleOptions,
+  SectionTypeData,
+  SurveySection,
+} from "@/types/SectionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { SectionListContext } from "@/contexts/SectionListContext";
@@ -6,6 +11,7 @@ import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";
 import { Delete } from "@mui/icons-material";
+import ScaleEditor from "../Editors/ScaleEditor/ScaleEditor";
 const EditSection = ({
   sectionData,
   index,
@@ -35,7 +41,6 @@ const EditSection = ({
           updateSectionMerge(sectionData.staticID, { title: newVal });
         }}
       />
-
       <Select
         fieldName={`${sectionData.staticID}-type`}
         value={sectionData.sectionType}
@@ -48,7 +53,6 @@ const EditSection = ({
           });
         }}
       />
-
       {sectionData.sectionType === "mc" && (
         <MCEditor
           optionsList={sectionData.MCOptions}
@@ -57,6 +61,16 @@ const EditSection = ({
               MCOptions: newOptions,
             });
           }}
+        />
+      )}{" "}
+      {sectionData.sectionType === "scale" && (
+        <ScaleEditor
+          updateFn={(newOptions: ScaleOptions) => {
+            updateSectionMerge(sectionData.staticID, {
+              ScaleOptions: newOptions,
+            });
+          }}
+          scaleOptions={sectionData.ScaleOptions}
         />
       )}
       {sectionData.sectionType === "st" && <p>ST Edit Component</p>}

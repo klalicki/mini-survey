@@ -1,11 +1,8 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import {
-  SurveyQuestion,
-  CreateBlankSurveyQuestion,
-} from "@/types/QuestionTypes";
+import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
 import { loremIpsum } from "lorem-ipsum";
 type QuestionListContextValues = {
-  questionList: SurveyQuestion[];
+  questionList: SurveySection[];
   addBlankQuestion: Function;
   moveQuestion: Function;
   moveQuestionRelative: Function;
@@ -52,13 +49,9 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
     if (index !== undefined) {
       const firstSet = [...questionList].slice(0, index);
       const secondSet = [...questionList].slice(index);
-      setQuestionList([
-        ...firstSet,
-        CreateBlankSurveyQuestion(type),
-        ...secondSet,
-      ]);
+      setQuestionList([...firstSet, CreateBlankSection(type), ...secondSet]);
     } else {
-      setQuestionList([...questionList, CreateBlankSurveyQuestion(type)]);
+      setQuestionList([...questionList, CreateBlankSection(type)]);
     }
   };
 
@@ -68,13 +61,13 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
    * @param {string} questionId - A string representing the ID of the question you want to retrieve.
    * @returns The function `getQuestionById` returns a `SurveyQuestion` object or `undefined`.
    */
-  const getQuestionById = (questionId: string): SurveyQuestion | undefined => {
+  const getQuestionById = (questionId: string): SurveySection | undefined => {
     return questionList.find((item) => {
       return item.staticID === questionId;
     });
   };
 
-  const updateQuestion = (questionId: string, newData: SurveyQuestion) => {
+  const updateQuestion = (questionId: string, newData: SurveySection) => {
     const tempList = [...questionList];
     const targetIndex = tempList.findIndex((item) => {
       return item.staticID === questionId;
@@ -84,7 +77,7 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
   };
   const updateQuestionMerge = (
     questionId: string,
-    newData: Partial<SurveyQuestion>
+    newData: Partial<SurveySection>
   ) => {
     const data = getQuestionById(questionId);
     if (data) {

@@ -2,16 +2,16 @@ import { getUID } from "@/utils/uid";
 import { faCircleCheck, faFont } from "@fortawesome/free-solid-svg-icons";
 
 export type MCOption = { staticID: string; text: string };
-export interface SurveyQuestion {
-  questionType: string;
+export interface SurveySection {
+  sectionType: string;
   text: string;
   staticID: string;
   MCOptions: Array<MCOption>;
 }
 
-export const CreateBlankSurveyQuestion = (type?: string): SurveyQuestion => {
+export const CreateBlankSection = (type?: string): SurveySection => {
   return {
-    questionType: type || "",
+    sectionType: type || "",
     text: "",
     MCOptions: [],
     staticID: getUID(),
@@ -21,7 +21,7 @@ export const CreateBlankSurveyQuestion = (type?: string): SurveyQuestion => {
 export type SurveyDataset = {
   title: string;
   description: string;
-  questions: Array<SurveyQuestion>;
+  questions: Array<SurveySection>;
 };
 
 export const QuestionTypeData = [

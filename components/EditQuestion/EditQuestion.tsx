@@ -1,8 +1,8 @@
 import {
   MCOption,
   QuestionTypeData,
-  SurveyQuestion,
-} from "@/types/QuestionTypes";
+  SurveySection,
+} from "@/types/SectionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
@@ -14,7 +14,7 @@ const EditQuestion = ({
   questionData,
   index,
 }: {
-  questionData: SurveyQuestion;
+  questionData: SurveySection;
   index: number;
 }) => {
   const { moveQuestionRelative, updateQuestion, updateQuestionMerge } =
@@ -31,7 +31,7 @@ const EditQuestion = ({
 
       <Select
         fieldName={`${questionData.staticID}-type`}
-        value={questionData.questionType}
+        value={questionData.sectionType}
         options={QuestionTypeData}
         handleChange={(newVal: string) => {
           console.log(newVal);
@@ -42,7 +42,7 @@ const EditQuestion = ({
         }}
       />
 
-      {questionData.questionType === "mc" && (
+      {questionData.sectionType === "mc" && (
         <MCEditor
           optionsList={questionData.MCOptions}
           updateFn={(newOptions: Array<MCOption>) => {
@@ -52,7 +52,7 @@ const EditQuestion = ({
           }}
         />
       )}
-      {questionData.questionType === "st" && <p>ST Edit Component</p>}
+      {questionData.sectionType === "st" && <p>ST Edit Component</p>}
     </div>
   );
 };

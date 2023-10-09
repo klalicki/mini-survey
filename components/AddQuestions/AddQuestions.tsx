@@ -1,4 +1,4 @@
-import { QuestionTypeData } from "@/types/QuestionTypes";
+import { QuestionTypeData } from "@/types/SectionTypes";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

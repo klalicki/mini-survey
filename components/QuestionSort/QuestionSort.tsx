@@ -34,7 +34,7 @@ import {
   faArrowUp,
   faGripVertical,
 } from "@fortawesome/free-solid-svg-icons";
-import { SurveyQuestion } from "@/types/QuestionTypes";
+import { SurveySection } from "@/types/SectionTypes";
 import { createPortal } from "react-dom";
 import { customKeyCoords } from "@/utils/customKeyCoords";
 
@@ -126,7 +126,7 @@ const QuestionSort = () => {
     moveQuestionRelative,
   } = useContext(QuestionListContext);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const [activeItem, setActiveItem] = useState<SurveyQuestion | null>(null);
+  const [activeItem, setActiveItem] = useState<SurveySection | null>(null);
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id);
     setActiveItem(getQuestionById(event.active.id));
@@ -197,10 +197,7 @@ const QuestionSort = () => {
               activeId={activeId}
               index={0}
             >
-              <EditQuestion
-                questionData={activeItem}
-                index={0}
-              />
+              <EditQuestion questionData={activeItem} index={0} />
             </QuestionSortItem>
           )}
         </DragOverlay>

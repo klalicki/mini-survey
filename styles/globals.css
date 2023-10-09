@@ -194,8 +194,7 @@ a {
   border-right: none;
   border-radius: 0.25rem 0 0 0.25rem;
 }
-.radio-toggle-group {
-}
+
 .radio-toggle-group-controls {
   display: flex;
   position: relative;

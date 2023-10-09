@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddItem from "@/components/TextInput/AddItem";
 import BasicReorder from "@/components/BasicReorder/BasicReorder";
-import { MCOption } from "@/types/QuestionTypes";
+import { MCOption } from "@/types/SectionTypes";
 import { getUID } from "@/utils/uid";
 
 const MCEditor = ({

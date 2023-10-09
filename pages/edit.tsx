@@ -1,12 +1,11 @@
 "use client";
-import { QuestionListWrapper } from "@/contexts/SectionListContext";
-import { PropsWithChildren } from "react";
-import QuestionList from "@/components/QuestionList/QuestionList";
+import { SectionListWrapper } from "@/contexts/SectionListContext";
+import SectionList from "@/components/SectionList/SectionList";
 const EditPage = () => {
   return (
-    <QuestionListWrapper>
-      <QuestionList />
-    </QuestionListWrapper>
+    <SectionListWrapper>
+      <SectionList />
+    </SectionListWrapper>
   );
 };
 export default EditPage;

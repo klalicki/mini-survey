@@ -1,6 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
-import { loremIpsum } from "lorem-ipsum";
 type SectionListContextValues = {
   sectionList: SurveySection[];
   addBlankSection: Function;
@@ -22,7 +21,7 @@ const defaultValues: SectionListContextValues = {
   updateSectionMerge: () => {},
 };
 export const SectionListContext = createContext(defaultValues);
-const SectionListWrapper = (props: PropsWithChildren) => {
+export const SectionListWrapper = (props: PropsWithChildren) => {
   const [sectionList, setSectionList] = useState([
     {
       sectionType: "mc",
@@ -121,5 +120,3 @@ const SectionListWrapper = (props: PropsWithChildren) => {
     </SectionListContext.Provider>
   );
 };
-
-export { SectionListWrapper };

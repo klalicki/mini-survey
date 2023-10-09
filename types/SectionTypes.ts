@@ -21,10 +21,10 @@ export const CreateBlankSection = (type?: string): SurveySection => {
 export type SurveyDataset = {
   title: string;
   description: string;
-  questions: Array<SurveySection>;
+  sections: Array<SurveySection>;
 };
 
-export const QuestionTypeData = [
+export const SectionTypeData = [
   {
     labelText: "Multiple Choice",
     value: "mc",

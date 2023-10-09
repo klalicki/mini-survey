@@ -61,9 +61,9 @@ const BasicReorderItem = ({
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`qs-question-wrapper ${
-        activeId == id && isOverlay ? "qs-question-wrapper-active" : ""
-      } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
+      className={`qs-section-wrapper ${
+        activeId == id && isOverlay ? "qs-section-wrapper-active" : ""
+      } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
     >
       <div className="basic-reorder-controls">
         <button
@@ -97,8 +97,6 @@ const BasicReorder = ({
   getTextFromData?: Function;
   containerStyles?: Object;
 }) => {
-  
- 
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -137,7 +135,7 @@ const BasicReorder = ({
     }
   };
   const handleDragEnd = (event: DragEndEvent) => {
-    // const initialIndex = questionList;
+    // const initialIndex = sectionList;
     setActiveId(null);
     console.log(event);
     console.log(event.activatorEvent.target);

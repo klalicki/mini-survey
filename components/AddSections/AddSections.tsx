@@ -1,18 +1,18 @@
-import { QuestionTypeData } from "@/types/SectionTypes";
-import { QuestionListContext } from "@/contexts/SectionListContext";
+import { SectionTypeData } from "@/types/SectionTypes";
+import { SectionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const AddQuestions = () => {
-  const { addBlankQuestion } = useContext(QuestionListContext);
+export const AddSections = () => {
+  const { addBlankSection } = useContext(SectionListContext);
   return (
     <div>
-      {QuestionTypeData.map(({ value, labelText, icon }) => {
+      {SectionTypeData.map(({ value, labelText, icon }) => {
         return (
           <button
             key={`button-${value}`}
             onClick={() => {
-              addBlankQuestion(undefined, value);
+              addBlankSection(undefined, value);
             }}
           >
             <FontAwesomeIcon icon={icon} />

@@ -25,9 +25,9 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
-import { QuestionListContext } from "@/contexts/SectionListContext";
+import { SectionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
-import EditQuestion from "../EditQuestion/EditQuestion";
+import EditSection from "../EditSection/EditSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowDown,
@@ -38,7 +38,7 @@ import { SurveySection } from "@/types/SectionTypes";
 import { createPortal } from "react-dom";
 import { customKeyCoords } from "@/utils/customKeyCoords";
 
-type QuestionSortItemProps = {
+type SectionSortItemProps = {
   id: any;
   activeId: any;
   itemText: string;
@@ -46,14 +46,14 @@ type QuestionSortItemProps = {
   index: number;
 };
 
-const QuestionSortItem = ({
+const SectionSortItem = ({
   activeId,
   id,
   itemText,
   children,
   isOverlay,
   index,
-}: PropsWithChildren<QuestionSortItemProps>) => {
+}: PropsWithChildren<SectionSortItemProps>) => {
   const {
     attributes,
     setActivatorNodeRef,
@@ -66,26 +66,26 @@ const QuestionSortItem = ({
     transform: CSS.Translate.toString(transform),
     transition,
   };
-  const { moveQuestionRelative } = useContext(QuestionListContext);
+  const { moveSectionRelative } = useContext(SectionListContext);
   return (
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`qs-question-wrapper ${
-        activeId === id && isOverlay ? "qs-question-wrapper-active" : ""
-      } ${activeId === id && !isOverlay ? "qs-question-wrapper-dim" : ""}`}
+      className={`qs-section-wrapper ${
+        activeId === id && isOverlay ? "qs-section-wrapper-active" : ""
+      } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
     >
-      <div className="question-handle">
+      <div className="section-handle">
         <button
-          className="question-move-arrow"
+          className="section-move-arrow"
           onClick={() => {
-            moveQuestionRelative(index, -1);
+            moveSectionRelative(index, -1);
           }}
         >
           <FontAwesomeIcon icon={faArrowUp} />
         </button>
         <button
-          aria-label={`move question ${itemText}`}
+          aria-label={`move section ${itemText}`}
           ref={setActivatorNodeRef}
           {...attributes}
           {...listeners}
@@ -94,9 +94,9 @@ const QuestionSortItem = ({
           <FontAwesomeIcon icon={faGripVertical} />
         </button>
         <button
-          className="question-move-arrow"
+          className="section-move-arrow"
           onClick={() => {
-            moveQuestionRelative(index, 1);
+            moveSectionRelative(index, 1);
           }}
         >
           <FontAwesomeIcon icon={faArrowDown} />
@@ -108,7 +108,7 @@ const QuestionSortItem = ({
   );
 };
 
-const QuestionSort = () => {
+const SectionSort = () => {
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -118,18 +118,18 @@ const QuestionSort = () => {
   );
 
   const {
-    questionList,
-    addBlankQuestion,
-    moveQuestion,
-    moveQuestionById,
-    getQuestionById,
-    moveQuestionRelative,
-  } = useContext(QuestionListContext);
+    sectionList,
+    addBlankSection,
+    moveSection,
+    moveSectionById,
+    getSectionById,
+    moveSectionRelative,
+  } = useContext(SectionListContext);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [activeItem, setActiveItem] = useState<SurveySection | null>(null);
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id);
-    setActiveItem(getQuestionById(event.active.id));
+    setActiveItem(getSectionById(event.active.id));
   };
   const handleDragOver = (event: DragOverEvent) => {
     console.log(event);
@@ -137,17 +137,17 @@ const QuestionSort = () => {
     const initialID = event.active.id;
     const targetID = event?.over?.id;
     if (targetID) {
-      moveQuestionById(initialID, targetID);
+      moveSectionById(initialID, targetID);
     }
   };
   const handleDragEnd = (event: DragEndEvent) => {
-    // const initialIndex = questionList;
+    // const initialIndex = sectionList;
     setActiveId(null);
 
     const initialID = event.active.id;
     const targetID = event?.over?.id;
     if (targetID) {
-      moveQuestionById(initialID, targetID);
+      moveSectionById(initialID, targetID);
       console.log(event.over);
     }
   };
@@ -167,29 +167,29 @@ const QuestionSort = () => {
       >
         <SortableContext
           strategy={verticalListSortingStrategy}
-          items={questionList.map((item) => {
+          items={sectionList.map((item) => {
             return item.staticID;
           })}
         >
-          {questionList.map((item, index) => {
+          {sectionList.map((item, index) => {
             // console.log(item);
             return (
-              <QuestionSortItem
+              <SectionSortItem
                 key={item.staticID}
                 id={item.staticID}
                 itemText={item.text}
                 activeId={activeId}
                 index={index}
               >
-                <EditQuestion questionData={item} index={index} />
-              </QuestionSortItem>
+                <EditSection sectionData={item} index={index} />
+              </SectionSortItem>
             );
           })}
         </SortableContext>
 
         <DragOverlay>
           {activeItem && (
-            <QuestionSortItem
+            <SectionSortItem
               isOverlay={true}
               key={activeItem.staticID}
               id={activeItem.staticID}
@@ -197,12 +197,12 @@ const QuestionSort = () => {
               activeId={activeId}
               index={0}
             >
-              <EditQuestion questionData={activeItem} index={0} />
-            </QuestionSortItem>
+              <EditSection sectionData={activeItem} index={0} />
+            </SectionSortItem>
           )}
         </DragOverlay>
       </DndContext>
     </section>
   );
 };
-export default QuestionSort;
+export default SectionSort;

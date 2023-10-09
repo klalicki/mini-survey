@@ -232,3 +232,13 @@ a {
   outline: 5px solid lightblue;
   z-index: 100;
 }
+.scale-wrapper {
+  display: flex;
+  gap: 0.25rem;
+}
+.scale-radio {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 0.5rem;
+}

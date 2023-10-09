@@ -5,7 +5,7 @@ import {
 } from "@/types/SectionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
-import { QuestionListContext } from "@/contexts/QuestionListContext";
+import { QuestionListContext } from "@/contexts/SectionListContext";
 import Select from "../Select/Select";
 import TextInput from "../TextInput/TextInput";
 import MCEditor from "../Editors/MCEditor/MCEditor";

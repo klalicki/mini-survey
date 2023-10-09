@@ -1,5 +1,5 @@
 "use client";
-import { QuestionListWrapper } from "@/contexts/QuestionListContext";
+import { QuestionListWrapper } from "@/contexts/SectionListContext";
 import { PropsWithChildren } from "react";
 import QuestionList from "@/components/QuestionList/QuestionList";
 const EditPage = () => {

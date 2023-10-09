@@ -1,4 +1,4 @@
-import { QuestionListContext } from "@/contexts/QuestionListContext";
+import { QuestionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
 const ButtonAddQuestion = ({ index }: { index?: number }) => {
   const { addBlankQuestion } = useContext(QuestionListContext);

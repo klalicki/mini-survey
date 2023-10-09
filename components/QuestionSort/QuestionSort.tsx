@@ -25,7 +25,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, use, useState } from "react";
-import { QuestionListContext } from "@/contexts/QuestionListContext";
+import { QuestionListContext } from "@/contexts/SectionListContext";
 import { useContext } from "react";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

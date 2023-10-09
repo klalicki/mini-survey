@@ -1,4 +1,8 @@
-import { MCOption, SurveyQuestion } from "@/types/QuestionTypes";
+import {
+  MCOption,
+  QuestionTypeData,
+  SurveyQuestion,
+} from "@/types/QuestionTypes";
 import { useContext, useEffect, useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { QuestionListContext } from "@/contexts/QuestionListContext";
@@ -29,14 +33,7 @@ const EditQuestion = ({
         // title="Question Type"
         fieldName={`${questionData.staticID}-type`}
         value={questionData.questionType}
-        options={[
-          {
-            labelText: "Multiple Choice",
-            value: "mc",
-            icon: faCircleCheck,
-          },
-          { labelText: "Short Text", value: "st", icon: faFont },
-        ]}
+        options={QuestionTypeData}
         handleChange={(newVal: string) => {
           console.log(newVal);
           updateQuestion(questionData.staticID, {

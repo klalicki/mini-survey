@@ -48,13 +48,17 @@ const QuestionListWrapper = (props: PropsWithChildren) => {
    * array. If the `index` parameter is provided, the new question will be inserted at that position in
    * the array. If not, the new quetion will be added at the end of the list.
    */
-  const addBlankQuestion = (index?: number) => {
+  const addBlankQuestion = (index?: number, type?: string) => {
     if (index !== undefined) {
       const firstSet = [...questionList].slice(0, index);
       const secondSet = [...questionList].slice(index);
-      setQuestionList([...firstSet, CreateBlankSurveyQuestion(), ...secondSet]);
+      setQuestionList([
+        ...firstSet,
+        CreateBlankSurveyQuestion(type),
+        ...secondSet,
+      ]);
     } else {
-      setQuestionList([...questionList, CreateBlankSurveyQuestion()]);
+      setQuestionList([...questionList, CreateBlankSurveyQuestion(type)]);
     }
   };
 

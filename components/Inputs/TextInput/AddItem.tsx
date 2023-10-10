@@ -32,7 +32,7 @@ const AddItem = ({
           setTempVal(e.target.value);
         }}
       />
-      <button type="submit">
+      <button className={"btn-standard"} type="submit">
         <Add />
       </button>
     </form>

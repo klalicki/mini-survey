@@ -22,7 +22,7 @@ export const Dropdown = ({
 }: DropdownProps<any>) => {
   const formId = `${name}-${useRef(getUID()).current}`;
   return (
-    <div>
+    <div className="dropdown-labeled">
       <label htmlFor={formId}>{label}</label>
       <select
         defaultValue={value}

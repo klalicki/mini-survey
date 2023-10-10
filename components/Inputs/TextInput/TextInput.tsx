@@ -57,7 +57,7 @@ const TextInput = ({
           {value || `[${placeholder}]`}
         </h2>
       )}
-      <button type="submit" ref={submitButtonRef}>
+      <button className={"btn-standard"} type="submit" ref={submitButtonRef}>
         {isEditing ? <Check /> : <Edit />}
       </button>
     </form>

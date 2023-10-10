@@ -13,7 +13,7 @@ export const TextInputLabeled = ({
     updateFn(e.target.value);
   };
   return (
-    <div>
+    <div className="text-input-labeled">
       <label htmlFor={inputID}>{labelText}</label>
       <input
         type="text"

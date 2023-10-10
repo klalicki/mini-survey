@@ -11,7 +11,7 @@ const SectionList = () => {
       </div>
       <SectionSort></SectionSort>
       <div className="eq-container">
-        <div className="eq-main">
+        <div className="eq-final">
           <h2>Add new section:</h2>
           <AddSections />
         </div>

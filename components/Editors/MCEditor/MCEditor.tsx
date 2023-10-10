@@ -64,6 +64,7 @@ const MCEditor = ({
                 }}
               />
               <button
+                className="btn-standard"
                 onClick={() => {
                   removeItem(index);
                 }}

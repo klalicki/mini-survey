@@ -5,7 +5,7 @@ import { useContext } from "react";
 export const AddSections = () => {
   const { addBlankSection } = useContext(SectionListContext);
   return (
-    <div>
+    <div className="add-new-section">
       {SectionTypeData.map((item) => {
         return (
           <button

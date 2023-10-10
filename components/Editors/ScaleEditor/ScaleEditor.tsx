@@ -20,53 +20,57 @@ const ScaleEditor = ({
   }
 
   return (
-    <div>
-      <Dropdown
-        items={startNumOptions}
-        label={"Start Number"}
-        value={scaleOptions.startNumber}
-        name={"end-number"}
-        onChange={(newVal) => {
-          updateFn({ ...scaleOptions, startNumber: parseInt(newVal) });
-        }}
-        getIDFromItem={(item) => {
-          return item.value;
-        }}
-        getLabelFromItem={(item) => {
-          return item.label;
-        }}
-      />
-      <Dropdown
-        items={endNumOptions}
-        label={"End Number"}
-        value={scaleOptions.endNumber}
-        name={"end-number"}
-        onChange={(newVal) => {
-          updateFn({ ...scaleOptions, endNumber: parseInt(newVal) });
-        }}
-        getIDFromItem={(item) => {
-          return item.value;
-        }}
-        getLabelFromItem={(item) => {
-          return item.label;
-        }}
-      />
-      <TextInputLabeled
-        value={scaleOptions.startLabel}
-        labelText={"Start text"}
-        placeholder={"ie 'Very Unhappy'"}
-        updateFn={(newVal: string) => {
-          updateFn({ ...scaleOptions, startLabel: newVal });
-        }}
-      />
-      <TextInputLabeled
-        value={scaleOptions.endLabel}
-        labelText={"End text"}
-        placeholder={"ie 'Very Happy'"}
-        updateFn={(newVal: string) => {
-          updateFn({ ...scaleOptions, endLabel: newVal });
-        }}
-      />
+    <div className="scale-editor">
+      <div>
+        <Dropdown
+          items={startNumOptions}
+          label={"Start Number"}
+          value={scaleOptions.startNumber}
+          name={"end-number"}
+          onChange={(newVal) => {
+            updateFn({ ...scaleOptions, startNumber: parseInt(newVal) });
+          }}
+          getIDFromItem={(item) => {
+            return item.value;
+          }}
+          getLabelFromItem={(item) => {
+            return item.label;
+          }}
+        />{" "}
+        <TextInputLabeled
+          value={scaleOptions.startLabel}
+          labelText={"Start text"}
+          placeholder={"ie 'Very Unhappy'"}
+          updateFn={(newVal: string) => {
+            updateFn({ ...scaleOptions, startLabel: newVal });
+          }}
+        />
+      </div>
+      <div>
+        <Dropdown
+          items={endNumOptions}
+          label={"End Number"}
+          value={scaleOptions.endNumber}
+          name={"end-number"}
+          onChange={(newVal) => {
+            updateFn({ ...scaleOptions, endNumber: parseInt(newVal) });
+          }}
+          getIDFromItem={(item) => {
+            return item.value;
+          }}
+          getLabelFromItem={(item) => {
+            return item.label;
+          }}
+        />
+        <TextInputLabeled
+          value={scaleOptions.endLabel}
+          labelText={"End text"}
+          placeholder={"ie 'Very Happy'"}
+          updateFn={(newVal: string) => {
+            updateFn({ ...scaleOptions, endLabel: newVal });
+          }}
+        />
+      </div>
     </div>
   );
 };

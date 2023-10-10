@@ -35,8 +35,12 @@ const Select = ({
         <div className="radio-toggle-group-controls">
           {options.map((item, index) => {
             return (
-              <div key={item.value}>
+              <div
+                key={item.value}
+                className={value === item.value ? "selected" : ""}
+              >
                 <input
+                  className={value === item.value ? "selected" : ""}
                   type="radio"
                   name={fieldName + "-" + itemRef.current}
                   id={`radio-${fieldName}-${item.value}-${itemRef.current}`}
@@ -49,6 +53,7 @@ const Select = ({
                 />
 
                 <label
+                  className={value === item.value ? "selected" : ""}
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
                   {item.icon && <item.icon />}

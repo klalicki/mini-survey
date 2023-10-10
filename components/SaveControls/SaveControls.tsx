@@ -3,12 +3,9 @@ import { SectionListContext } from "@/contexts/SectionListContext";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { CopyAll, Check, Loop } from "@mui/icons-material";
-import { useUrl } from "nextjs-current-url";
 export const SaveControls = () => {
-  const pageUrl = useUrl();
   const router = useRouter();
   const initialID = Object.keys(router.query)[0];
-  // const [dbID,setDBID]=useState(router.query)
   useEffect(
     () => {
       if (router.isReady) {
@@ -34,9 +31,9 @@ export const SaveControls = () => {
       <button
         className="btn-standard"
         onClick={() => {
-          if (pageUrl?.href) {
-            navigator.clipboard.writeText(pageUrl.href);
-          }
+          const url = window.location.href + "";
+
+          navigator.clipboard.writeText(url);
         }}
       >
         <CopyAll /> Copy edit link

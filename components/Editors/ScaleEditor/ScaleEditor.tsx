@@ -38,7 +38,7 @@ const ScaleEditor = ({
           }}
         />{" "}
         <TextInputLabeled
-          value={scaleOptions.startLabel}
+          value={scaleOptions.startLabel || ""}
           labelText={"Start text"}
           placeholder={"ie 'Very Unhappy'"}
           updateFn={(newVal: string) => {
@@ -63,7 +63,7 @@ const ScaleEditor = ({
           }}
         />
         <TextInputLabeled
-          value={scaleOptions.endLabel}
+          value={scaleOptions.endLabel || ""}
           labelText={"End text"}
           placeholder={"ie 'Very Happy'"}
           updateFn={(newVal: string) => {

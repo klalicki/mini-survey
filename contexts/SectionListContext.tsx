@@ -1,6 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
 import { sampleData } from "@/utils/sampleData";
+import axios from "axios";
 type SectionListContextValues = {
   sectionList: SurveySection[];
   addBlankSection: Function;
@@ -11,6 +12,7 @@ type SectionListContextValues = {
   getSectionById: Function;
   updateSectionMerge: Function;
   deleteSection: Function;
+  loadFromServer: Function;
 };
 const defaultValues: SectionListContextValues = {
   sectionList: [],
@@ -22,6 +24,7 @@ const defaultValues: SectionListContextValues = {
   getSectionById: () => {},
   updateSectionMerge: () => {},
   deleteSection: () => {},
+  loadFromServer: () => {},
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
@@ -102,6 +105,17 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     });
     moveSection(initialIndex, targetIndex);
   };
+
+  const loadFromServer = async (id: string) => {
+    try {
+      const newData = await axios.get(`/api/survey/edit`, {
+        params: { id: id },
+      });
+      console.log(newData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SectionListContext.Provider
       value={{
@@ -114,6 +128,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         updateSection,
         updateSectionMerge,
         deleteSection,
+        loadFromServer,
       }}
     >
       {props.children}

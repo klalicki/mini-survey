@@ -7,8 +7,12 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   if (req.method === "GET") {
+    console.log(req.query.id);
     // get data
-    const result = await getSurvey(req.body.id);
+    if (!req.query.id) {
+      res.status(404).send("invalid query");
+    }
+    const result = await getSurvey(req.query.id as string);
     // console.log(req.body);
     // console.log(req.method);
     // console.log(result);
@@ -22,7 +26,10 @@ export default async function handler(
     //   res.status(200).json({ id: result });
     // }
   } else if (req.method === "PUT") {
-    await updateSurvey(req.body.id, req.body.surveyData);
+    if (!req.query.id) {
+      res.status(404).send("invalid query");
+    }
+    await updateSurvey(req.query.id as string, req.body.surveyData);
     res.status(200).send("successfully updated?");
   } else {
     res

@@ -13,6 +13,7 @@ type SectionListContextValues = {
   updateSectionMerge: Function;
   deleteSection: Function;
   loadFromServer: Function;
+  saveToServer: Function;
 };
 const defaultValues: SectionListContextValues = {
   sectionList: [],
@@ -25,6 +26,7 @@ const defaultValues: SectionListContextValues = {
   updateSectionMerge: () => {},
   deleteSection: () => {},
   loadFromServer: () => {},
+  saveToServer: () => {},
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
@@ -105,13 +107,24 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     });
     moveSection(initialIndex, targetIndex);
   };
-
+  const saveToServer = async (id: string) => {
+    try {
+      axios.put(
+        "/api/survey/edit",
+        { surveyData: sectionList },
+        { params: { id: id } }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const loadFromServer = async (id: string) => {
     try {
       const newData = await axios.get(`/api/survey/edit`, {
         params: { id: id },
       });
-      console.log(newData);
+
+      setSectionList(newData.data);
     } catch (error) {
       console.log(error);
     }
@@ -129,6 +142,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         updateSectionMerge,
         deleteSection,
         loadFromServer,
+        saveToServer,
       }}
     >
       {props.children}

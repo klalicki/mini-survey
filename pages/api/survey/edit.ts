@@ -26,10 +26,14 @@ export default async function handler(
     //   res.status(200).json({ id: result });
     // }
   } else if (req.method === "PUT") {
+    console.log("put mothed");
+    console.log(req.body);
     if (!req.query.id) {
       res.status(404).send("invalid query");
     }
-    await updateSurvey(req.query.id as string, req.body.surveyData);
+    await updateSurvey(req.query.id as string, {
+      sections: req.body.surveyData,
+    });
     res.status(200).send("successfully updated?");
   } else {
     res

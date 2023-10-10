@@ -3,7 +3,7 @@ import { AddSections } from "../AddSections/AddSections";
 import SectionSort from "../SectionSort/SectionSort";
 import { SectionListContext } from "@/contexts/SectionListContext";
 const SectionList = () => {
-  const { loadFromServer } = useContext(SectionListContext);
+  const { loadFromServer, saveToServer } = useContext(SectionListContext);
   return (
     <div className="app-wrapper">
       <div className="eq-container centered">
@@ -16,6 +16,13 @@ const SectionList = () => {
             }}
           >
             load?
+          </button>
+          <button
+            onClick={() => {
+              saveToServer("65255b40ff6671ff63e67b54");
+            }}
+          >
+            save?
           </button>
         </div>
       </div>

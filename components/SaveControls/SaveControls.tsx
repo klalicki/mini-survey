@@ -23,12 +23,13 @@ export const SaveControls = () => {
   console.log(initialID);
   // try to load from the API using initalID first. if that fails, get a new ID from the API.
 
-  const { loadFromServer, saveToServer, isSynced } =
+  const { loadFromServer, saveToServer, isSynced, isReady } =
     useContext(SectionListContext);
 
   return (
     <div className="save-controls">
       <button
+        disabled={!isReady}
         className="btn-standard"
         onClick={() => {
           const url = window.location.href + "";
@@ -40,6 +41,7 @@ export const SaveControls = () => {
       </button>
 
       <button
+        disabled={!isReady}
         className="btn-standard"
         onClick={() => {
           saveToServer();

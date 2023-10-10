@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import axios, { AxiosError } from "axios";
 type SectionListContextValues = {
   isSynced: boolean;
+  isReady: boolean;
   sectionList: SurveySection[];
   addBlankSection: Function;
   moveSection: Function;
@@ -26,6 +27,7 @@ type SectionListContextValues = {
 };
 const defaultValues: SectionListContextValues = {
   isSynced: false,
+  isReady: false,
   sectionList: [],
   addBlankSection: () => {},
   moveSection: () => {},
@@ -44,6 +46,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
   const [sectionList, setSectionList] = useState<SurveySection[]>([]);
   const [docID, setDocID] = useState("");
   const [isSynced, setIsSynced] = useState(true);
+  const [isReady, setIsReady] = useState(false);
   const router = useRouter();
   useEffect(() => {
     console.log("list updated!");
@@ -153,6 +156,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
       setDocID(id);
       console.log("set docID:" + id);
       setSectionList(newData.data);
+      setIsReady(true);
     } catch (error: AxiosError | any) {
       if (axios.isAxiosError(error)) {
         if (error?.response?.status === 404) {
@@ -171,6 +175,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
   return (
     <SectionListContext.Provider
       value={{
+        isReady,
         sectionList,
         addBlankSection,
         moveSection,

@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
       <main className="splash-page">
         <h1>
-          Welcome to <span className="brand">mini-survey</span>!
+          Welcome to <span className="brand">mini-survey!</span>
         </h1>
         <p>
           This project is a work in progress. At this point the editor view is

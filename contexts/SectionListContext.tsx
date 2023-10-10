@@ -28,7 +28,7 @@ const defaultValues: SectionListContextValues = {
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
-  const [sectionList, setSectionList] = useState(sampleData);
+  const [sectionList, setSectionList] = useState<SurveySection[]>([]);
 
   /**
    * The function `addBlankSection` adds a blank survey section to the section list.

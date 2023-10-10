@@ -16,7 +16,6 @@ export const ScaleViewer = ({
   }
   return (
     <div>
-      <h2>{questionData.title}</h2>
       <div className="scale-wrapper">
         <div className="scale-label-start">
           {questionData.ScaleOptions.startLabel}

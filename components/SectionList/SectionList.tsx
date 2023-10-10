@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { AddSections } from "../AddSections/AddSections";
 import SectionSort from "../SectionSort/SectionSort";
+import { SectionListContext } from "@/contexts/SectionListContext";
+import { SaveControls } from "../SaveControls/SaveControls";
 const SectionList = () => {
   return (
     <div className="app-wrapper">
@@ -7,6 +10,7 @@ const SectionList = () => {
         <div className="eq-welcome">
           <h1>Question Editor</h1>
           <h2>build your survey</h2>
+          <SaveControls />
         </div>
       </div>
       <SectionSort></SectionSort>

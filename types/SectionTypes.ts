@@ -28,8 +28,8 @@ export const CreateBlankSection = (type?: string): SurveySection => {
 };
 
 export type SurveyDataset = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   sections: Array<SurveySection>;
 };
 

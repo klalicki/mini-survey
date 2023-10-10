@@ -18,6 +18,7 @@
     "@mui/material": "^5.14.12",
     "framer-motion": "^10.16.4",
     "lorem-ipsum": "^2.0.8",
+    "mongodb": "6.1",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

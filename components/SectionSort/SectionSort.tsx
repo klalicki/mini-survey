@@ -120,6 +120,7 @@ const SectionSort = () => {
     moveSectionById,
     getSectionById,
     moveSectionRelative,
+    isReady,
   } = useContext(SectionListContext);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [activeItem, setActiveItem] = useState<SurveySection | null>(null);
@@ -149,7 +150,7 @@ const SectionSort = () => {
   };
   return (
     <section className="sort-list-container">
-      {/* <h2>active: {activeId}</h2> */}
+      {!isReady && <h2>Waiting for server...</h2>}
 
       <DndContext
         // @ts-ignore not sure why this is giving me a type error!

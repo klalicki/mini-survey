@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
 import { sampleData } from "@/utils/sampleData";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 type SectionListContextValues = {
   sectionList: SurveySection[];
   addBlankSection: Function;
@@ -31,6 +31,7 @@ const defaultValues: SectionListContextValues = {
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
   const [sectionList, setSectionList] = useState<SurveySection[]>([]);
+  const [docID, setDocID] = useState("");
 
   /**
    * The function `addBlankSection` adds a blank survey section to the section list.
@@ -107,25 +108,34 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     });
     moveSection(initialIndex, targetIndex);
   };
-  const saveToServer = async (id: string) => {
+  const saveToServer = async () => {
     try {
       axios.put(
         "/api/survey/edit",
         { surveyData: sectionList },
-        { params: { id: id } }
+        { params: { id: docID } }
       );
     } catch (error) {
       console.log(error);
     }
   };
   const loadFromServer = async (id: string) => {
+    console.log("trying to load " + id);
     try {
       const newData = await axios.get(`/api/survey/edit`, {
         params: { id: id },
       });
-
+      setDocID(id);
+      console.log("set docID:" + id);
       setSectionList(newData.data);
-    } catch (error) {
+    } catch (error: AxiosError | any) {
+      if (axios.isAxiosError(error)) {
+        if (error?.response?.status === 404) {
+          const newResponse = await axios.post("/api/survey/new");
+          console.log("got new docID:" + newResponse.data.id);
+          loadFromServer(newResponse.data.id);
+        }
+      }
       console.log(error);
     }
   };

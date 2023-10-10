@@ -6,7 +6,7 @@ const coll = client.db("prod").collection("surveys");
 
 export async function createNewSurvey() {
   try {
-    const item = coll.insertOne({});
+    const item = coll.insertOne({ sections: [] });
     // const result = await cursor.toArray();
     return (await item).insertedId;
   } catch (error) {

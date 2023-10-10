@@ -2,28 +2,15 @@ import { useContext } from "react";
 import { AddSections } from "../AddSections/AddSections";
 import SectionSort from "../SectionSort/SectionSort";
 import { SectionListContext } from "@/contexts/SectionListContext";
+import { SaveControls } from "../SaveControls/SaveControls";
 const SectionList = () => {
-  const { loadFromServer, saveToServer } = useContext(SectionListContext);
   return (
     <div className="app-wrapper">
       <div className="eq-container centered">
         <div className="eq-welcome">
           <h1>Question Editor</h1>
           <h2>build your survey</h2>
-          <button
-            onClick={() => {
-              loadFromServer("65255b40ff6671ff63e67b54");
-            }}
-          >
-            load?
-          </button>
-          <button
-            onClick={() => {
-              saveToServer("65255b40ff6671ff63e67b54");
-            }}
-          >
-            save?
-          </button>
+          <SaveControls />
         </div>
       </div>
       <SectionSort></SectionSort>

@@ -1,4 +1,6 @@
-export const sampleData = [
+import { SurveySection } from "@/types/SectionTypes";
+
+export const sampleData: SurveySection[] = [
   {
     sectionType: "mc",
     title: "This is a MC question",

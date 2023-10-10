@@ -2,9 +2,11 @@ import { Check, Edit } from "@mui/icons-material";
 import { useRef, useState } from "react";
 const TextInput = ({
   value,
+  placeholder,
   onChange,
 }: {
   value: string;
+  placeholder?: string;
   onChange: Function;
 }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -32,6 +34,7 @@ const TextInput = ({
     >
       {isEditing ? (
         <input
+          placeholder={placeholder}
           onBlur={(e) => {
             onChange(tempVal);
             setIsEditing(false);
@@ -51,7 +54,7 @@ const TextInput = ({
             setIsEditing(true);
           }}
         >
-          {value}
+          {value || `[${placeholder}]`}
         </h2>
       )}
       <button type="submit" ref={submitButtonRef}>

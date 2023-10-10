@@ -1,0 +1,25 @@
+@use "resets.css";
+@use "globals.css";
+$base-font-size: 20px;
+$base-font-stack: ç;
+$base-spacing-unit: 0.25rem;
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+:root {
+  font-size: $base-font-size;
+}
+input {
+  padding: 0.25em;
+}
+body > div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+main {
+  max-width: 50rem;
+  display: flex;
+}

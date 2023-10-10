@@ -1,6 +1,7 @@
 import { SurveySection } from "@/types/SectionTypes";
 import { ScaleViewer } from "../ScaleViewer/ScaleViewer";
 import { MCViewer } from "../MCViewer/MCViewer";
+import { STViewer } from "../STViewer/STViewer";
 
 export const ViewPicker = ({ section }: { section: SurveySection }) => {
   switch (section.sectionType) {
@@ -10,7 +11,7 @@ export const ViewPicker = ({ section }: { section: SurveySection }) => {
       break;
     case "st":
       // ST component
-      return <div>st preview</div>;
+      return <STViewer questionData={section} />;
       break;
     case "scale":
       return <ScaleViewer questionData={section} />;

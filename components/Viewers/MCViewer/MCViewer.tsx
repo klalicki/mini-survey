@@ -5,7 +5,7 @@ export const MCViewer = ({ questionData }: { questionData: SurveySection }) => {
     <div>
       {questionData.MCOptions.map((item) => {
         return (
-          <div>
+          <div key={item.staticID}>
             <input
               type="radio"
               name={`${questionData.staticID}`}

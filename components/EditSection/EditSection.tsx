@@ -40,6 +40,7 @@ const EditSection = ({
       </button>
       <TextInput
         value={sectionData.title}
+        placeholder="Section Title"
         onChange={(newVal: string) => {
           updateSectionMerge(sectionData.staticID, { title: newVal });
         }}

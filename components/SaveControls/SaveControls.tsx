@@ -9,9 +9,6 @@ import absoluteUrl from "next-absolute-url";
 
 export const SaveControls = () => {
   const [hostUrl, setHostUrl] = useState("");
-  const canCopy = useEffect(() => {
-    setHostUrl(window.location.href);
-  }, []);
 
   const router = useRouter();
   const initialID = Object.keys(router.query)[0];
@@ -34,6 +31,9 @@ export const SaveControls = () => {
 
   const { loadFromServer, saveToServer, isSynced, isReady } =
     useContext(SectionListContext);
+  useEffect(() => {
+    setHostUrl(window.location.href);
+  }, [isSynced]);
 
   return (
     <div className="save-controls">

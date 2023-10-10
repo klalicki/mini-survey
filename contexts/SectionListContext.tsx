@@ -1,9 +1,16 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
 import { sampleData } from "@/utils/sampleData";
 import { useRouter } from "next/router";
 import axios, { AxiosError } from "axios";
 type SectionListContextValues = {
+  isSynced: boolean;
   sectionList: SurveySection[];
   addBlankSection: Function;
   moveSection: Function;
@@ -15,8 +22,10 @@ type SectionListContextValues = {
   deleteSection: Function;
   loadFromServer: Function;
   saveToServer: Function;
+  getEditLink: Function;
 };
 const defaultValues: SectionListContextValues = {
+  isSynced: false,
   sectionList: [],
   addBlankSection: () => {},
   moveSection: () => {},
@@ -28,13 +37,18 @@ const defaultValues: SectionListContextValues = {
   deleteSection: () => {},
   loadFromServer: () => {},
   saveToServer: () => {},
+  getEditLink: () => {},
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
   const [sectionList, setSectionList] = useState<SurveySection[]>([]);
   const [docID, setDocID] = useState("");
+  const [isSynced, setIsSynced] = useState(true);
   const router = useRouter();
-
+  useEffect(() => {
+    console.log("list updated!");
+    saveToServer();
+  }, [sectionList]);
   /**
    * The function `addBlankSection` adds a blank survey section to the section list.
    * @param {number} [index] - The `index` parameter is an optional parameter of type `number`. It is
@@ -73,6 +87,9 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     );
   };
 
+  const getEditLink = () => {
+    return docID;
+  };
   const updateSection = (sectionId: string, newData: SurveySection) => {
     const tempList = [...sectionList];
     const targetIndex = tempList.findIndex((item) => {
@@ -111,12 +128,17 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     moveSection(initialIndex, targetIndex);
   };
   const saveToServer = async () => {
+    console.log("saving to id " + docID);
+    setIsSynced(false);
     try {
-      axios.put(
+      await axios.put(
         "/api/survey/edit",
         { surveyData: sectionList },
         { params: { id: docID } }
       );
+      setTimeout(() => {
+        setIsSynced(true);
+      }, 250);
     } catch (error) {
       console.log(error);
     }
@@ -159,6 +181,8 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         deleteSection,
         loadFromServer,
         saveToServer,
+        getEditLink,
+        isSynced,
       }}
     >
       {props.children}

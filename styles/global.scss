@@ -57,6 +57,9 @@ button.btn-standard {
   border: 2px solid var(--color-cute-accent);
   --color-text: var(--color-cute-accent);
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
   flex-grow: 0;
   flex-shrink: 0;
   &:hover,
@@ -382,4 +385,11 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.save-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }

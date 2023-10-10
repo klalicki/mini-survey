@@ -21,6 +21,7 @@
     "lorem-ipsum": "^2.0.8",
     "mongodb": "6.1",
     "next": "latest",
+    "nextjs-current-url": "^1.0.3",
     "react": "latest",
     "react-dom": "latest"
   },

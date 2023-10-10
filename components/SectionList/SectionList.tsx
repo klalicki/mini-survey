@@ -5,8 +5,8 @@ const SectionList = () => {
     <div className="app-wrapper">
       <div className="eq-container centered">
         <div className="eq-welcome">
-          <h1>Welcome to the question editor.</h1>
-          <h2>this is a subhead on the welcome section.</h2>
+          <h1>Question Editor</h1>
+          <h2>build your survey</h2>
         </div>
       </div>
       <SectionSort></SectionSort>

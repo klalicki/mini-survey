@@ -59,6 +59,7 @@ const MCEditor = ({
             <>
               <TextInput
                 value={dataItem.text}
+                placeholder="option text"
                 onChange={(newVal: string) => {
                   updateItem(index, newVal);
                 }}

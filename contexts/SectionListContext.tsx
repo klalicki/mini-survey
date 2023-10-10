@@ -48,6 +48,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
   useEffect(() => {
     console.log("list updated!");
     saveToServer();
+    // eslint-disable-next-line
   }, [sectionList]);
   /**
    * The function `addBlankSection` adds a blank survey section to the section list.

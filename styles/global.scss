@@ -293,6 +293,9 @@ a {
   position: relative;
   align-items: stretch;
   > div {
+    &:hover {
+      background-color: var(--color-cute-accent);
+    }
     display: flex;
   }
 }
@@ -346,10 +349,16 @@ textarea {
   button {
     font-size: 1rem;
     padding: 0.5rem;
-    color: var(--color-background);
+    border: 2px solid var(--color-cute-accent);
+    background: none;
+    // color: var(--color-background);
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    &:hover,
+    &:focus {
+      background-color: var(--color-cute-accent);
+    }
   }
 }
 .eq-final {

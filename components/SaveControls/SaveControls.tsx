@@ -3,7 +3,16 @@ import { SectionListContext } from "@/contexts/SectionListContext";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { CopyAll, Check, Loop } from "@mui/icons-material";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import absoluteUrl from "next-absolute-url";
+
 export const SaveControls = () => {
+  const [hostUrl, setHostUrl] = useState("");
+  const canCopy = useEffect(() => {
+    setHostUrl(window.location.href);
+  }, []);
+
   const router = useRouter();
   const initialID = Object.keys(router.query)[0];
   useEffect(
@@ -28,17 +37,11 @@ export const SaveControls = () => {
 
   return (
     <div className="save-controls">
-      <button
-        disabled={!isReady}
-        className="btn-standard"
-        onClick={() => {
-          const url = window.location.href + "";
-
-          navigator.clipboard.writeText(url);
-        }}
-      >
-        <CopyAll /> Copy edit link
-      </button>
+      <CopyToClipboard text={hostUrl}>
+        <button disabled={!isReady} className="btn-standard">
+          <CopyAll /> Copy edit link
+        </button>
+      </CopyToClipboard>
 
       <button
         disabled={!isReady}

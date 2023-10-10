@@ -1,7 +1,7 @@
 @use "resets.css";
 @use "globals.css";
 $base-font-size: 20px;
-$base-font-stack: ç;
+$base-font-stack: "Rubik", sans-serif;
 $base-spacing-unit: 0.25rem;
 
 * {
@@ -22,4 +22,200 @@ body > div {
 main {
   max-width: 50rem;
   display: flex;
+  padding: 1rem;
+}
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  font-size: 20px;
+
+  --color-background: black;
+  --color-text: lightyellow;
+  --color-cute-accent: hsl(269, 100%, 67%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: var(--color-text);
+}
+button {
+  border: 2px solid var(--color-cute-accent);
+  --color-text: var(--color-cute-accent);
+  background-color: transparent;
+  &:hover {
+    background-color: var(--color-cute-accent);
+    --color-text: initial;
+  }
+}
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eq-container {
+  background-color: var(--color-background);
+  border: 2px solid white;
+  padding: 0.5rem;
+  /* margin: 0.5rem; */
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.section-handle {
+  /* width: 1.5rem; */
+  flex-shrink: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+  border: 2px solid white;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.section-handle button {
+  padding: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.eq-draghandle {
+  flex-grow: 1;
+}
+
+.qs-section-wrapper {
+  display: flex;
+  /* background-color: black; */
+  /* padding-top: 0.5rem; */
+  gap: 0rem;
+}
+.qs-section-wrapper-dim {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.qs-section-wrapper-active {
+  outline: 3px solid lightblue;
+  z-index: 10;
+}
+
+.sort-list-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.eq-main {
+  padding: 0.5rem;
+  display: flex;
+  // flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.es-edit {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20rem;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+.es-preview {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  flex-basis: 20rem;
+  flex-shrink: 5;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+.es-preview-question {
+  border: 2px solid var(--color-text);
+  padding: 1rem;
+}
+.text-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0rem;
+}
+.text-input input,
+.text-input h2 {
+  font-size: 2rem;
+  /* font-family: sans-serif; */
+  font-weight: normal;
+}
+
+.text-input button {
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}
+.basic-reorder-controls {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+.basic-reorder-controls button {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.radio-toggle-group-controls {
+  display: flex;
+  position: relative;
+}
+.radio-toggle-group-controls {
+  position: relative;
+}
+.radio-toggle-group-controls input {
+  display: inline-block;
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+.radio-toggle-group-controls label {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid white;
+}
+.radio-toggle-group-controls input:checked + label {
+  background-color: white;
+  color: black;
+}
+.radio-toggle-group-controls:focus-within {
+  outline: 5px solid lightblue;
+  z-index: 100;
+}
+
+*:focus {
+  outline: 5px solid lightblue;
+  z-index: 100;
+}
+.scale-wrapper {
+  display: flex;
+  gap: 0.25rem;
+}
+.scale-radio {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 0.5rem;
 }

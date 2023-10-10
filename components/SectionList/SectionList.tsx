@@ -4,8 +4,8 @@ const SectionList = () => {
   return (
     <div>
       <div className="eq-container">
-        <div className="eq-main">
-          <h1>Welcome section</h1>
+        <div className="eq-welcome">
+          <h1>Welcome to the question editor.</h1>
           <h2>this is a subhead on the welcome section.</h2>
         </div>
       </div>

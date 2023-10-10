@@ -408,3 +408,36 @@ button:disabled {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
+
+.splash-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  max-width: 40rem;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem;
+  p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+}
+.brand {
+  background-color: var(--color-cute-accent);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  color: var(--color-background);
+  font-weight: bold;
+}
+.btn-cta {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 3px solid var(--color-cute-accent);
+  background: none;
+  &:hover {
+    background-color: var(--color-cute-accent);
+  }
+}

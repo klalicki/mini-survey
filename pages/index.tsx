@@ -12,19 +12,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="splash-page">
         <h1>
           Welcome to <span className="brand">mini-survey</span>!
         </h1>
         <p>
           This project is a work in progress. At this point the editor view is
-          fully functional:
+          fully functional with 3 section types and a functioning backend:
         </p>
         <button
+          className="btn-cta"
           onClick={() => {
             router.push("/edit/");
           }}
-        >Edit</button>
+        >
+          Edit
+        </button>
       </main>
     </>
   );

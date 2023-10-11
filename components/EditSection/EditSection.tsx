@@ -32,12 +32,13 @@ const EditSection = ({
   return (
     <article className="eq-main">
       <section className="es-edit">
-        <button className="delete-section">
-          <Delete
-            onClick={() => {
-              deleteSection(sectionData.staticID);
-            }}
-          />
+        <button
+          className="delete-section"
+          onClick={() => {
+            deleteSection(sectionData.staticID);
+          }}
+        >
+          <Delete />
         </button>
         <TextInput
           value={sectionData.title}

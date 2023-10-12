@@ -13,21 +13,13 @@ export default async function handler(
       res.status(404).send("invalid query");
     }
     const result = await getSurvey(req.query.id as string);
-    // console.log(req.body);
-    // console.log(req.method);
-    // console.log(result);
+
     if (!result) {
       res.status(404).send("entry not found!");
     } else {
       res.status(200).send(result.sections);
     }
-
-    // if (result) {
-    //   res.status(200).json({ id: result });
-    // }
   } else if (req.method === "PUT") {
-    console.log("put mothed");
-    console.log(req.body);
     if (!req.query.id) {
       res.status(404).send("invalid query");
     }

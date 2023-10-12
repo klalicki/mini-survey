@@ -146,6 +146,7 @@ a {
   display: block;
   border: 2px solid white;
   background: black;
+  z-index: 10;
 
   &:hover,
   &:focus {
@@ -168,9 +169,11 @@ a {
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
 }
 .es-edit {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-basis: 30rem;
   gap: 1rem;

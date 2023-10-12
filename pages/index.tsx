@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { getDocCount } from "@/lib/mongoFunctions";
+
 export default function Home() {
   const router = useRouter();
   return (
@@ -18,7 +20,7 @@ export default function Home() {
         </h1>
         <p>
           This project is a work in progress. At this point the editor view is
-          fully functional with 3 section types and a functioning backend:
+          fully functional with 3 section types and a functioning backend.
         </p>
         <button
           className="btn-cta"

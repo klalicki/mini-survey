@@ -70,3 +70,12 @@ export async function cleanUp() {
     console.log(error);
   }
 }
+
+export async function getDocCount() {
+  try {
+    const docCount = await coll.countDocuments();
+    return docCount;
+  } catch (error) {
+    return -1;
+  }
+}

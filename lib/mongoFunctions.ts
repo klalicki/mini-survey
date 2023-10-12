@@ -6,7 +6,10 @@ const coll = client.db("prod").collection("surveys");
 
 export async function createNewSurvey() {
   try {
-    const item = await coll.insertOne({ sections: [] });
+    const item = await coll.insertOne({
+      sections: [],
+      timeLastEdited: Date.now(),
+    });
     // const result = await cursor.toArray();
     // client.close();
     return item.insertedId;
@@ -26,7 +29,10 @@ export async function getSurvey(id: string) {
 export async function updateSurvey(id: string, newData: SurveyDataset) {
   try {
     console.log("update");
-    const res = await coll.replaceOne({ _id: new ObjectId(id) }, newData);
+    const res = await coll.replaceOne(
+      { _id: new ObjectId(id) },
+      { ...newData, timeLastEdited: Date.now() }
+    );
     // client.close();
     console.log(res);
     //  const surveyData = coll.findOne({ _id: new ObjectId(id) });
@@ -34,28 +40,14 @@ export async function updateSurvey(id: string, newData: SurveyDataset) {
   } catch (error) {}
 }
 
-/* 
-async function getFromAPI(id: string) {
+export async function cleanUp() {
   try {
-    const coll = client.db("prod").collection("surveys");
-    const cursor = coll.find({ _id: new ObjectId(id) });
-    const result = await cursor.toArray();
-    return result;
+    console.clear();
+    console.log("cleaning up entries with no entries");
+    const a = await coll.deleteMany({ sections: null });
+    console.log(a);
+    return a;
   } catch (error) {
-    // console.log(error);
-  } finally {
+    console.log(error);
   }
 }
-async function createNewSurvey() {
-    try {
-      const coll = client.db("prod").collection("surveys");
-      coll.insertOne()
-      const cursor = coll.find({ _id: new ObjectId(id) });
-      const result = await cursor.toArray();
-      return result;
-    } catch (error) {
-      // console.log(error);
-    } finally {
-    }
-}
- */

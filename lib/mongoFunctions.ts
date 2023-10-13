@@ -25,7 +25,7 @@ export async function createNewSurvey(): Promise<{
 
 export async function getSurvey(id: string): Promise<{
   status: string;
-  data: { sections: [] };
+  data: SurveyDataset | {};
 }> {
   try {
     const surveyData = await coll.findOne({ _id: new ObjectId(id) });
@@ -40,10 +40,10 @@ export async function getSurvey(id: string): Promise<{
 }
 export async function updateSurvey(
   id: string,
-  newData: SurveyDataset
+  newData: any
 ): Promise<{ status: string }> {
   try {
-    console.log("update");
+    delete newData._id;
     const res = await coll.replaceOne(
       { _id: new ObjectId(id) },
       { ...newData, timeLastEdited: Date.now() }

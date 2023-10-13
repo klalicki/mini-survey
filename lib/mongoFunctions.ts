@@ -1,8 +1,10 @@
 import { SurveyDataset } from "@/types/SectionTypes";
 import { MongoClient, ObjectId } from "mongodb";
 const uri = process.env.MONGODB_URI || "";
+const dbName = process.env.NODE_ENV === "development" ? "dev" : "prod";
+console.log(`connecting to ${dbName} database.`);
 const client = new MongoClient(uri, { socketTimeoutMS: 10000 });
-const coll = client.db("prod").collection("surveys");
+const coll = client.db(dbName).collection("surveys");
 
 export async function createNewSurvey() {
   try {

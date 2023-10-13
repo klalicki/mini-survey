@@ -8,17 +8,17 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     console.log(req.query.id);
-    // get data
     if (!req.query.id) {
       res.status(404).send("invalid query");
     }
     const result = await getSurvey(req.query.id as string);
 
-    if (!result) {
-      res.status(404).send("entry not found!");
+    if (result.status === "success") {
+      res.status(200).send(result?.data?.sections);
     } else {
-      res.status(200).send(result.sections);
+      res.status(404).send("entry not found!");
     }
+    // handler for PUT method (updating database)
   } else if (req.method === "PUT") {
     if (!req.query.id) {
       res.status(404).send("invalid query");

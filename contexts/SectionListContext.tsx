@@ -154,7 +154,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         params: { id: id },
       });
       setDocID(id);
-      console.log("set docID:" + id);
+      console.log(newData);
       setSectionList(newData.data);
       setIsReady(true);
     } catch (error: AxiosError | any) {

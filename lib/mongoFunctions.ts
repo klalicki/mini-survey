@@ -25,11 +25,15 @@ export async function createNewSurvey(): Promise<{
 
 export async function getSurvey(id: string): Promise<{
   status: string;
-  data: {} | null;
+  data: { sections: [] };
 }> {
   try {
     const surveyData = await coll.findOne({ _id: new ObjectId(id) });
-    return { status: "success", data: surveyData };
+    console.log("surveyData in get:");
+    console.log(surveyData);
+    if (surveyData === null) {
+      return { status: "success", data: { sections: [] } };
+    } else return { status: "success", data: surveyData };
   } catch (error) {
     return { status: "error: " + error, data: {} };
   }

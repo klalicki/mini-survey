@@ -14,7 +14,8 @@ export default async function handler(
     const result = await getSurvey(req.query.id as string);
 
     if (result.status === "success") {
-      res.status(200).send(result?.data?.sections);
+      res.status(200).send(result?.data);
+      console.log(result.data.sections);
     } else {
       res.status(404).send("entry not found!");
     }

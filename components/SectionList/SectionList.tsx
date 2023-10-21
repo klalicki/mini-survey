@@ -15,8 +15,8 @@ const SectionList = () => {
           </div>
         </div>
         <SectionSort></SectionSort>
-        <div className="eq-container centered">
-          <div className="eq-final">
+        <div className="">
+          <div className="">
             <h2>Add new section:</h2>
             <AddSections />
           </div>

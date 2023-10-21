@@ -67,11 +67,11 @@ const SectionSortItem = ({
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`qs-section-wrapper ${
+      className={`flex ${
         activeId === id && isOverlay ? "qs-section-wrapper-active" : ""
       } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
     >
-      <div className="section-handle">
+      <div className="flex flex-col bg-white shadow-lg">
         <button
           className="section-move-arrow"
           onClick={() => {
@@ -149,7 +149,7 @@ const SectionSort = () => {
     }
   };
   return (
-    <section className="sort-list-container">
+    <section className="flex flex-col gap-4">
       {!isReady && <h2>Waiting for server...</h2>}
 
       <DndContext

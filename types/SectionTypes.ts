@@ -46,3 +46,5 @@ export const SectionTypeData = [
   },
   { labelText: "Short Answer", value: "st", icon: ShortTextIcon },
 ];
+
+export const blankSurveyDatset: SurveyDataset = { sections: [] };

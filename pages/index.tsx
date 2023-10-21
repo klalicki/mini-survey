@@ -25,10 +25,10 @@ export default function Home() {
         <button
           className="btn-cta"
           onClick={() => {
-            router.push("/edit/");
+            router.push("/survey/new");
           }}
         >
-          Edit
+          New
         </button>
       </main>
     </>

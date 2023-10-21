@@ -5,7 +5,11 @@ import {
   useEffect,
   useState,
 } from "react";
-import { SurveySection, CreateBlankSection } from "@/types/SectionTypes";
+import {
+  SurveySection,
+  CreateBlankSection,
+  SurveyDataset,
+} from "@/types/SectionTypes";
 import { sampleData } from "@/utils/sampleData";
 import { useRouter } from "next/router";
 import axios, { AxiosError } from "axios";
@@ -43,7 +47,12 @@ const defaultValues: SectionListContextValues = {
 };
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
-  const [sectionList, setSectionList] = useState<SurveySection[]>([]);
+  const [surveyData, setSurveyData] = useState<SurveyDataset>({ sections: [] });
+
+  const sectionList = surveyData.sections;
+  const setSectionList = (newSectionList: SurveySection[]) => {
+    setSurveyData({ ...surveyData, sections: newSectionList });
+  };
   const [docID, setDocID] = useState("");
   const [isSynced, setIsSynced] = useState(true);
   const [isReady, setIsReady] = useState(false);
@@ -137,7 +146,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
     try {
       await axios.put(
         "/api/survey/edit",
-        { surveyData: sectionList },
+        { ...surveyData },
         { params: { id: docID } }
       );
       setTimeout(() => {
@@ -154,8 +163,9 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
         params: { id: id },
       });
       setDocID(id);
-      console.log("set docID:" + id);
-      setSectionList(newData.data);
+      console.log("date from server:");
+      console.log(newData.data);
+      setSurveyData(newData.data);
       setIsReady(true);
     } catch (error: AxiosError | any) {
       if (axios.isAxiosError(error)) {
@@ -163,7 +173,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
           console.log("hit 404 error trying to load");
           const newResponse = await axios.post("/api/survey/new");
           console.log("got new docID:" + newResponse.data.id);
-          router.push("/edit?" + newResponse.data.id, undefined, {
+          router.push("/survey/" + newResponse.data.id + "/edit", undefined, {
             shallow: true,
           });
           loadFromServer(newResponse.data.id);

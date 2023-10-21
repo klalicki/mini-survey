@@ -1,81 +1,87 @@
 import { SurveyDataset } from "@/types/SectionTypes";
 import { MongoClient, ObjectId } from "mongodb";
 const uri = process.env.MONGODB_URI || "";
+const dbName = process.env.NODE_ENV === "development" ? "dev" : "prod";
+console.log(`connecting to ${dbName} database.`);
 const client = new MongoClient(uri, { socketTimeoutMS: 10000 });
-const coll = client.db("prod").collection("surveys");
+const coll = client.db(dbName).collection("surveys");
 
-export async function createNewSurvey() {
+export async function createNewSurvey(): Promise<{
+  status: string;
+  id: ObjectId | null;
+}> {
   try {
     const item = await coll.insertOne({
       sections: [],
       timeLastEdited: Date.now(),
     });
-    // const result = await cursor.toArray();
-    // client.close();
-    return item.insertedId;
+
+    return { status: "success", id: item.insertedId };
   } catch (error) {
-    // console.log(error);
+    return { status: "error: " + error, id: null };
   } finally {
   }
 }
 
-export async function getSurvey(id: string) {
+export async function getSurvey(id: string): Promise<{
+  status: string;
+  data: SurveyDataset | {};
+}> {
   try {
     const surveyData = await coll.findOne({ _id: new ObjectId(id) });
-    // client.close();
-    return surveyData;
-  } catch (error) {}
+    console.log("surveyData in get:");
+    console.log(surveyData);
+    if (surveyData === null) {
+      return { status: "success", data: { sections: [] } };
+    } else return { status: "success", data: surveyData };
+  } catch (error) {
+    return { status: "error: " + error, data: {} };
+  }
 }
-export async function updateSurvey(id: string, newData: SurveyDataset) {
+export async function updateSurvey(
+  id: string,
+  newData: any
+): Promise<{ status: string }> {
   try {
-    console.log("update");
+    delete newData._id;
     const res = await coll.replaceOne(
       { _id: new ObjectId(id) },
       { ...newData, timeLastEdited: Date.now() }
     );
-    // client.close();
     console.log(res);
-    //  const surveyData = coll.findOne({ _id: new ObjectId(id) });
-    //  return surveyData;
-  } catch (error) {}
-}
-
-export async function cleanUp() {
-  try {
-    console.clear();
-    // console.log("cleaning up entries with no entries");
-    // const a = await coll.deleteMany({ sections: null });
-    // console.log(a);
-    // return a;
-
-    // console.log("removing entries with no timeLastEdited field");
-    // const a = await coll.deleteMany({ timeLastEdited: null });
-    // console.log(a);
-
-    console.log("removing all items with old dates");
-
-    const dateCutoff = new Date().setHours(new Date().getHours() - 24);
-    // const dateCutoff = Date.now() - 10000;
-    // Construct the query to find documents where 'timeLastEdited' is less than the current time
-    const query = {
-      timeLastEdited: { $lt: dateCutoff },
-    };
-
-    const result = await coll.deleteMany(query);
-
-    console.log(`Deleted ${result.deletedCount} documents.`);
-
-    return result.deletedCount;
+    return { status: "success" };
   } catch (error) {
-    console.log(error);
+    return { status: "error: " + error };
   }
 }
 
-export async function getDocCount() {
+export async function cleanUp(): Promise<{
+  status: string;
+  deleteCount: number;
+}> {
+  try {
+    console.clear();
+    console.log("removing all items with old dates");
+    const dateCutoff = new Date().setHours(new Date().getHours() - 24);
+    const query = {
+      timeLastEdited: { $lt: dateCutoff },
+    };
+    const result = await coll.deleteMany(query);
+    console.log(`Deleted ${result.deletedCount} documents.`);
+    return { status: "success", deleteCount: result.deletedCount };
+  } catch (error) {
+    return { status: "error: " + error, deleteCount: 0 };
+  }
+}
+
+export async function getDocCount(): Promise<{
+  status: string;
+  count: number;
+}> {
   try {
     const docCount = await coll.countDocuments();
-    return docCount;
+    return { status: "success", count: docCount };
   } catch (error) {
-    return -1;
+    return { status: "error", count: 0 };
   }
 }

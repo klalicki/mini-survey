@@ -11,7 +11,8 @@ export const SaveControls = () => {
   const [hostUrl, setHostUrl] = useState("");
 
   const router = useRouter();
-  const initialID = Object.keys(router.query)[0];
+  const initialID = router.query.pageID || "";
+  console.log("from SaveControls", router.query.pageID);
   useEffect(
     () => {
       if (router.isReady) {

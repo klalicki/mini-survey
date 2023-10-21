@@ -4,7 +4,6 @@ import {
   KeyboardSensor,
   useSensor,
   useSensors,
-  closestCenter,
   DragEndEvent,
   DragOverlay,
   DragStartEvent,
@@ -13,19 +12,16 @@ import {
   MeasuringStrategy,
   MouseSensor,
   TouchSensor,
-  SensorContext,
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import {
   SortableContext,
-  sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { PropsWithChildren, useState } from "react";
 
-import { Coordinates } from "@dnd-kit/core/dist/types";
 import { customKeyCoords } from "@/utils/customKeyCoords";
 import { DragIndicator } from "@mui/icons-material";
 type BasicReorderItemProps = {
@@ -36,7 +32,7 @@ type BasicReorderItemProps = {
 };
 // This is a higher order component that provides a simple drag-and-drop list UI with drag handles
 
-// BasicReorderItem: the wrapper for each item in the BasicReorder
+// BasicReorderItem: the wrapper for each item in the BasicReorder that adds the drag handle and other related UI elements
 const BasicReorderItem = ({
   activeId,
   id,

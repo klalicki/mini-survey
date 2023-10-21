@@ -173,7 +173,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
           console.log("hit 404 error trying to load");
           const newResponse = await axios.post("/api/survey/new");
           console.log("got new docID:" + newResponse.data.id);
-          router.push("/" + newResponse.data.id + "/edit", undefined, {
+          router.push("/survey/" + newResponse.data.id + "/edit", undefined, {
             shallow: true,
           });
           loadFromServer(newResponse.data.id);

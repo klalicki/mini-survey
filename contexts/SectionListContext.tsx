@@ -48,7 +48,7 @@ const defaultValues: SectionListContextValues = {
 export const SectionListContext = createContext(defaultValues);
 export const SectionListWrapper = (props: PropsWithChildren) => {
   const [surveyData, setSurveyData] = useState<SurveyDataset>({ sections: [] });
-  // const [sectionList, setSectionList] = useState<SurveySection[]>([]);
+
   const sectionList = surveyData.sections;
   const setSectionList = (newSectionList: SurveySection[]) => {
     setSurveyData({ ...surveyData, sections: newSectionList });
@@ -173,7 +173,7 @@ export const SectionListWrapper = (props: PropsWithChildren) => {
           console.log("hit 404 error trying to load");
           const newResponse = await axios.post("/api/survey/new");
           console.log("got new docID:" + newResponse.data.id);
-          router.push("/edit?" + newResponse.data.id, undefined, {
+          router.push("/edit/" + newResponse.data.id, undefined, {
             shallow: true,
           });
           loadFromServer(newResponse.data.id);

@@ -67,11 +67,11 @@ const SectionSortItem = ({
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`flex ${
-        activeId === id && isOverlay ? "qs-section-wrapper-active" : ""
-      } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
+      className={`flex bg-white shadow-md ${
+        activeId === id && isOverlay ? "shadow-2xl" : ""
+      } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="flex flex-col bg-white shadow-lg">
+      <div className="flex flex-col justify-between bg-slate-100 w-6">
         <button
           className="section-move-arrow"
           onClick={() => {
@@ -99,7 +99,7 @@ const SectionSortItem = ({
         </button>
       </div>
 
-      <div className="eq-container">{children}</div>
+      <div className="p-3">{children}</div>
     </article>
   );
 };
@@ -149,7 +149,7 @@ const SectionSort = () => {
     }
   };
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 p-4">
       {!isReady && <h2>Waiting for server...</h2>}
 
       <DndContext

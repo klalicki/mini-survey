@@ -30,10 +30,10 @@ const EditSection = ({
   } = useContext(SectionListContext);
 
   return (
-    <article className="eq-main">
+    <article className="eq-main relative">
       <section className="es-edit">
         <button
-          className="delete-section"
+          className=" absolute right-0 bottom-0"
           onClick={() => {
             deleteSection(sectionData.staticID);
           }}

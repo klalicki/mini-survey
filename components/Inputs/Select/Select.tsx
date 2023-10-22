@@ -32,15 +32,12 @@ const Select = ({
     <>
       <div className="radio-toggle-group">
         {title && <h3>{title}</h3>}
-        <div className="radio-toggle-group-controls">
+        <div className="flex">
           {options.map((item, index) => {
             return (
-              <div
-                key={item.value}
-                className={value === item.value ? "selected" : ""}
-              >
+              <div key={item.value} className={""}>
                 <input
-                  className={value === item.value ? "selected" : ""}
+                  className={`sr-only peer`}
                   type="radio"
                   name={fieldName + "-" + itemRef.current}
                   id={`radio-${fieldName}-${item.value}-${itemRef.current}`}
@@ -53,7 +50,9 @@ const Select = ({
                 />
 
                 <label
-                  className={value === item.value ? "selected" : ""}
+                  className={
+                    "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50"
+                  }
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
                   {item.icon && <item.icon />}

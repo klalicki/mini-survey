@@ -17,7 +17,7 @@ const TextInput = ({
   };
   return (
     <form
-      className="text-input"
+      className="flex text-lg"
       onSubmit={(e) => {
         e.preventDefault();
         if (isEditing) {
@@ -50,6 +50,7 @@ const TextInput = ({
         />
       ) : (
         <h2
+          className="hover:cursor-text"
           onClick={() => {
             setIsEditing(true);
           }}

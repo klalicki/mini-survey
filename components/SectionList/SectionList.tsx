@@ -6,16 +6,16 @@ import { SaveControls } from "../SaveControls/SaveControls";
 const SectionList = () => {
   return (
     <div className=" min-h-screen flex flex-col justify-center items-center bg-slate-100">
-      <div className="bg-white p-4 flex flex-col gap-2 shadow-lg rounded-md">
-        <div className="">
+      <div className="bg-white  flex flex-col gap-2 shadow-lg rounded-md">
+        <div className=" bg-slate-600 text-white p-4">
           <div className="eq-welcome">
             <h1 className=" text-2xl">Question Editor</h1>
             <h2 className="text-xl">build your survey</h2>
             <SaveControls />
           </div>
         </div>
-        <SectionSort></SectionSort>
-        <div className="">
+        <SectionSort />
+        <div className="bg-slate-600 text-white p-4">
           <div className="">
             <h2>Add new section:</h2>
             <AddSections />

@@ -20,7 +20,7 @@ export const customKeyCoords = (
   // get the coordinates of the next item
   // return the coordinates of the next item
 
-  const overshootAmt = 15;
+  const overshootAmt = 5;
   const initialY = args.currentCoordinates.y;
   const val = sortableKeyboardCoordinates(event, args);
   // check if val is undefined (ie trying to move past end)

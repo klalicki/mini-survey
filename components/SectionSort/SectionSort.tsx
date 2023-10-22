@@ -71,7 +71,7 @@ const SectionSortItem = ({
         activeId === id && isOverlay ? "shadow-2xl" : ""
       } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="flex flex-col justify-between bg-slate-100 w-6">
+      <div className="flex flex-col justify-between bg-slate-200 w-8">
         <button
           className="section-move-arrow"
           onClick={() => {
@@ -85,7 +85,7 @@ const SectionSortItem = ({
           ref={setActivatorNodeRef}
           {...attributes}
           {...listeners}
-          className="eq-draghandle"
+          className="flex-grow"
         >
           <DragIndicator />
         </button>

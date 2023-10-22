@@ -56,11 +56,11 @@ const BasicReorderItem = ({
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`qs-section-wrapper ${
-        activeId == id && isOverlay ? "qs-section-wrapper-active" : ""
-      } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
+      className={`bg-white flex shadow-md ${
+        activeId == id && isOverlay ? "" : ""
+      } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="basic-reorder-controls">
+      <div className="flex justify-center bg-slate-400 text-white w-8">
         <button
           aria-label={`move item ${itemText}`}
           ref={setActivatorNodeRef}
@@ -72,7 +72,7 @@ const BasicReorderItem = ({
         </button>
       </div>
 
-      <div className="eq-container">{children}</div>
+      {children}
     </article>
   );
 };
@@ -148,7 +148,10 @@ const BasicReorder = ({
   };
 
   return (
-    <section className="sort-list-container" style={containerStyles}>
+    <section
+      className=" bg-slate-200 p-4 flex flex-col gap-4"
+      style={containerStyles}
+    >
       {/* <h2>active: {activeId}</h2> */}
       {dataArray.length === 0 && <div>{emptyText}</div>}
       <DndContext

@@ -23,12 +23,13 @@ import {
 import { PropsWithChildren, useState } from "react";
 
 import { customKeyCoords } from "@/utils/customKeyCoords";
-import { DragIndicator } from "@mui/icons-material";
+import { DragIndicator, ArrowUpward, ArrowDownward } from "@mui/icons-material";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
   itemText: string;
   isOverlay?: boolean;
+  index: number;
 };
 // This is a higher order component that provides a simple drag-and-drop list UI with drag handles
 
@@ -38,6 +39,7 @@ const BasicReorderItem = ({
   id,
   itemText,
   children,
+  index,
   isOverlay,
 }: PropsWithChildren<BasicReorderItemProps>) => {
   const {
@@ -60,7 +62,15 @@ const BasicReorderItem = ({
         activeId == id && isOverlay ? "" : ""
       } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="flex justify-center bg-slate-400 text-white w-8">
+      <div className="flex flex-col justify-center bg-slate-400 text-white w-8">
+        <button
+          className=""
+          onClick={() => {
+            // moveSectionRelative(index, -1);
+          }}
+        >
+          <ArrowUpward />
+        </button>
         <button
           aria-label={`move item ${itemText}`}
           ref={setActivatorNodeRef}
@@ -69,6 +79,14 @@ const BasicReorderItem = ({
           className="eq-draghandle"
         >
           <DragIndicator />
+        </button>
+        <button
+          className=""
+          onClick={() => {
+            // moveSectionRelative(index, -1);
+          }}
+        >
+          <ArrowDownward />
         </button>
       </div>
 
@@ -170,6 +188,7 @@ const BasicReorder = ({
               <BasicReorderItem
                 key={idArray[index]}
                 id={idArray[index]}
+                index={index}
                 itemText={getTextFromData ? getTextFromData(item) : ""}
                 activeId={activeId}
               >

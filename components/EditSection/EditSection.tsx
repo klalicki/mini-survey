@@ -30,57 +30,56 @@ const EditSection = ({
   } = useContext(SectionListContext);
 
   return (
-    <article className="eq-main relative">
-      <section className="es-edit">
-        <button
-          className=" absolute right-0 bottom-0"
-          onClick={() => {
-            deleteSection(sectionData.staticID);
-          }}
-        >
-          <Delete />
-        </button>
-        <TextInput
-          value={sectionData.title}
-          placeholder="Section Title"
-          onChange={(newVal: string) => {
-            updateSectionMerge(sectionData.staticID, { title: newVal });
-          }}
-        />
-        <Select
-          fieldName={`${sectionData.staticID}-type`}
-          value={sectionData.sectionType}
-          options={SectionTypeData}
-          handleChange={(newVal: string) => {
-            console.log(newVal);
-            updateSection(sectionData.staticID, {
-              ...sectionData,
-              sectionType: newVal,
+    <article className="eq-main relative flex flex-col gap-2">
+      <button
+        className=" absolute right-0 bottom-0"
+        onClick={() => {
+          deleteSection(sectionData.staticID);
+        }}
+      >
+        <Delete />
+      </button>
+      <TextInput
+        value={sectionData.title}
+        placeholder="Section Title"
+        onChange={(newVal: string) => {
+          updateSectionMerge(sectionData.staticID, { title: newVal });
+        }}
+      />
+      <Select
+        fieldName={`${sectionData.staticID}-type`}
+        value={sectionData.sectionType}
+        options={SectionTypeData}
+        handleChange={(newVal: string) => {
+          console.log(newVal);
+          updateSection(sectionData.staticID, {
+            ...sectionData,
+            sectionType: newVal,
+          });
+        }}
+      />
+      {sectionData.sectionType === "mc" && (
+        <MCEditor
+          optionsList={sectionData.MCOptions}
+          updateFn={(newOptions: Array<MCOption>) => {
+            updateSectionMerge(sectionData.staticID, {
+              MCOptions: newOptions,
             });
           }}
         />
-        {sectionData.sectionType === "mc" && (
-          <MCEditor
-            optionsList={sectionData.MCOptions}
-            updateFn={(newOptions: Array<MCOption>) => {
-              updateSectionMerge(sectionData.staticID, {
-                MCOptions: newOptions,
-              });
-            }}
-          />
-        )}{" "}
-        {sectionData.sectionType === "scale" && (
-          <ScaleEditor
-            updateFn={(newOptions: ScaleOptions) => {
-              updateSectionMerge(sectionData.staticID, {
-                ScaleOptions: newOptions,
-              });
-            }}
-            scaleOptions={sectionData.ScaleOptions}
-          />
-        )}
-        {sectionData.sectionType === "st" && <STEditor></STEditor>}
-      </section>
+      )}{" "}
+      {sectionData.sectionType === "scale" && (
+        <ScaleEditor
+          updateFn={(newOptions: ScaleOptions) => {
+            updateSectionMerge(sectionData.staticID, {
+              ScaleOptions: newOptions,
+            });
+          }}
+          scaleOptions={sectionData.ScaleOptions}
+        />
+      )}
+      {sectionData.sectionType === "st" && <STEditor></STEditor>}
+      
       <section className="es-preview">
         <h2>Preview:</h2>
         <div className="es-preview-question">

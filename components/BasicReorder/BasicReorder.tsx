@@ -203,6 +203,7 @@ const BasicReorder = ({
               isOverlay={true}
               key={activeId}
               id={activeId}
+              index={0}
               itemText={getTextFromData ? getTextFromData(activeItem) : ""}
               activeId={activeId}
             >

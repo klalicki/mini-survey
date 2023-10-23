@@ -35,7 +35,12 @@ const Select = ({
         <div className="flex">
           {options.map((item, index) => {
             return (
-              <div key={item.value} className={""}>
+              <div
+                key={item.value}
+                className={
+                  "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50"
+                }
+              >
                 <input
                   className={`sr-only peer`}
                   type="radio"
@@ -50,9 +55,7 @@ const Select = ({
                 />
 
                 <label
-                  className={
-                    "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50"
-                  }
+                  className={"flex gap-1 items-center h-full"}
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
                   {item.icon && <item.icon />}

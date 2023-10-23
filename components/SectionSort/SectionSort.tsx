@@ -99,7 +99,7 @@ const SectionSortItem = ({
         </button>
       </div>
 
-      <div className="p-3">{children}</div>
+      <div className="p-3 flex flex-col w-full">{children}</div>
     </article>
   );
 };

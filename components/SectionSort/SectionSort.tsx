@@ -71,9 +71,9 @@ const SectionSortItem = ({
         activeId === id && isOverlay ? "shadow-2xl" : ""
       } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="flex flex-col justify-between bg-slate-200 w-8">
+      <div className="flex flex-col justify-between bg-accentA-100 text-accentA-950 w-8">
         <button
-          className="section-move-arrow"
+          className="hover:bg-accentA-300 hover:text-black"
           onClick={() => {
             moveSectionRelative(index, -1);
           }}
@@ -85,12 +85,12 @@ const SectionSortItem = ({
           ref={setActivatorNodeRef}
           {...attributes}
           {...listeners}
-          className="flex-grow"
+          className="flex-grow hover:bg-accentA-300 hover:text-black"
         >
           <DragIndicator />
         </button>
         <button
-          className="section-move-arrow"
+          className="hover:bg-accentA-300 hover:text-black"
           onClick={() => {
             moveSectionRelative(index, 1);
           }}

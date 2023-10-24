@@ -62,7 +62,7 @@ const BasicReorderItem = ({
         activeId == id && isOverlay ? "" : ""
       } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="flex flex-col justify-center bg-slate-400 text-white w-8">
+      <div className="flex flex-col justify-center  bg-accentB-100 text-accentB-950 w-8">
         <button
           className=""
           onClick={() => {

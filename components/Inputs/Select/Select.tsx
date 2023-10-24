@@ -30,15 +30,15 @@ const Select = ({
   const itemRef = useRef(getUID());
   return (
     <>
-      <div className="radio-toggle-group">
+      <div className=" self-start">
         {title && <h3>{title}</h3>}
-        <div className="flex">
+        <div className="flex justify-start focus-within:focus-ring">
           {options.map((item, index) => {
             return (
               <div
                 key={item.value}
                 className={
-                  "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50"
+                  "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50 "
                 }
               >
                 <input

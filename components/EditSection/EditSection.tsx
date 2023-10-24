@@ -79,10 +79,9 @@ const EditSection = ({
         />
       )}
       {sectionData.sectionType === "st" && <STEditor></STEditor>}
-      
-      <section className="es-preview">
-        <h2>Preview:</h2>
-        <div className="es-preview-question">
+      <section className="border-2 border-slate-300 ">
+        <h2 className=" bg-slate-300 p-2">Preview:</h2>
+        <div className="p-2">
           <SectionHeader section={sectionData} />
           <ViewPicker section={sectionData} />
         </div>

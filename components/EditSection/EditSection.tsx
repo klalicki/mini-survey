@@ -72,8 +72,10 @@ const EditSection = ({
       )}
       {sectionData.sectionType === "st" && <STEditor></STEditor>}
       <div className="flex gap-4 justify-between">
-        <section className="border-2 border-slate-300 ">
-          <h2 className=" bg-slate-300 p-2">Preview:</h2>
+        <section className="border-2 border-accentB-200  min-w-[50%]">
+          <h2 className=" bg-accentB-200 text-accentB-950 p-2 pt-1 pb-1">
+            Preview:
+          </h2>
           <div className="p-2">
             <SectionHeader section={sectionData} />
             <ViewPicker section={sectionData} />

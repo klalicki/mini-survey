@@ -31,14 +31,6 @@ const EditSection = ({
 
   return (
     <article className="eq-main relative flex flex-col gap-2">
-      <button
-        className=" absolute right-0 bottom-0"
-        onClick={() => {
-          deleteSection(sectionData.staticID);
-        }}
-      >
-        <Delete />
-      </button>
       <TextInput
         value={sectionData.title}
         placeholder="Section Title"
@@ -79,13 +71,23 @@ const EditSection = ({
         />
       )}
       {sectionData.sectionType === "st" && <STEditor></STEditor>}
-      <section className="border-2 border-slate-300 ">
-        <h2 className=" bg-slate-300 p-2">Preview:</h2>
-        <div className="p-2">
-          <SectionHeader section={sectionData} />
-          <ViewPicker section={sectionData} />
-        </div>
-      </section>
+      <div className="flex gap-4 justify-between">
+        <section className="border-2 border-slate-300 ">
+          <h2 className=" bg-slate-300 p-2">Preview:</h2>
+          <div className="p-2">
+            <SectionHeader section={sectionData} />
+            <ViewPicker section={sectionData} />
+          </div>
+        </section>
+        <button
+          className=" self-end p-2 bg-white rounded-full shadow-lg hover:bg-red-500 hover:text-white"
+          onClick={() => {
+            deleteSection(sectionData.staticID);
+          }}
+        >
+          <Delete />
+        </button>
+      </div>
     </article>
   );
 };

@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
   .focus-ring {
-    @apply outline outline-4 outline-dotted outline-accentA-700;
+    @apply outline outline-4   outline-accentA-700;
   }
   *:focus {
     @apply focus-ring;

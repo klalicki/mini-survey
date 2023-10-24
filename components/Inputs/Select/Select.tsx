@@ -32,14 +32,12 @@ const Select = ({
     <>
       <div className=" self-start">
         {title && <h3>{title}</h3>}
-        <div className="flex justify-start focus-within:focus-ring">
+        <div className="flex justify-start focus-within:focus-ring gap-0">
           {options.map((item, index) => {
             return (
               <div
                 key={item.value}
-                className={
-                  "p-2 border peer-checked:bg-slate-300 peer-hover:bg-yellow-50 "
-                }
+                className={" border border-accentA-800 text-accentA-800  "}
               >
                 <input
                   className={`sr-only peer`}
@@ -55,7 +53,9 @@ const Select = ({
                 />
 
                 <label
-                  className={"flex gap-1 items-center h-full"}
+                  className={
+                    "flex gap-1 p-2 items-center h-full peer-checked:bg-accentA-200 peer-hover:bg-accentA-100"
+                  }
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
                   {item.icon && <item.icon />}

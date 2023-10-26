@@ -4,10 +4,12 @@ const TextInput = ({
   value,
   placeholder,
   onChange,
+  className,
 }: {
   value: string;
   placeholder?: string;
   onChange: Function;
+  className?: string;
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(value);
@@ -17,7 +19,11 @@ const TextInput = ({
   };
   return (
     <form
-      className="flex text-lg"
+      className={
+        "flex text-lg gap-2 p-3 group focus-within:bg-accentA-100 hover:bg-accentA-100 " +
+        " " +
+        className
+      }
       onSubmit={(e) => {
         e.preventDefault();
         if (isEditing) {
@@ -34,6 +40,7 @@ const TextInput = ({
     >
       {isEditing ? (
         <input
+          className=" grow"
           placeholder={placeholder}
           onBlur={(e) => {
             onChange(tempVal);
@@ -58,7 +65,13 @@ const TextInput = ({
           {value || `[${placeholder}]`}
         </h2>
       )}
-      <button className={"btn-standard"} type="submit" ref={submitButtonRef}>
+      <button
+        className={`btn-standard opacity-0 group-hover:opacity-60 group-focus:opacity-60 focus:opacity-60 ${
+          isEditing ? "opacity-60" : ""
+        }`}
+        type="submit"
+        ref={submitButtonRef}
+      >
         {isEditing ? <Check /> : <Edit />}
       </button>
     </form>

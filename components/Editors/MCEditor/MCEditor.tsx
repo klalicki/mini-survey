@@ -56,7 +56,7 @@ const MCEditor = ({
         reorderFn={moveItem}
         renderItem={(dataItem: MCOption, index: number) => {
           return (
-            <div className="p-2 flex w-full">
+            <div className="p-2 flex grow justify-between items-center">
               <TextInput
                 value={dataItem.text}
                 placeholder="option text"
@@ -65,7 +65,7 @@ const MCEditor = ({
                 }}
               />
               <button
-                className=" justify-self-end"
+                className="justify-self-end"
                 onClick={() => {
                   removeItem(index);
                 }}

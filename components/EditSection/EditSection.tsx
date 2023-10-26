@@ -34,6 +34,7 @@ const EditSection = ({
       <TextInput
         value={sectionData.title}
         placeholder="Section Title"
+        className="self-start"
         onChange={(newVal: string) => {
           updateSectionMerge(sectionData.staticID, { title: newVal });
         }}

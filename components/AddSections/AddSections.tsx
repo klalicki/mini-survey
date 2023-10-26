@@ -9,7 +9,7 @@ export const AddSections = () => {
       {SectionTypeData.map((item) => {
         return (
           <button
-            className="p-2 border-white border-2 rounded-md hover:text-black hover:bg-white"
+            className="p-2 border-accentA-950 border-2 rounded-md hover:text-white hover:bg-accentA-950"
             disabled={!isReady}
             key={`button-${item.value}`}
             onClick={() => {

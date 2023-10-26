@@ -15,11 +15,9 @@ const SectionList = () => {
           </div>
         </div>
         <SectionSort />
-        <div className="bg-slate-600 text-white p-4">
-          <div className="">
-            <h2>Add new section:</h2>
-            <AddSections />
-          </div>
+        <div className="bg-gradient-to-r from-accentA-200 to-accentB-200 text-accentA-950 p-4 flex flex-col gap-3">
+          <h2>Add new section:</h2>
+          <AddSections />
         </div>
       </div>
     </div>

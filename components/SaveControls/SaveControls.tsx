@@ -39,7 +39,10 @@ export const SaveControls = () => {
   return (
     <div className="flex gap-2 items-center">
       <CopyToClipboard text={hostUrl}>
-        <button disabled={!isReady} className="p-2 border border-2 rounded-md">
+        <button
+          disabled={!isReady}
+          className="p-2 border-accentA-950 border-2 rounded-md hover:text-white hover:bg-accentA-950"
+        >
           <CopyAll /> Copy edit link
         </button>
       </CopyToClipboard>

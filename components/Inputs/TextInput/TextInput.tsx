@@ -40,7 +40,7 @@ const TextInput = ({
     >
       {isEditing ? (
         <input
-          className=" grow w-full"
+          className=" grow w-full p-1"
           placeholder={placeholder}
           size={tempVal.length}
           onBlur={(e) => {

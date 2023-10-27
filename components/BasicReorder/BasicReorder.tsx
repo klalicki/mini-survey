@@ -64,7 +64,7 @@ const BasicReorderItem = ({
     >
       <div className="flex flex-col justify-center  bg-accentB-100 text-accentB-950 w-8">
         <button
-          className=""
+          className="hidden"
           onClick={() => {
             // moveSectionRelative(index, -1);
           }}
@@ -81,7 +81,7 @@ const BasicReorderItem = ({
           <DragIndicator />
         </button>
         <button
-          className=""
+          className="hidden"
           onClick={() => {
             // moveSectionRelative(index, -1);
           }}

@@ -30,17 +30,17 @@ const Select = ({
   const itemRef = useRef(getUID());
   return (
     <>
-      <div className="radio-toggle-group">
+      <div className=" self-start">
         {title && <h3>{title}</h3>}
-        <div className="radio-toggle-group-controls">
+        <div className="flex justify-start focus-within:focus-ring gap-0">
           {options.map((item, index) => {
             return (
               <div
                 key={item.value}
-                className={value === item.value ? "selected" : ""}
+                className={" border border-accentA-800 text-accentA-800  "}
               >
                 <input
-                  className={value === item.value ? "selected" : ""}
+                  className={`sr-only peer`}
                   type="radio"
                   name={fieldName + "-" + itemRef.current}
                   id={`radio-${fieldName}-${item.value}-${itemRef.current}`}
@@ -53,7 +53,9 @@ const Select = ({
                 />
 
                 <label
-                  className={value === item.value ? "selected" : ""}
+                  className={
+                    "flex gap-1 p-2 items-center h-full peer-checked:bg-accentA-200 peer-hover:bg-accentA-100"
+                  }
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >
                   {item.icon && <item.icon />}

@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { getDocCount } from "@/lib/mongoFunctions";
-
 export default function Home() {
   const router = useRouter();
   return (
@@ -14,22 +12,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="splash-page">
-        <h1>
-          Welcome to <span className="brand">mini-survey!</span>
-        </h1>
-        <p>
-          This project is a work in progress. At this point the editor view is
-          fully functional with 3 section types and a functioning backend.
-        </p>
-        <button
-          className="btn-cta"
-          onClick={() => {
-            router.push("/survey/new");
-          }}
-        >
-          New
-        </button>
+      <main className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-accentA-200 to-accentB-200">
+        <div className="max-w-2xl bg-white p-8 rounded-md drop-shadow-md">
+          <h1 className="text-5xl">
+            Welcome to <span className="brand">mini-survey!</span>
+          </h1>
+          <p className="text-3xl mb-3">
+            This project is a work in progress. At this point the editor view is
+            fully functional with 3 section types and a functioning backend.
+          </p>
+          <button
+            className=" transition text-3xl p-4 rounded-md text-accentA-700 border-accentA-700 border-solid border-2 hover:bg-accentA-700 hover:text-white"
+            onClick={() => {
+              router.push("/survey/new");
+            }}
+          >
+            New
+          </button>
+        </div>
       </main>
     </>
   );

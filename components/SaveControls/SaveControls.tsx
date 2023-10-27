@@ -37,22 +37,35 @@ export const SaveControls = () => {
   }, [isSynced]);
 
   return (
-    <div className="save-controls">
+    <div className="flex gap-2 items-center">
       <CopyToClipboard text={hostUrl}>
-        <button disabled={!isReady} className="btn-standard">
+        <button
+          disabled={!isReady}
+          className="p-2 border-accentA-950 border-2 rounded-md hover:text-white hover:bg-accentA-950"
+        >
           <CopyAll /> Copy edit link
         </button>
       </CopyToClipboard>
 
-      <button
+      <div>
+        {isSynced ? (
+          <>
+            Saved <Check />
+          </>
+        ) : (
+          <>
+            Saving...
+            <Loop />
+          </>
+        )}
+      </div>
+      {/* <button
         disabled={!isReady}
         className="btn-standard"
         onClick={() => {
           saveToServer();
         }}
-      >
-        Saved {isSynced ? <Check /> : <Loop />}
-      </button>
+      ></button> */}
     </div>
   );
 };

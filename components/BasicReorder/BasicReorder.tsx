@@ -23,12 +23,13 @@ import {
 import { PropsWithChildren, useState } from "react";
 
 import { customKeyCoords } from "@/utils/customKeyCoords";
-import { DragIndicator } from "@mui/icons-material";
+import { DragIndicator, ArrowUpward, ArrowDownward } from "@mui/icons-material";
 type BasicReorderItemProps = {
   id: any;
   activeId: any;
   itemText: string;
   isOverlay?: boolean;
+  index: number;
 };
 // This is a higher order component that provides a simple drag-and-drop list UI with drag handles
 
@@ -38,6 +39,7 @@ const BasicReorderItem = ({
   id,
   itemText,
   children,
+  index,
   isOverlay,
 }: PropsWithChildren<BasicReorderItemProps>) => {
   const {
@@ -56,11 +58,19 @@ const BasicReorderItem = ({
     <article
       style={itemStyle}
       ref={setNodeRef}
-      className={`qs-section-wrapper ${
-        activeId == id && isOverlay ? "qs-section-wrapper-active" : ""
-      } ${activeId === id && !isOverlay ? "qs-section-wrapper-dim" : ""}`}
+      className={`bg-white flex shadow-md ${
+        activeId == id && isOverlay ? "" : ""
+      } ${activeId === id && !isOverlay ? "opacity-25" : ""}`}
     >
-      <div className="basic-reorder-controls">
+      <div className="flex flex-col justify-center  bg-accentB-100 text-accentB-950 w-8">
+        <button
+          className="hidden"
+          onClick={() => {
+            // moveSectionRelative(index, -1);
+          }}
+        >
+          <ArrowUpward />
+        </button>
         <button
           aria-label={`move item ${itemText}`}
           ref={setActivatorNodeRef}
@@ -70,9 +80,17 @@ const BasicReorderItem = ({
         >
           <DragIndicator />
         </button>
+        <button
+          className="hidden"
+          onClick={() => {
+            // moveSectionRelative(index, -1);
+          }}
+        >
+          <ArrowDownward />
+        </button>
       </div>
 
-      <div className="eq-container">{children}</div>
+      {children}
     </article>
   );
 };
@@ -148,7 +166,10 @@ const BasicReorder = ({
   };
 
   return (
-    <section className="sort-list-container" style={containerStyles}>
+    <section
+      className=" bg-slate-200 p-4 flex flex-col gap-4"
+      style={containerStyles}
+    >
       {/* <h2>active: {activeId}</h2> */}
       {dataArray.length === 0 && <div>{emptyText}</div>}
       <DndContext
@@ -167,6 +188,7 @@ const BasicReorder = ({
               <BasicReorderItem
                 key={idArray[index]}
                 id={idArray[index]}
+                index={index}
                 itemText={getTextFromData ? getTextFromData(item) : ""}
                 activeId={activeId}
               >
@@ -181,6 +203,7 @@ const BasicReorder = ({
               isOverlay={true}
               key={activeId}
               id={activeId}
+              index={0}
               itemText={getTextFromData ? getTextFromData(activeItem) : ""}
               activeId={activeId}
             >

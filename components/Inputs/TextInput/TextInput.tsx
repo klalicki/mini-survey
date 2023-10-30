@@ -58,7 +58,7 @@ const TextInput = ({
         />
       ) : (
         <h2
-          className="hover:cursor-text"
+          className="hover:cursor-text p-1"
           onClick={() => {
             setIsEditing(true);
           }}

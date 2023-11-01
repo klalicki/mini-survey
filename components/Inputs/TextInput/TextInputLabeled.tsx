@@ -1,8 +1,6 @@
 import { getUID } from "@/utils/uid";
 import { useState, useRef, ChangeEvent } from "react";
 
-
-
 type TextInputLabeledProps = {
   placeholder: string;
   value: string;
@@ -22,10 +20,13 @@ export const TextInputLabeled = ({
     updateFn(e.target.value);
   };
   return (
-    <div className="text-input-labeled">
-      <label htmlFor={inputID}>{labelText}</label>
+    <div className="flex flex-col gap-0">
+      <label className="text-sm" htmlFor={inputID}>
+        {labelText}
+      </label>
       <input
         type="text"
+        className="p-2 border-2 border-accentA-300"
         id={inputID}
         value={value}
         placeholder={placeholder}

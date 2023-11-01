@@ -76,7 +76,7 @@ const BasicReorderItem = ({
           ref={setActivatorNodeRef}
           {...attributes}
           {...listeners}
-          className="eq-draghandle"
+          className="pt-1 pb-1 grow hover:bg-accentB-300 hover:text-black transition-all"
         >
           <DragIndicator />
         </button>
@@ -166,10 +166,7 @@ const BasicReorder = ({
   };
 
   return (
-    <section
-      className=" bg-slate-200 p-4 flex flex-col gap-4"
-      style={containerStyles}
-    >
+    <section className=" p-4 flex flex-col gap-4" style={containerStyles}>
       {/* <h2>active: {activeId}</h2> */}
       {dataArray.length === 0 && <div>{emptyText}</div>}
       <DndContext

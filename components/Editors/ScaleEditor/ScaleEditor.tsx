@@ -20,8 +20,8 @@ const ScaleEditor = ({
   }
 
   return (
-    <div className="scale-editor">
-      <div>
+    <div className="flex gap-4">
+      <div className="flex flex-col gap-2">
         <Dropdown
           items={startNumOptions}
           label={"Start Number"}
@@ -46,7 +46,7 @@ const ScaleEditor = ({
           }}
         />
       </div>
-      <div>
+      <div className="flex flex-col gap-2">
         <Dropdown
           items={endNumOptions}
           label={"End Number"}

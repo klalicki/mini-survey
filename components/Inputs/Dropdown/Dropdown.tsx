@@ -22,9 +22,12 @@ export const Dropdown = ({
 }: DropdownProps<any>) => {
   const formId = `${name}-${useRef(getUID()).current}`;
   return (
-    <div className="dropdown-labeled">
-      <label htmlFor={formId}>{label}</label>
+    <div className="flex flex-col gap-0 items-start">
+      <label className="text-sm" htmlFor={formId}>
+        {label}
+      </label>
       <select
+        className="border border-accentA-300 border-2 p-1 min-w-[5rem]"
         defaultValue={value}
         name={name}
         id={formId}

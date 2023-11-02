@@ -54,7 +54,7 @@ const Select = ({
 
                 <label
                   className={
-                    "flex gap-1 p-2 items-center h-full peer-checked:bg-accentA-200 peer-hover:bg-accentA-100"
+                    "flex flex-col sm:flex-row gap-1 p-2 items-center h-full peer-checked:bg-accentA-200 peer-hover:bg-accentA-100  "
                   }
                   htmlFor={`radio-${fieldName}-${item.value}-${itemRef.current}`}
                 >

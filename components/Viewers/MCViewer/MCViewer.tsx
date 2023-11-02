@@ -5,7 +5,7 @@ export const MCViewer = ({ questionData }: { questionData: SurveySection }) => {
     <div>
       {questionData.MCOptions.map((item) => {
         return (
-          <div key={item.staticID}>
+          <div key={item.staticID} className="flex gap-1">
             <input
               type="radio"
               name={`${questionData.staticID}`}

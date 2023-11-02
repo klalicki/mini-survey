@@ -15,30 +15,24 @@ export const ScaleViewer = ({
     numbersToRender.push(i);
   }
   return (
-    <div>
-      <div className="scale-wrapper">
-        <div className="scale-label-start">
-          {questionData.ScaleOptions.startLabel}
-        </div>
-        <div className="scale-radio">
-          {numbersToRender.map((item) => {
-            return (
-              <div className="scale-radio-item" key={item}>
-                <label htmlFor={`${questionData.staticID}-${item}`}>
-                  {item}
-                </label>
-                <input
-                  type="radio"
-                  name={questionData.staticID}
-                  id={`${questionData.staticID}-${item}`}
-                />
-              </div>
-            );
-          })}
-        </div>{" "}
-        <div className="scale-label-end">
-          {questionData.ScaleOptions.endLabel}
-        </div>
+    <div className="flex flex-col min-w-full">
+      <div className="flex gap-3 flex-wrap">
+        {numbersToRender.map((item) => {
+          return (
+            <div className="flex flex-col grow " key={item}>
+              <input
+                type="radio"
+                name={questionData.staticID}
+                id={`${questionData.staticID}-${item}`}
+              />
+              <label htmlFor={`${questionData.staticID}-${item}`}>{item}</label>
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex justify-between gap-5">
+        <div className="text-sm">{questionData.ScaleOptions.startLabel}</div>
+        <div className="text-sm">{questionData.ScaleOptions.endLabel}</div>
       </div>
     </div>
   );

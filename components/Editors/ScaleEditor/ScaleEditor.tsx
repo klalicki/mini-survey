@@ -20,7 +20,7 @@ const ScaleEditor = ({
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 flex-wrap">
       <div className="flex flex-col gap-2">
         <Dropdown
           items={startNumOptions}
